@@ -365,6 +365,8 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 /*v21*/
 .calm *,.calm *::before,.calm *::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
 .calm #splash{display:none}
+.upd{position:fixed;left:50%;top:calc(64px + env(safe-area-inset-top,0px));transform:translateX(-50%);z-index:45;display:flex;align-items:center;gap:12px;background:var(--ink);color:#0b0e13;border-radius:14px;padding:10px 10px 10px 16px;font-weight:600;font-size:.9rem;box-shadow:0 18px 40px -14px rgba(0,0,0,.8);animation:toastin .4s var(--e-spring);width:max-content;max-width:calc(100% - 32px)}
+.upd button{border:0;background:var(--amber);color:#241500;font-weight:700;border-radius:10px;padding:9px 14px;cursor:pointer;min-height:40px;white-space:nowrap}
 .mnote{display:flex;align-items:center;gap:12px;background:var(--amber-soft);border:1px solid rgba(245,166,35,.3);border-radius:var(--r-md);padding:12px 14px;font-size:.88rem;color:var(--ink)}
 .mnote span{flex:1}
 .mnote .btn{min-height:38px;padding:6px 12px;flex:none}
@@ -503,7 +505,7 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
       <p id="storeNote">Alle Einträge und Fotos werden nur auf diesem Gerät gespeichert. Es gibt kein Konto und keine Weitergabe.</p>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num">Version 2.1</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 2.2</span></div>
   </section>
 </main>
 
@@ -1012,6 +1014,16 @@ $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist ger
   save(`Fehlstunden-${stamp()}.pdf`,doc.output("blob")); };
 
 /* ---------- start ---------- */
+const APP_VERSION="2.2";
+const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
+let updShown=false, lastCheck=0;
+async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
+  try{ const r=await fetch(location.pathname+"?check="+Date.now(),{cache:"no-store"}); if(!r.ok) return; const t=await r.text(); const m=t.match(/APP_VERSION="([\d.]+)"/);
+    if(!m||!newer(m[1],APP_VERSION)) return; updShown=true;
+    const u=document.createElement("div"); u.className="upd"; u.setAttribute("role","status"); const sp=document.createElement("span"); sp.textContent=`Version ${m[1]} ist da`;
+    const b=document.createElement("button"); b.type="button"; b.textContent="Jetzt aktualisieren"; b.onclick=()=>{ b.textContent="Lädt …"; location.replace(location.pathname+"?v="+m[1]+"-"+Date.now()); };
+    u.append(sp,b); document.body.appendChild(u); }catch(e){} }
+setTimeout(checkUpdate,2500); document.addEventListener("visibilitychange",()=>{ if(!document.hidden) checkUpdate(); });
 $("mnoteOn").onclick=()=>{ setMotion("on"); toast("Animationen eingeschaltet"); };
 fillSettings(); buildLamps(); setFlaps(0); render(); splash();
 go(location.hash.slice(1)||"home",false); moveSegInd();
