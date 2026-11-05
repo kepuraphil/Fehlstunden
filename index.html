@@ -144,7 +144,7 @@ main{max-width:720px;margin:0 auto;padding-block:16px calc(96px + env(safe-area-
 .info .t{font-weight:600;font-size:.98rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .info .s{font-size:.82rem;color:var(--sub);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .pill{font-size:.7rem;font-weight:600;padding:2px 8px;border-radius:999px}
-.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.open{background:var(--red-soft);color:var(--red)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)} .pill.open{background:var(--red-soft);color:var(--red)} .pill.un{background:transparent;color:var(--red);box-shadow:inset 0 0 0 1px rgba(255,91,77,.45)}
 .end{display:flex;align-items:center;gap:10px}
 .val{text-align:right;line-height:1.1}
 .val b{display:block;font-family:var(--mono);font-weight:600;font-size:1.2rem}
@@ -625,7 +625,7 @@ main.quake{animation:none}
       <div class="legend">
         <span><i style="background:var(--blue)"></i><b id="lgA">0</b> gefehlt</span>
         <span><i style="background:var(--amber)"></i><b id="lgL">0</b> durch Verspätung</span>
-        <span><i style="background:var(--red)"></i><b id="lgO">0</b> ohne Entschuldigung</span>
+        <span><i style="background:var(--red)"></i><b id="lgO">0</b> unentschuldigt</span>
       </div>
     </section>
 
@@ -743,7 +743,7 @@ main.quake{animation:none}
       <ol>
         <li><b>Gefehlt</b>, wenn du den ganzen Tag nicht da warst. <b>Zu spät</b>, wenn du später gekommen bist, ein paar Minuten oder erst zu einer späteren Stunde.</li>
         <li>Grund antippen oder selbst eingeben. Fotos sind optional, z. B. Entschuldigung oder Bahn-Meldung.</li>
-        <li>Abgegebene Entschuldigung: Eintrag antippen und „Entschuldigt“ einschalten.</li>
+        <li>Neue Einträge zählen als unentschuldigt. Wird eine Fehlzeit oder Verspätung entschuldigt, den Eintrag antippen und „Entschuldigt“ einschalten oder nach rechts wischen.</li>
         <li>Eine Lampe auf der Tafel antippen zeigt, zu welchem Eintrag sie gehört.</li>
         <li><b>Wischen</b> in der Liste: nach links löscht, nach rechts markiert als entschuldigt. Beides lässt sich rückgängig machen.</li>
         <li><b>Gedrückt halten</b> auf „Gefehlt“ oder „Zu spät“ speichert sofort mit deinen letzten Angaben.</li>
@@ -772,7 +772,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 4.4</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 4.5</span></div>
   </section>
 </main>
 
@@ -814,7 +814,7 @@ main.quake{animation:none}
       <div class="gallery" id="gallery"></div>
       <input type="file" id="photo" accept="image/*" multiple style="position:absolute;opacity:0;width:1px;height:1px">
     </div>
-    <label class="toggle" for="excused" id="excusedRow">Entschuldigung abgegeben<span class="switch-t"><input type="checkbox" id="excused" role="switch"><span></span></span></label>
+    <label class="toggle" for="excused" id="excusedRow">Entschuldigt<span class="switch-t"><input type="checkbox" id="excused" role="switch"><span></span></span></label>
     <p class="fmsg" id="fmsg" role="alert"></p>
     <button type="submit" class="save" id="saveBtn">Speichern</button>
     <button type="button" class="del" id="delBtn" hidden>Eintrag löschen</button>
@@ -956,6 +956,7 @@ function makeRow(e,idx,animate){
   const info=document.createElement("div"); info.className="info";
   const tt=document.createElement("div"); tt.className="t"; tt.textContent=(t==="late"?"Zu spät":"Gefehlt")+(e.reason?" · "+e.reason:"");
   const s=document.createElement("div"); s.className="s";
+  if(t==="late"){ const p=document.createElement("span"); p.className="pill "+(e.excused?"ok":"un"); p.textContent=e.excused?"Entschuldigt":"Unentschuldigt"; s.append(p); }
   if(t==="absent"){ const p=document.createElement("span"); p.className="pill "+(e.excused?"ok":"open"); p.textContent=e.excused?"Entschuldigt":"Offen";
     if(!e.excused&&SET.due>0){ const left=SET.due-Math.round((pd(iso(new Date()))-pd(e.date))/864e5); if(left>=0){ p.className="pill due"; p.textContent=left===0?"Frist: heute":left===1?"Frist: morgen":`Frist: ${left} Tage`; } else p.textContent="Frist vorbei"; }
     s.append(p); }
@@ -976,7 +977,7 @@ function emptyState(title,text){ const d=document.createElement("div"); d.classN
 let listAnimate=true, listDirty=true, statsDirty=true, listLimit=60, listObs=null;
 function renderList(){
   const q=($("q").value||"").trim().toLowerCase();
-  const match=e=>{ if(!q) return true; const d=pd(e.date); const hay=[e.reason||"",typeOf(e)==="late"?"zu spät verspätung":"gefehlt fehltag",d.toLocaleDateString("de-DE"),`${String(d.getDate()).padStart(2,"0")}.${String(d.getMonth()+1).padStart(2,"0")}.`,d.toLocaleDateString("de-DE",{weekday:"long",month:"long"}),e.excused?"entschuldigt":"offen"].join(" ").toLowerCase(); return q.split(/\s+/).every(w=>hay.includes(w)); };
+  const match=e=>{ if(!q) return true; const d=pd(e.date); const hay=[e.reason||"",typeOf(e)==="late"?"zu spät verspätung":"gefehlt fehltag",d.toLocaleDateString("de-DE"),`${String(d.getDate()).padStart(2,"0")}.${String(d.getMonth()+1).padStart(2,"0")}.`,d.toLocaleDateString("de-DE",{weekday:"long",month:"long"}),e.excused?"entschuldigt":(typeOf(e)==="late"?"unentschuldigt":"offen unentschuldigt")].join(" ").toLowerCase(); return q.split(/\s+/).every(w=>hay.includes(w)); };
   const shown=sortDesc(entries.filter(e=>(filter==="all"||(filter==="open"?(typeOf(e)==="absent"&&!e.excused):typeOf(e)===filter))&&match(e)));
   const list=$("list"); list.innerHTML="";
   $("listCount").textContent=entries.length?`${entries.length} ${entries.length===1?"Eintrag":"Einträge"}`:"";
@@ -1037,7 +1038,7 @@ function render(){
   buildLampMap(ab,la); setFlaps(tot); setLamps(Math.min(abL,SET.limit),Math.min(laL,Math.max(0,SET.limit-abL)));
   countTo($("rest"),SET.limit-tot);
   $("board").className="board"+(tot>=SET.limit?" over":tot>=SET.warn?" warn":"");
-  $("lgA").textContent=abL; $("lgL").textContent=laL; $("lgO").textContent=entries.filter(e=>typeOf(e)==="absent"&&!e.excused).length;
+  $("lgA").textContent=abL; $("lgL").textContent=laL; $("lgO").textContent=per.filter(e=>!e.excused).reduce((s,e)=>s+lessonsOf(e),0);
   $("periodLbl").textContent=`Fehlstunden · ${periodLabel()}`; $("ofLbl").textContent="/"+SET.limit;
   $("chipN").textContent=String(tot).padStart(3,"0"); $("chipL").textContent=SET.limit;
   prevTot=tot;
@@ -1110,7 +1111,7 @@ function setType(t,keep){ type=t; document.querySelectorAll("#typesw button").fo
   $("lateMode").hidden=t!=="late"; if(t==="late") setLateMode(lateMode,true); else renderAmountChips();
   $("reasonChips").innerHTML=REASONS[t].map(r=>`<button type="button" data-r="${r}" aria-pressed="false">${r}</button>`).join("");
   document.querySelectorAll("#reasonChips button").forEach(b=>b.onclick=()=>setReason(reasonChip===b.dataset.r?"":b.dataset.r));
-  $("saveBtn").classList.toggle("l",t==="late"); $("excusedRow").hidden=t==="late";
+  $("saveBtn").classList.toggle("l",t==="late"); $("excusedRow").hidden=false;
   if(!keep){ setAmount(t==="late"?(lateMode==="lesson"?3:10):6); setReason(t==="late"?"Bahn":""); } else updateHint(); }
 document.querySelectorAll("#typesw button").forEach(b=>b.onclick=()=>setType(b.dataset.type));
 $("minus").onclick=()=>setAmount(amount-cfg().step); $("plus").onclick=()=>setAmount(amount+cfg().step);
@@ -1141,7 +1142,7 @@ $("delBtn").onclick=()=>{ const e=editing; closeSheet(); if(e) deleteWithUndo(e,
 $("form").onsubmit=async ev=>{
   ev.preventDefault(); const date=$("date").value; if(!date){ $("fmsg").textContent="Wähle ein Datum."; return; }
   const sb=$("saveBtn"); sb.disabled=true; sb.classList.add("busy"); sb.textContent=sheetPhotos.some(r=>r.blob)?"Fotos werden gespeichert …":"Wird gespeichert …";
-  const data={type,date,reason:reasonChip||$("reason").value.trim(),excused:type==="late"?false:$("excused").checked,updated:Date.now(),hours:type==="absent"?amount:null,minutes:type==="late"&&lateMode==="min"?amount:null,fromLesson:type==="late"&&lateMode==="lesson"?amount:null,lateMode:type==="late"?lateMode:null};
+  const data={type,date,reason:reasonChip||$("reason").value.trim(),excused:$("excused").checked,updated:Date.now(),hours:type==="absent"?amount:null,minutes:type==="late"&&lateMode==="min"?amount:null,fromLesson:type==="late"&&lateMode==="lesson"?amount:null,lateMode:type==="late"?lateMode:null};
   const wasNew=!editing, before=entries.filter(e=>inPeriod(e.date)).reduce((s,e)=>s+lessonsOf(e),0);
   try{ if(editing) await store.update(editing.id,data,sheetPhotos); else await store.add({...data,created:Date.now()},sheetPhotos);
     sb.classList.remove("busy"); sb.classList.add("done"); sb.innerHTML=`<span>${SVG.check}Gespeichert</span>`;
@@ -1261,7 +1262,7 @@ async function save(filename,data){
   catch(err){ toast("Die Datei konnte nicht gespeichert werden.",true); } }
 const amountText=e=>typeOf(e)==="late"?(e.lateMode==="lesson"?`erst zur ${+e.fromLesson}. Std.`:`${+e.minutes||0} Min. zu spät`):`${+e.hours||0} Std. gefehlt`;
 $("exCsv").onclick=()=>{ const rows=[["Datum","Art","Stunden","Minuten","Fehlstunden","Grund","Entschuldigt","Fotos"]];
-  for(const e of sortedAsc()){ const t=typeOf(e); rows.push([pd(e.date).toLocaleDateString("de-DE"),t==="late"?"Verspätung":"Fehlzeit",t==="absent"?e.hours:"",t==="late"?(e.lateMode==="lesson"?`ab ${e.fromLesson}. Std.`:e.minutes):"",lessonsOf(e),e.reason||"",t==="late"?"":(e.excused?"ja":"nein"),photoRefs(e).length]); }
+  for(const e of sortedAsc()){ const t=typeOf(e); rows.push([pd(e.date).toLocaleDateString("de-DE"),t==="late"?"Verspätung":"Fehlzeit",t==="absent"?e.hours:"",t==="late"?(e.lateMode==="lesson"?`ab ${e.fromLesson}. Std.`:e.minutes):"",lessonsOf(e),e.reason||"",e.excused?"ja":"nein",photoRefs(e).length]); }
   save(`Fehlstunden-${stamp()}.csv`,"﻿"+rows.map(r=>r.map(v=>`"${String(v??"").replace(/"/g,'""')}"`).join(";")).join("\r\n")); };
 $("exJson").onclick=async()=>{ toast("Sicherung wird erstellt …"); const out=[];
   for(const e of sortedAsc()){ const ph=[]; for(const r of photoRefs(e)){ const d=await refAsDataURL(r); if(d) ph.push(d); }
@@ -1272,7 +1273,7 @@ $("importFile").onchange=async ev=>{ const f=ev.target.files[0]; ev.target.value
     for(const e of list){ if(!e||!/^\d{4}-\d{2}-\d{2}$/.test(e.date)) continue; if(entries.some(x=>x.date===e.date&&(x.created||0)===(+e.created||0))) continue;
       const t=e.type==="late"?"late":"absent"; const urls=(Array.isArray(e.photos)?e.photos:(e.photo?[e.photo]:[])).filter(u=>typeof u==="string"&&u.startsWith("data:image/"));
       const photos=[]; for(const u of urls) photos.push({data:u});
-      await store.add({type:t,date:e.date,hours:t==="absent"?Math.max(1,Math.min(12,+e.hours||1)):null,minutes:t==="late"&&e.lateMode!=="lesson"?Math.max(1,Math.min(240,+e.minutes||5)):null,lateMode:t==="late"?(e.lateMode==="lesson"?"lesson":"min"):null,fromLesson:t==="late"&&e.lateMode==="lesson"?Math.max(2,Math.min(12,+e.fromLesson||2)):null,reason:String(e.reason||"").slice(0,80),excused:t==="late"?false:!!e.excused,created:+e.created||Date.now(),updated:Date.now()},photos); n++; }
+      await store.add({type:t,date:e.date,hours:t==="absent"?Math.max(1,Math.min(12,+e.hours||1)):null,minutes:t==="late"&&e.lateMode!=="lesson"?Math.max(1,Math.min(240,+e.minutes||5)):null,lateMode:t==="late"?(e.lateMode==="lesson"?"lesson":"min"):null,fromLesson:t==="late"&&e.lateMode==="lesson"?Math.max(2,Math.min(12,+e.fromLesson||2)):null,reason:String(e.reason||"").slice(0,80),excused:!!e.excused,created:+e.created||Date.now(),updated:Date.now()},photos); n++; }
     toast(n?`${n} ${n===1?"Eintrag":"Einträge"} geladen`:"Keine neuen Einträge in der Sicherung."); }
   catch(err){ toast("Diese Datei ist keine gültige Sicherung.",true); } };
 $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist gerade nicht verfügbar. Prüfe die Internetverbindung.",true); return; }
@@ -1285,7 +1286,7 @@ $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist ger
   y+=10; doc.setTextColor(20); doc.setFont("helvetica","bold"); const c=[M,M+26,M+68,M+92,M+140];
   ["Datum","Art","Fehlstd.","Grund","Status"].forEach((h,i)=>doc.text(h,c[i],y)); y+=2; doc.setDrawColor(180); doc.line(M,y,192,y); y+=6; doc.setFont("helvetica","normal");
   for(const e of all){ if(y>275){ doc.addPage(); y=20; } doc.text(pd(e.date).toLocaleDateString("de-DE"),c[0],y); doc.text(amountText(e),c[1],y); doc.text(String(lessonsOf(e)),c[2],y);
-    doc.text(doc.splitTextToSize(e.reason||"-",44)[0],c[3],y); doc.text(typeOf(e)==="late"?"-":(e.excused?"entschuldigt":"offen"),c[4],y); y+=7; }
+    doc.text(doc.splitTextToSize(e.reason||"-",44)[0],c[3],y); doc.text(e.excused?"entschuldigt":(typeOf(e)==="late"?"unentschuldigt":"offen"),c[4],y); y+=7; }
   for(const e of all){ const refs=photoRefs(e); for(let i=0;i<refs.length;i++){ const u=await refAsDataURL(refs[i]); if(!u) continue;
     const img=await new Promise(r=>{const im=new Image(); im.onload=()=>r(im); im.onerror=()=>r(null); im.src=u;}); if(!img) continue;
     doc.addPage(); doc.setFont("helvetica","bold"); doc.setFontSize(13); doc.text(`${pd(e.date).toLocaleDateString("de-DE")}: ${amountText(e)}${e.reason?" ("+e.reason+")":""}${refs.length>1?`  -  Foto ${i+1}/${refs.length}`:""}`,M,20);
@@ -1483,7 +1484,7 @@ if("serviceWorker" in navigator&&(location.protocol==="https:"||location.hostnam
 /* ---------- swipe rows ---------- */
 const ICO={trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>',ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5 9-10"/></svg>'};
 function wrapSwipe(row,e){ const w=document.createElement("div"); w.className="swipe"; const bg=document.createElement("div"); bg.className="sw"; bg.setAttribute("aria-hidden","true");
-  const canOk=typeOf(e)==="absent"; bg.innerHTML=`<span class="ok">${canOk?ICO.ok+(e.excused?"Offen":"Entschuldigt"):""}</span><span class="del">Löschen${ICO.trash}</span>`; w.append(bg,row);
+  const canOk=true, offLbl=typeOf(e)==="late"?"Unentschuldigt":"Offen"; bg.innerHTML=`<span class="ok">${ICO.ok+(e.excused?offLbl:"Entschuldigt")}</span><span class="del">Löschen${ICO.trash}</span>`; w.append(bg,row);
   let x0=0,y0=0,dx=0,drag=false,lock=null,id=null; const TH=Math.min(130,innerWidth*.3);
   row.addEventListener("pointerdown",ev=>{ if(ev.pointerType==="mouse"&&ev.button>0) return; x0=ev.clientX; y0=ev.clientY; dx=0; drag=false; lock=null; id=ev.pointerId; });
   row.addEventListener("pointermove",ev=>{ if(id!==ev.pointerId) return; const mx=ev.clientX-x0, my=ev.clientY-y0;
@@ -1496,7 +1497,7 @@ function wrapSwipe(row,e){ const w=document.createElement("div"); w.className="s
     const arm=w.classList.contains("arm"); row._swiped=true; setTimeout(()=>row._swiped=false,50);
     if(arm&&dx<0){ row.style.transform="translateX(-110%)"; await wait(220); w.style.height=w.offsetHeight+"px"; void w.offsetWidth; w.classList.add("collapse"); w.style.height="0px"; await wait(280); deleteWithUndo(e,true); return; }
     if(arm&&dx>0&&canOk){ row.style.transform="translateX(0)"; w.classList.remove("arm"); const now=!e.excused;
-      try{ await store.update(e.id,{excused:now,updated:Date.now()},photoRefs(e)); sfx.chime(false); toast(now?"Als entschuldigt markiert":"Wieder als offen markiert"); }catch(err){ toast("Ändern hat nicht geklappt.",true); } return; }
+      try{ await store.update(e.id,{excused:now,updated:Date.now()},photoRefs(e)); sfx.chime(false); toast(now?"Als entschuldigt markiert":(typeOf(e)==="late"?"Als unentschuldigt markiert":"Wieder als offen markiert")); }catch(err){ toast("Ändern hat nicht geklappt.",true); } return; }
     row.style.transform="translateX(0)"; w.classList.remove("arm"); };
   row.addEventListener("pointerup",end); row.addEventListener("pointercancel",end);
   row.addEventListener("click",ev=>{ if(row._swiped){ ev.stopImmediatePropagation(); ev.preventDefault(); } },true);
@@ -1563,7 +1564,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="4.4";
+const APP_VERSION="4.5";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
