@@ -363,6 +363,17 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 #splash small{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;animation:fieldin .5s var(--e-out) .5s both}
 #splash .ln{height:2px;box-shadow:0 0 14px var(--amber)}
 /*v21*/
+/* Was ist neu */
+.wn .wnv{margin-bottom:4px}
+.wnfl{width:110px;height:140px;filter:drop-shadow(0 0 30px rgba(255,255,255,.5));transform-origin:50% 100%;animation:flk 1.6s ease-in-out infinite}
+.wnch{display:flex;gap:14px} .wnch i{width:64px;height:64px;border-radius:50%;background:conic-gradient(#fff calc(var(--p) * 360deg),rgba(255,255,255,.22) 0);-webkit-mask:radial-gradient(closest-side,transparent 70%,#000 71%);mask:radial-gradient(closest-side,transparent 70%,#000 71%)}
+.wnsk{display:flex;gap:10px} .wnsk i{width:52px;height:72px;border-radius:12px;border:2px solid rgba(255,255,255,.7);box-shadow:0 10px 30px -10px rgba(0,0,0,.5);animation:wnsk 2.4s ease-in-out infinite alternate} .wnsk i:nth-child(2){animation-delay:.2s} .wnsk i:nth-child(3){animation-delay:.4s} .wnsk i:nth-child(4){animation-delay:.6s} .wnsk i:nth-child(5){animation-delay:.8s}
+@keyframes wnsk{to{transform:translateY(-12px) rotate(-4deg)}}
+.wn3d{perspective:500px} .wn3d i{display:block;width:170px;height:100px;border-radius:16px;background:rgba(255,255,255,.18);border:2px solid #fff;animation:wn3d 3s ease-in-out infinite;box-shadow:0 20px 40px -14px rgba(0,0,0,.5)}
+@keyframes wn3d{0%,100%{transform:rotateX(14deg) rotateY(-22deg)}50%{transform:rotateX(-10deg) rotateY(22deg)}}
+.wnhm{display:grid;grid-template-columns:repeat(7,18px);gap:5px} .wnhm i{width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,.85);animation:hmin .5s cubic-bezier(.3,1.4,.5,1) both}
+.wnhm i:nth-child(4n){background:rgba(255,255,255,.3)} .wnhm i:nth-child(9){background:#fde68a} .wnhm i:nth-child(23){background:#93c5fd}
+.wnhm i:nth-child(1){animation-delay:0.30s}.wnhm i:nth-child(2){animation-delay:0.36s}.wnhm i:nth-child(3){animation-delay:0.42s}.wnhm i:nth-child(4){animation-delay:0.48s}.wnhm i:nth-child(5){animation-delay:0.54s}.wnhm i:nth-child(6){animation-delay:0.60s}.wnhm i:nth-child(7){animation-delay:0.66s}.wnhm i:nth-child(8){animation-delay:0.34s}.wnhm i:nth-child(9){animation-delay:0.40s}.wnhm i:nth-child(10){animation-delay:0.46s}.wnhm i:nth-child(11){animation-delay:0.52s}.wnhm i:nth-child(12){animation-delay:0.58s}.wnhm i:nth-child(13){animation-delay:0.64s}.wnhm i:nth-child(14){animation-delay:0.70s}.wnhm i:nth-child(15){animation-delay:0.38s}.wnhm i:nth-child(16){animation-delay:0.44s}.wnhm i:nth-child(17){animation-delay:0.50s}.wnhm i:nth-child(18){animation-delay:0.56s}.wnhm i:nth-child(19){animation-delay:0.62s}.wnhm i:nth-child(20){animation-delay:0.68s}.wnhm i:nth-child(21){animation-delay:0.74s}.wnhm i:nth-child(22){animation-delay:0.42s}.wnhm i:nth-child(23){animation-delay:0.48s}.wnhm i:nth-child(24){animation-delay:0.54s}.wnhm i:nth-child(25){animation-delay:0.60s}.wnhm i:nth-child(26){animation-delay:0.66s}.wnhm i:nth-child(27){animation-delay:0.72s}.wnhm i:nth-child(28){animation-delay:0.78s}.wnhm i:nth-child(29){animation-delay:0.46s}.wnhm i:nth-child(30){animation-delay:0.52s}.wnhm i:nth-child(31){animation-delay:0.58s}.wnhm i:nth-child(32){animation-delay:0.64s}.wnhm i:nth-child(33){animation-delay:0.70s}.wnhm i:nth-child(34){animation-delay:0.76s}.wnhm i:nth-child(35){animation-delay:0.82s}
 /* ---------- v7: Skin-Welten, Aura, Challenges, Trophäen, Level-Karte, Jahr ---------- */
 body{background:transparent}
 :root[data-skin] .tabbar{background:var(--bar)}
@@ -1156,7 +1167,7 @@ main.quake{animation:none}
       <details><summary>Zählt die Schule genauso?</summary><p>Die App rechnet nach den Regeln in den Einstellungen. Maßgeblich sind immer die Aufzeichnungen der Schule. Wenn eure Regeln anders sind, passe Grenze, Zeitraum oder Schulstunde an.</p></details>
       <details><summary>Wie bekomme ich eine neue Version?</summary><p>Die App prüft das beim Öffnen selbst. Wenn oben „Jetzt aktualisieren“ erscheint, einfach antippen. Deine Einträge bleiben erhalten.</p></details>
       <details><summary>Was mache ich, wenn der Zeitraum vorbei ist?</summary><p>Die App meldet sich und bietet an, einen neuen Zeitraum zu starten. Alte Einträge bleiben in der Liste, gezählt wird ab dann neu.</p></details>
-      <div class="btngrid" style="margin-top:8px"><button type="button" class="btn" id="startTour">Tour durch die App</button><button type="button" class="btn" id="replayOb">Einführung</button></div>
+      <div class="btngrid" style="margin-top:8px"><button type="button" class="btn" id="startTour">Tour durch die App</button><button type="button" class="btn" id="replayOb">Einführung</button><button type="button" class="btn" id="replayNew" style="grid-column:1/-1">Was ist neu in Version 7</button></div>
     </div>
 
     <div class="card">
@@ -1167,7 +1178,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 7.0</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 7.1</span></div>
   </section>
 </main>
 
@@ -1396,7 +1407,7 @@ function renderRecent(){ const box=$("recent"); box.innerHTML=""; const last=sor
 /* ---------- stats ---------- */
 function renderStats(per,la){
   const today=iso(new Date()), past=entries.map(e=>e.date).filter(d=>d<=today).sort(), last=past.pop();
-  if(last){ const n=Math.max(0,Math.round((pd(today)-pd(last))/864e5)); $("sStreak").textContent=n; $("sStreakU").textContent=n===1?"Tag ohne Fehlzeit":"Tage ohne Fehlzeit"; } else { $("sStreak").textContent="–"; $("sStreakU").textContent="Noch nichts eingetragen"; }
+  { const X=xpData(); $("sStreak").textContent=X.cur; $("sStreakU").textContent=X.cur===1?"Schultag am Stück ohne Fehlzeit":"Schultage am Stück ohne Fehlzeit"; }
   $("sMin").textContent=la.reduce((s,e)=>s+(e.lateMode==="lesson"?((+e.fromLesson||1)-1)*SET.lesson:(+e.minutes||0)),0);
   const cnt={}; for(const e of per) if(e.reason) cnt[e.reason]=(cnt[e.reason]||0)+1; const top=Object.entries(cnt).sort((a,b)=>b[1]-a[1])[0];
   $("sTop").textContent=top?top[0]:"–"; $("sTopU").textContent=top?`Häufigster Grund (${top[1]}×)`:"Häufigster Grund";
@@ -1873,10 +1884,44 @@ function hmTap(e){ const c=e.target.closest("i[data-d]"); if(!c||c.classList.con
   const t=c.classList.contains("a")?`Gefehlt, ${h} ${h===1?"Stunde":"Stunden"}`:c.classList.contains("l")?`Zu spät, ${h} ${h===1?"Fehlstunde":"Fehlstunden"}`:c.classList.contains("c")?"Ohne Fehlzeit":c.classList.contains("n")?"Vor deinem Start in der App":"Kommt noch";
   toast(`${dl}: ${t}`); try{ sfx.click(); }catch(_){} }
 
-function v7Render(X,loaded){ auraRender(); chRender(X,loaded); if(view==="stats"||$("hm").childElementCount) hmRender(X);
+
+/* Was ist neu (Story, nur Tippen) */
+function whatsNew(){ if(document.querySelector(".wr")) return; tSet("fh_new7","1");
+  const FL='<svg viewBox="0 0 40 52" class="wnfl"><path d="M20 51C10.6 51 4 44.6 4 35.6c0-7 4.2-11.8 7.8-15.6.8 3.6 2.8 5.8 5 6.6C15.6 18 19.8 9.6 26.8 2.6c-.4 7.6 3 11.8 6.4 16C36 22.2 36 27 36 35.6 36 44.6 29.4 51 20 51z" fill="#fff"/><path d="M20 51c-5.2 0-8.8-3.6-8.8-8.6 0-4.4 2.6-7.4 5-10 .4 2.4 1.6 3.6 2.8 4.2-.4-5.2 1.8-9.6 5.8-12.8-.2 5 1.8 7.6 3.6 10 1.4 2 1.4 4 1.4 8.6 0 5-3.6 8.6-9.8 8.6z" fill="#fde68a"/></svg>';
+  const SL=[
+    {k:"Update 7",h:"Neu im Fehlstunden-Heft",p:"Ein paar neue Sachen, in 30 Sekunden erklärt. Tippe rechts für weiter."},
+    {k:"Level und Flamme",v:FL,h:"Jeder Schultag zählt.",p:"Jeder Schultag ohne Fehlzeit bringt <b>XP</b>. Die Flamme unter der Tafel zeigt deine Serie. Je länger, desto größer."},
+    {k:"Wochen-Challenges",v:'<div class="wnch"><i style="--p:1"></i><i style="--p:.6"></i><i style="--p:.3"></i></div>',h:"3 Aufgaben pro Woche.",p:"Jeden Montag gibt es neue Challenges. Schaffst du sie, gibt es <b>Bonus-XP</b>."},
+    {k:"Designs",v:'<div class="wnsk"><i style="background:#f5a623"></i><i style="background:#ff2bd6"></i><i style="background:#2c4437"></i><i style="background:#39ff14"></i><i style="background:#e2b84a"></i></div>',h:"Schalte neue Looks frei.",p:"Mit höherem Level bekommst du Neon, Kreide, Arcade und Gold. Zu finden unter <b>Mehr → Design</b>."},
+    {k:"3D-Tafel",v:'<div class="wn3d"><i></i></div>',h:"Kipp dein Handy.",p:"Die Tafel bewegt sich mit. Auf iPhone und iPad musst du das einmal erlauben.",btn:typeof d3NeedPerm!=="undefined"&&d3NeedPerm&&tGet("fh_3d_perm")!=="granted"?"3D erlauben":null},
+    {k:"Statistik",v:'<div class="wnhm">'+'<i></i>'.repeat(35)+'</div>',h:"Dein Jahr auf einen Blick.",p:"Jeder Schultag als Kästchen, Medaillen zum Drehen und deine <b>Level-Karte</b> zum Teilen.",last:1} ];
+  const o=H("div","wr wn"); o.setAttribute("role","dialog"); o.setAttribute("aria-label","Was ist neu");
+  const bg=H("div","bg"), bars=H("div","bars"), st=H("div","st"), hint=H("div","hint","Tippen für weiter");
+  const xb=document.createElement("button"); xb.className="xb"; xb.type="button"; xb.setAttribute("aria-label","Schließen"); xb.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>';
+  SL.forEach(()=>{ const i=document.createElement("i"); i.appendChild(document.createElement("b")); bars.appendChild(i); });
+  o.append(bg,st,bars,xb,hint); document.body.appendChild(o); document.body.style.overflow="hidden"; let i=-1, closed=false;
+  const close=()=>{ if(closed) return; closed=true; o.style.transition="opacity .3s,transform .3s"; o.style.opacity="0"; o.style.transform="scale(1.04)"; setTimeout(()=>{ o.remove(); document.body.style.overflow=""; },300); document.removeEventListener("keydown",key); };
+  const go=n=>{ if(n<0) n=0; if(n>=SL.length){ close(); return; } i=n; const d=SL[n], pal=PALS[(n+2)%PALS.length]; st.innerHTML="";
+    bg.style.setProperty("--c1",pal[0]); bg.style.setProperty("--c2",pal[1]); bg.style.setProperty("--c3",pal[2]); bg.style.setProperty("--x1",(15+Math.random()*30)+"%"); bg.style.setProperty("--y2",(55+Math.random()*30)+"%");
+    [...bars.children].forEach((b,j)=>b.className=j<=n?"done":""); hint.hidden=n>0;
+    st.append(H("div","k in",d.k,0)); if(d.v){ const v=H("div","wnv pop",null,.1); v.innerHTML=d.v; st.append(v); }
+    st.append(H("h2","in",d.h,.2)); const p=H("p","in","",.4); p.innerHTML=d.p; st.append(p);
+    if(d.btn||d.last){ const a=H("div","acts in",null,.6);
+      if(d.btn){ const b=H("button","pri",d.btn); b.type="button"; b.onclick=e=>{ e.stopPropagation(); try{ d3Ask(false); }catch(_){} }; a.append(b); }
+      if(d.last){ const b=H("button","pri","Los geht’s"); b.type="button"; b.onclick=e=>{ e.stopPropagation(); close(); }; a.append(b); }
+      st.append(a); }
+    try{ sfx.click(n%4); }catch(_){}
+    if(d.last&&!RM()) setTimeout(()=>{ if(closed) return; try{ wrapConfetti(o); sfx.chime(false); }catch(_){} },400); };
+  o.addEventListener("pointerup",e=>{ if(e.target.closest(".acts,.xb")) return; go(i+(e.clientX<o.clientWidth*.3?-1:1)); });
+  xb.onclick=close; const key=e=>{ if(e.key==="Escape") close(); if(e.key==="ArrowRight"||e.key===" "){ e.preventDefault(); go(i+1); } if(e.key==="ArrowLeft") go(i-1); }; document.addEventListener("keydown",key);
+  go(0); }
+let wnTried=false;
+function wnCheck(){ if(wnTried) return; wnTried=true; if(tGet("fh_new7")) return; if(!tGet("fh_onboarded")){ tSet("fh_new7","1"); return; }
+  const t=()=>{ if(document.querySelector("#splash,.ob,.cel,.lvup,.tour,.wr")||document.hidden){ setTimeout(t,600); return; } whatsNew(); }; setTimeout(t,900); }
+function v7Render(X,loaded){ if(loaded) wnCheck(); auraRender(); chRender(X,loaded); if(view==="stats"||$("hm").childElementCount) hmRender(X);
   if(loaded&&!v7Started){ v7Started=true; skinQueueIntro(curSkin()); } }
 (function v7Init(){ const g=$("achGrid"); if(g) g.addEventListener("click",achTap); const h=$("hm"); if(h) h.addEventListener("click",hmTap);
-  const sb=$("lvlShare"); if(sb) sb.onclick=lvlShare;
+  const sb=$("lvlShare"); if(sb) sb.onclick=lvlShare; const rn=$("replayNew"); if(rn) rn.onclick=whatsNew;
   const card=$("hmCard"); if(card&&"IntersectionObserver" in window){ new IntersectionObserver(es=>{ for(const e of es) if(e.isIntersecting){ if(!$("hm").childElementCount) hmRender(xpData()); if(HMA!==HMK) hmAnim(); } },{threshold:.25}).observe(card); } })();
 
 
@@ -2074,7 +2119,7 @@ const PALS=[["#7c3aed","#db2777","#f59e0b"],["#0ea5e9","#6366f1","#22d3ee"],["#f
 function countEl(el,n,dur=1200,dec=0){ const t0=performance.now(); const f=t=>{ const k=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-k,4); el.textContent=(n*e).toFixed(dec).replace(".",","); if(k<1) requestAnimationFrame(f); }; requestAnimationFrame(f); }
 function H(tag,cls,txt,d){ const el=document.createElement(tag); if(cls) el.className=cls; if(txt!=null) el.textContent=txt; if(d!=null) el.style.setProperty("--d",d+"s"); return el; }
 function wrapSlides(D){ const S=[]; const per=periodLabel(), n=D.per.length;
-  S.push({dur:4500,make(st){ st.append(H("div","k in","Fehlstunden-Heft · "+per,0),H("h2","in","Dein Rückblick ist da.",.15),H("p","in","Tipp rechts für weiter, links für zurück. Halten zum Pausieren.",.4)); }});
+  S.push({dur:4500,make(st){ st.append(H("div","k in","Fehlstunden-Heft · "+per,0),H("h2","in","Dein Rückblick ist da.",.15),H("p","in","Tippe rechts für weiter, links für zurück.",.4)); }});
   if(n<3){ S.push({dur:7000,make(st){ st.append(H("div","k in","Noch nicht viel los",0),H("h2","in","Zu wenig Einträge für einen echten Rückblick.",.15),H("p","in",n?`Erst ${n} ${n===1?"Eintrag":"Einträge"}. Komm wieder, wenn sich mehr angesammelt hat.`:"Du hast noch gar nichts eingetragen. Stark, oder einfach noch nicht angefangen?",.4)); }}); return S; }
   S.push({dur:6500,make(st){ const h=H("div","huge pop","0",.25); st.append(H("div","k in","Insgesamt",0),h,H("h2","in","Fehlstunden",.5)); const p=H("p","in","",.9); p.innerHTML=`Das sind etwa <b>${Math.max(1,Math.round(D.tot/6))} Schultage</b> und noch <b>${Math.max(0,SET.limit-D.tot)}</b> bis zur Grenze.`; st.append(p); setTimeout(()=>countEl(h,D.tot,1400),300); }});
   if(D.la.length) S.push({dur:6500,make(st){ const h=H("div","huge pop","0",.25); st.append(H("div","k in","Zu spät",0),h,H("h2","in","Minuten zu spät",.5)); const eps=Math.floor(D.mins/45); const p=H("p","in","",.9); p.innerHTML=`Verteilt auf <b>${D.la.length} Verspätungen</b>.${eps?` Damit hättest du <b>${eps} Folgen</b> einer Serie schauen können.`:""}`; st.append(p); setTimeout(()=>countEl(h,D.mins,1400),300); }});
@@ -2082,12 +2127,11 @@ function wrapSlides(D){ const S=[]; const per=periodLabel(), n=D.per.length;
     const bx=H("div","rbars in",null,.8); const max=D.reasons[0][1]; D.reasons.forEach(([r,v],i)=>{ const row=H("div","rb"+(i===0?" top":"")); const tr=H("span","tr"); const fill=document.createElement("i"); tr.appendChild(fill); row.append(H("span","",r),tr,H("span","",v+"×")); bx.appendChild(row); setTimeout(()=>fill.style.width=(v/max*100)+"%",1000+i*150); }); st.append(bx); }});
   if(D.wd.some(v=>v)) S.push({dur:6500,make(st){ const mx=Math.max(...D.wd), wi=D.wd.indexOf(mx); st.append(H("div","k in","Schlimmster Tag",0),H("h2","pop",WD[wi],.2)); const wk=H("div","wk in",null,.5);
     D.wd.forEach((v,i)=>{ const c=H("div",i===wi?"max":""); const b=document.createElement("i"); c.append(H("span","",v||""),b,H("span","",["Mo","Di","Mi","Do","Fr"][i])); wk.appendChild(c); setTimeout(()=>b.style.height=Math.max(4,v/mx*100)+"%",700+i*120); }); st.append(wk); const p=H("p","in","",1.2); p.innerHTML=`<b>${mx} Fehlstunden</b> an ${WD[wi]}en. Der Wochentag hat was gegen dich.`; st.append(p); }});
-  if(D.st.has) S.push({dur:6000,make(st){ const h=H("div","huge pop","0",.25); st.append(H("div","k in","Längste Serie",0),h,H("h2","in","Tage ohne Fehlzeit",.5)); const p=H("p","in","",.9); p.innerHTML=D.st.cur>=D.st.best&&D.st.cur>0?`Und die läuft <b>gerade noch</b>. Nicht kaputt machen!`:`Aktuell bist du bei <b>${D.st.cur} ${D.st.cur===1?"Tag":"Tagen"}</b>. Da geht noch was.`; st.append(p); setTimeout(()=>countEl(h,D.st.best,1200),300); }});
   if(D.tot) S.push({dur:6000,make(st){ const pct=Math.round(D.exc/D.tot*100); const h=H("div","huge pop","0",.25); st.append(H("div","k in","Entschuldigt",0),h); h.after(H("h2","in","Prozent entschuldigt",.5)); const p=H("p","in",pct>=80?"Ordentlich! Fast alles geklärt.":pct>=40?"Ein Teil ist noch offen. Lohnt sich, nachzuhaken.":"Da ist noch einiges offen. Zeit für Papierkram.",.9); st.append(p); setTimeout(()=>countEl(h,pct,1200),300); }});
   S.push({dur:6500,make(st){ st.append(H("div","k in","Dein Fehlstunden-Typ",0),H("div","type",D.type),H("p","in",D.typeSub,.6)); setTimeout(()=>wrapConfetti(st.parentNode),500); sfx.chime(false); }});
   S.push({dur:0,make(st,ctl){ st.append(H("div","k in","Zusammengefasst · "+per,0)); const sum=H("div","sum pop",null,.15);
     const cell=(v,l,w)=>{ const d=H("div",w?"wide":""); d.append(H("b","",String(v)),H("span","",l)); return d; };
-    sum.append(cell(D.tot,"Fehlstunden"),cell(Math.max(0,SET.limit-D.tot),"noch übrig"),cell(D.la.length,"× zu spät"),cell(D.st.best,"Tage beste Serie"),cell(D.type,"Dein Typ",true)); st.appendChild(sum);
+    sum.append(cell(D.tot,"Fehlstunden"),cell(Math.max(0,SET.limit-D.tot),"noch übrig"),cell(D.la.length,"× zu spät"),cell(D.ab.length,"× gefehlt"),cell(D.type,"Dein Typ",true)); st.appendChild(sum);
     const a=H("div","acts in",null,.5); const sh=H("button","pri","Als Bild teilen"); sh.type="button"; sh.onclick=e=>{ e.stopPropagation(); shareWrap(D); }; const again=H("button","sec","Nochmal ansehen"); again.type="button"; again.onclick=e=>{ e.stopPropagation(); ctl.go(0); }; a.append(sh,again); st.appendChild(a); aSet("fh_wrapped","1"); }});
   return S; }
 function wrapConfetti(host){ if(RM()) return; const c=document.createElement("canvas"); c.className="confet"; host.appendChild(c); const W=c.width=host.clientWidth, Hh=c.height=host.clientHeight, g=c.getContext("2d"); const cols=["#fff","#fde68a","#f472b6","#a78bfa","#34d399"];
@@ -2100,9 +2144,9 @@ function openWrap(){ const D=wrapData(), slides=wrapSlides(D); const o=document.
   o.append(bg,L,R,st,bars,xb,hint); document.body.appendChild(o); document.body.style.overflow="hidden"; let i=-1, tm=null, rem=0, t0=0, held=false, downT=0;
   const close=()=>{ clearTimeout(tm); o.style.transition="opacity .3s,transform .3s"; o.style.opacity="0"; o.style.transform="scale(1.04)"; setTimeout(()=>{ o.remove(); document.body.style.overflow=""; },300); document.removeEventListener("keydown",key); };
   const ctl={ go(n){ if(n<0) n=0; if(n>=slides.length){ close(); return; } i=n; clearTimeout(tm); st.innerHTML=""; const p=PALS[n%PALS.length]; bg.style.setProperty("--c1",p[0]); bg.style.setProperty("--c2",p[1]); bg.style.setProperty("--c3",p[2]); bg.style.setProperty("--x1",(15+Math.random()*30)+"%"); bg.style.setProperty("--y2",(55+Math.random()*30)+"%");
-    [...bars.children].forEach((b,j)=>{ b.className=j<n?"done":""; }); const cur=bars.children[n], d=slides[n].dur; hint.hidden=n>0;
+    [...bars.children].forEach((b,j)=>{ b.className=j<n?"done":""; }); const cur=bars.children[n], d=0; hint.hidden=n>1;
     if(d){ cur.style.setProperty("--dur",d+"ms"); void cur.offsetWidth; cur.className="run"; rem=d; t0=performance.now(); tm=setTimeout(()=>ctl.go(i+1),d); } else cur.className="done";
-    slides[n].make(st,ctl); sfx.click(n%4); }, pause(){ if(held||!slides[i].dur) return; held=true; o.classList.add("paused"); clearTimeout(tm); rem-=performance.now()-t0; }, resume(){ if(!held) return; held=false; o.classList.remove("paused"); t0=performance.now(); tm=setTimeout(()=>ctl.go(i+1),Math.max(300,rem)); } };
+    slides[n].make(st,ctl); sfx.click(n%4); }, pause(){ return; if(held||!slides[i].dur) return; held=true; o.classList.add("paused"); clearTimeout(tm); rem-=performance.now()-t0; }, resume(){ if(!held) return; held=false; o.classList.remove("paused"); t0=performance.now(); tm=setTimeout(()=>ctl.go(i+1),Math.max(300,rem)); } };
   const down=e=>{ const my=performance.now(); downT=my; setTimeout(()=>{ if(downT===my) ctl.pause(); },250); };
   const up=dir=>e=>{ if(!downT&&!held) return; const long=downT&&performance.now()-downT>240; downT=0; if(held){ ctl.resume(); return; } if(!long) ctl.go(i+dir); };
   const skip=e=>e.target.closest(".acts,.xb");
@@ -2118,7 +2162,7 @@ async function shareWrap(D){ const W=1080,Hh=1920,c=document.createElement("canv
   x.font=`600 40px ${mono}`; x.globalAlpha=.85; x.fillText(`FEHLSTUNDEN · ${periodLabel()}`,90,200); x.globalAlpha=1;
   x.font=`800 110px ${sans}`; x.fillText("Mein",90,360); x.fillText("Rückblick",90,480);
   x.font=`600 340px ${mono}`; x.fillText(String(D.tot),80,860); x.font=`700 60px ${sans}`; x.fillText(`von ${SET.limit} Fehlstunden`,90,950);
-  const rows=[[`${D.la.length}×`,"zu spät"],[`${D.st.best}`,"Tage beste Serie"],[D.reasons[0]?D.reasons[0][0]:"–","Endgegner"]];
+  const rows=[[`${D.la.length}×`,"zu spät"],[`${D.ab.length}×`,"gefehlt"],[D.reasons[0]?D.reasons[0][0]:"–","Endgegner"]];
   rows.forEach(([v,l],k)=>{ const y=1110+k*170; x.fillStyle="rgba(255,255,255,.16)"; roundRect(x,90,y,W-180,140,30); x.fill(); x.fillStyle="#fff"; x.font=`800 64px ${sans}`; x.fillText(v.length>14?v.slice(0,13)+"…":v,130,y+92); x.font=`600 40px ${sans}`; x.globalAlpha=.85; x.textAlign="right"; x.fillText(l,W-130,y+88); x.textAlign="left"; x.globalAlpha=1; });
   x.font=`600 40px ${mono}`; x.globalAlpha=.85; x.fillText("MEIN TYP",90,1680); x.globalAlpha=1; x.font=`800 84px ${sans}`; x.fillText(D.type,90,1780);
   const blob=await new Promise(r=>c.toBlob(r,"image/png")); if(!blob){ toast("Das Bild konnte nicht erstellt werden.",true); return; } await shareOrSave(`Rueckblick-${iso(new Date())}.png`,blob,"image/png","Mein Fehlstunden-Rückblick"); }
@@ -2424,7 +2468,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="7.0";
+const APP_VERSION="7.1";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
