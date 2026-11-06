@@ -374,7 +374,7 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 .adm .x{background:var(--flap);border:0;color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:1.1rem}
 .adm input[type=password],.adm textarea{width:100%;box-sizing:border-box;background:var(--flap);border:1px solid var(--line2);color:var(--ink);border-radius:12px;padding:12px;font:inherit;margin-top:10px}
 .adm textarea{min-height:70px;font-family:var(--mono);font-size:.8rem}
-.adm .row{display:flex;gap:8px;margin-top:10px}.adm .row .btn{flex:1}
+.adm .admrow{display:flex;gap:8px;margin-top:10px}.adm .admrow .btn{flex:1}
 .adm .err{color:var(--red);font-size:.85rem;min-height:1.2em;margin-top:6px}
 .adm .sl{display:flex;flex-direction:column;gap:8px;margin-top:12px}
 .adm .si{border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
@@ -394,9 +394,9 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 @keyframes pfTw{50%{opacity:.4}}
 .pfh .pfrow{display:flex;gap:14px;align-items:flex-end;padding:0 16px;margin-top:-44px;position:relative}
 .pfav{width:92px;height:92px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:2.9rem;line-height:1;background:var(--flap);background-size:cover;background-position:center;position:relative;box-shadow:0 0 0 4px var(--raise),0 0 0 7px var(--rc,#2c3644),0 10px 24px -8px rgba(0,0,0,.7)}
-.pfav.ring{box-shadow:0 0 0 4px var(--raise),0 0 0 7px transparent,0 10px 24px -8px rgba(0,0,0,.7)}
-.pfav.ring::before{content:"";position:absolute;inset:-7px;border-radius:50%;padding:3px;background:var(--rg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pfSpin 6s linear infinite}
-@keyframes pfSpin{to{transform:rotate(360deg)}}
+/* Rahmen ohne Masken (Safari-sicher): Bild/Farbe innen, Verlauf im Rand */
+.pfav{background-image:var(--img,none);background-size:cover;background-position:center}
+.pfav.pfring{border:4px solid transparent;background-image:var(--img,linear-gradient(var(--flap),var(--flap))),var(--rg);background-origin:border-box;background-clip:padding-box,border-box;background-size:cover,cover;box-shadow:0 0 0 3px var(--raise),0 10px 24px -8px rgba(0,0,0,.7)}
 .pfav .lvb{position:absolute;right:-4px;bottom:-2px;min-width:30px;height:30px;padding:0 6px;box-sizing:border-box;border-radius:99px;background:var(--amber);color:#1a1200;font-size:.8rem;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 3px var(--raise);font-family:var(--mono)}
 .pfh .pfn{min-width:0;padding-bottom:4px}
 .pfh .pfn b{display:block;font-size:1.35rem;font-weight:850;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--nc,var(--ink))}
@@ -2222,7 +2222,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.2</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.3</span></div>
   </section>
 </main>
 
@@ -4123,9 +4123,9 @@ function pfAvatar(){ try{ return localStorage.getItem("fh_avatar")||""; }catch(e
 function pfGot(){ try{ return JSON.parse(localStorage.getItem("fh_ach")||"{}")||{}; }catch(e){ return {}; } }
 function pfOk(r,X,got){ if(r.L&&X.L<r.L) return false; if(r.a&&Object.keys(got).length<r.a) return false; if(r.id&&!got[r.id]) return false; return true; }
 function pfReq(r){ if(r.L) return "Level "+r.L; if(r.a) return r.a+" Erfolge"; if(r.id){ const d=(achDefs().find(x=>x.id===r.id)||{}); return "Erfolg „"+(d.n||r.id)+"“"; } return ""; }
-function pfAvHTML(el,X,p){ const av=pfAvatar(), f=FRAMES[p.frame], own=ownedAll(X); el.style.backgroundImage=av?`url("${av}")`:""; el.firstChild&&el.firstChild.nodeType===3&&el.removeChild(el.firstChild);
+function pfAvHTML(el,X,p){ const av=pfAvatar(), f=FRAMES[p.frame], own=ownedAll(X); el.style.backgroundImage=""; if(av) el.style.setProperty("--img",`url("${av}")`); else el.style.removeProperty("--img"); el.firstChild&&el.firstChild.nodeType===3&&el.removeChild(el.firstChild);
   [...el.childNodes].forEach(n=>{ if(!n.classList||!n.classList.contains("lvb")) n.remove(); }); if(!av) el.insertBefore(document.createTextNode(p.emoji||((p.name||"").trim()[0]||"😎").toUpperCase()),el.firstChild);
-  const fr=f&&f.c&&own.has("r:"+p.frame); el.classList.toggle("ring",!!fr); if(fr) el.style.setProperty("--rg",`conic-gradient(${f.c.concat(f.c[0]).join(",")})`); else el.style.removeProperty("--rg"); }
+  const fr=f&&f.c&&own.has("r:"+p.frame); el.classList.toggle("pfring",!!fr); if(fr) el.style.setProperty("--rg",`conic-gradient(${f.c.concat(f.c[0]).join(",")})`); else el.style.removeProperty("--rg"); }
 function pfRender(X){ const hero=$("pfHero"); if(!hero) return; X=X||xpData(); const p=Object.assign({},pfRaw(),profGet()), got=pfGot(), defs=achDefs();
   /* Banner */ let bk=p.banner&&PF.ban[p.banner]&&pfOk(PF.ban[p.banner],X,got)?p.banner:"nacht"; const B=PF.ban[bk], bb=$("pfBanner"); bb.style.setProperty("--bn",B.bg); bb.classList.toggle("anim",!!B.anim&&!RM()); bb.classList.toggle("stars",!!B.stars);
   /* Avatar */ const av=$("pfAv"); pfAvHTML(av,X,p); $("pfLv").textContent=X.L;
@@ -4180,7 +4180,7 @@ async function admHash(pw){ if(!(window.crypto&&crypto.subtle)) return null; con
   const b=await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt:enc.encode("fh-adm-v1"),iterations:150000},k,256); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
 function admSheet(html){ const o=document.createElement("div"); o.className="adm"; o.innerHTML=`<div class="admb">${html}</div>`; o.addEventListener("click",e=>{ if(e.target===o||e.target.closest(".x")) o.remove(); }); document.body.appendChild(o); return o; }
 function admLogin(){ let ok=false; try{ ok=sessionStorage.getItem("fh_adm_ok")==="1"; }catch(e){} if(ok){ admPanel(); return; }
-  const o=admSheet(`<h3>Admin <button type="button" class="x" aria-label="Schließen">✕</button></h3><input type="password" id="admPw" placeholder="Passwort" autocomplete="off"><div class="err" id="admErr"></div><div class="row"><button type="button" class="btn next" id="admGo">Entsperren</button></div>`);
+  const o=admSheet(`<h3>Admin <button type="button" class="x" aria-label="Schließen">✕</button></h3><input type="password" id="admPw" placeholder="Passwort" autocomplete="off"><div class="err" id="admErr"></div><div class="admrow"><button type="button" class="btn next" id="admGo">Entsperren</button></div>`);
   const pw=o.querySelector("#admPw"), go=o.querySelector("#admGo"), er=o.querySelector("#admErr"); setTimeout(()=>pw.focus(),100);
   const tryIt=async()=>{ go.disabled=true; er.textContent="Prüfe …"; let h=null; try{ h=await admHash(pw.value); }catch(e){}
     if(h===null){ er.textContent="Dieser Browser kann das Passwort nicht prüfen."; go.disabled=false; return; }
@@ -4190,8 +4190,8 @@ function admCodes(){ try{ return JSON.parse(localStorage.getItem("fh_adm_codes")
 function admPanel(){ const o=admSheet(`<h3>Admin <button type="button" class="x" aria-label="Schließen">✕</button></h3>
     <div class="settings"><div class="set"><label for="admSw">Admin-Modus<small>Alle Erfolge, alles freigeschaltet, Level ∞</small></label><span class="switch-t"><input type="checkbox" id="admSw" role="switch"><span></span></span></div></div>
     <h3 style="margin-top:18px">Geteilte Stände</h3><small style="color:var(--sub)">Nur Codes, die dir jemand freiwillig geschickt hat.</small>
-    <textarea id="admIn" placeholder="Code hier einfügen (FHS1-…)"></textarea><div class="err" id="admE2"></div><div class="row"><button type="button" class="btn next" id="admAdd">Hinzufügen</button></div>
-    <div class="sl" id="admList"></div><div class="row" style="margin-top:16px"><button type="button" class="btn" id="admLock">Sperren</button></div>`);
+    <textarea id="admIn" placeholder="Code hier einfügen (FHS1-…)"></textarea><div class="err" id="admE2"></div><div class="admrow"><button type="button" class="btn next" id="admAdd">Hinzufügen</button></div>
+    <div class="sl" id="admList"></div><div class="admrow" style="margin-top:16px"><button type="button" class="btn" id="admLock">Sperren</button></div>`);
   const sw=o.querySelector("#admSw"); sw.checked=admOn(); sw.onchange=()=>admSet(sw.checked);
   const list=o.querySelector("#admList"), draw=()=>{ const L=admCodes().sort((a,b)=>b.h-a.h); list.innerHTML=""; if(!L.length){ list.innerHTML='<small style="color:var(--sub)">Noch keine Codes.</small>'; return; }
     L.forEach((c,k)=>{ const it=document.createElement("div"); it.className="si"; const pct=Math.min(100,Math.round(c.h/Math.max(1,c.l)*100));
@@ -4542,7 +4542,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="23.2";
+const APP_VERSION="23.3";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
