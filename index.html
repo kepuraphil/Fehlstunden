@@ -363,7 +363,98 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 #splash small{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;animation:fieldin .5s var(--e-out) .5s both}
 #splash .ln{height:2px;box-shadow:0 0 14px var(--amber)}
 /*v21*/
+#achGrid .achti{display:block;color:var(--amber);font-weight:650;margin-top:2px}
+#achGrid .a.off .achti{opacity:.75}
+
+/* ---------- v22: Stand teilen + Admin ---------- */
+.adm{position:fixed;inset:0;z-index:119;background:rgba(5,7,11,.82);display:flex;align-items:flex-end;justify-content:center;animation:fade .2s}
+.adm .admb{background:var(--raise);border:1px solid var(--line);border-radius:22px 22px 0 0;width:100%;max-width:560px;max-height:88vh;overflow:auto;padding:18px 16px calc(18px + env(safe-area-inset-bottom,0px));box-sizing:border-box;animation:admUp .3s cubic-bezier(.2,1,.3,1)}
+@keyframes admUp{from{transform:translateY(40px);opacity:0}}
+.adm h3{margin:0 0 4px;display:flex;justify-content:space-between;align-items:center}
+.adm .x{background:var(--flap);border:0;color:var(--ink);width:36px;height:36px;border-radius:50%;font-size:1.1rem}
+.adm input[type=password],.adm textarea{width:100%;box-sizing:border-box;background:var(--flap);border:1px solid var(--line2);color:var(--ink);border-radius:12px;padding:12px;font:inherit;margin-top:10px}
+.adm textarea{min-height:70px;font-family:var(--mono);font-size:.8rem}
+.adm .row{display:flex;gap:8px;margin-top:10px}.adm .row .btn{flex:1}
+.adm .err{color:var(--red);font-size:.85rem;min-height:1.2em;margin-top:6px}
+.adm .sl{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.adm .si{border:1px solid var(--line);border-radius:14px;padding:10px 12px;display:grid;grid-template-columns:1fr auto;gap:2px 10px;align-items:center}
+.adm .si b{font-size:1rem}.adm .si small{color:var(--sub);font-size:.78rem;grid-column:1}
+.adm .si .big{grid-row:1/3;grid-column:2;text-align:right;font-family:var(--mono);font-weight:800;font-size:1.1rem}
+.adm .si .big em{display:block;font-style:normal;font-size:.65rem;color:var(--sub);font-weight:500}
+.adm .si .del{grid-column:1/-1;justify-self:start;background:none;border:0;color:var(--red);font:inherit;font-size:.78rem;padding:4px 0}
+.adm .bar{grid-column:1/-1;height:6px;border-radius:3px;background:var(--flap);overflow:hidden;margin-top:4px}.adm .bar i{display:block;height:100%;background:var(--ok)}
+.adm .bar i.w{background:var(--amber)}.adm .bar i.r{background:var(--red)}
+
+/* ---------- v21: Profil richtig personalisieren ---------- */
+.pfh{padding:0;overflow:hidden;position:relative;margin-bottom:12px}
+.pfh .pfb{height:96px;position:relative;background:var(--bn,linear-gradient(135deg,#0f1b33,#1d3a6b));background-size:200% 200%}
+.pfh .pfb.anim{animation:pfPan 8s ease-in-out infinite}
+@keyframes pfPan{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.pfh .pfb.stars::after{content:"";position:absolute;inset:0;background-image:radial-gradient(1.5px 1.5px at 12% 30%,#fff,transparent),radial-gradient(1px 1px at 30% 70%,#fff,transparent),radial-gradient(1.5px 1.5px at 55% 20%,#fff,transparent),radial-gradient(1px 1px at 72% 60%,#fff,transparent),radial-gradient(1.5px 1.5px at 88% 35%,#fff,transparent),radial-gradient(1px 1px at 45% 85%,#fff,transparent);animation:pfTw 3s ease-in-out infinite}
+@keyframes pfTw{50%{opacity:.4}}
+.pfh .pfrow{display:flex;gap:14px;align-items:flex-end;padding:0 16px;margin-top:-44px;position:relative}
+.pfav{width:92px;height:92px;border-radius:50%;flex:none;display:grid;place-items:center;font-size:2.9rem;line-height:1;background:var(--flap);background-size:cover;background-position:center;position:relative;box-shadow:0 0 0 4px var(--raise),0 0 0 7px var(--rc,#2c3644),0 10px 24px -8px rgba(0,0,0,.7)}
+.pfav.ring{box-shadow:0 0 0 4px var(--raise),0 0 0 7px transparent,0 10px 24px -8px rgba(0,0,0,.7)}
+.pfav.ring::before{content:"";position:absolute;inset:-7px;border-radius:50%;padding:3px;background:var(--rg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:pfSpin 6s linear infinite}
+@keyframes pfSpin{to{transform:rotate(360deg)}}
+.pfav .lvb{position:absolute;right:-4px;bottom:-2px;min-width:30px;height:30px;padding:0 6px;box-sizing:border-box;border-radius:99px;background:var(--amber);color:#1a1200;font-size:.8rem;font-weight:900;display:grid;place-items:center;box-shadow:0 0 0 3px var(--raise);font-family:var(--mono)}
+.pfh .pfn{min-width:0;padding-bottom:4px}
+.pfh .pfn b{display:block;font-size:1.35rem;font-weight:850;line-height:1.1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--nc,var(--ink))}
+.pfh .pfn b.ncg{background:var(--ng);-webkit-background-clip:text;background-clip:text;color:transparent;background-size:200% 100%;animation:pfPan 4s linear infinite}
+.pfh .pfn em{font-style:normal;font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amber)}
+.pfh .pfbio{padding:10px 16px 0;margin:0;color:var(--sub);font-size:.92rem;line-height:1.35;overflow-wrap:anywhere}
+.pfh .pfbio:empty{display:none}
+.pfh .pfst{display:grid;grid-template-columns:repeat(3,1fr);margin:14px 16px 0;border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.pfh .pfst div{padding:9px 6px;text-align:center}
+.pfh .pfst div+div{border-left:1px solid var(--line)}
+.pfh .pfst b{display:block;font-size:1.15rem;font-weight:850;font-family:var(--mono)}
+.pfh .pfst small{font-size:.68rem;color:var(--sub);text-transform:uppercase;letter-spacing:.08em}
+.pfh .pfsh{display:flex;gap:8px;padding:12px 16px 0;flex-wrap:wrap}
+.pfh .pfsh span{display:inline-flex;align-items:center;gap:6px;padding:6px 10px 6px 6px;border-radius:99px;background:var(--flap);border:1px solid var(--line2);font-size:.78rem;font-weight:650;max-width:100%}
+.pfh .pfsh span i{width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,#fff7d6,#f5c451 40%,#b8860b 75%,#7a5508);color:#4a3000}
+.pfh .pfsh span i svg{width:14px;height:14px}
+.pfh .pfsh .empty{color:var(--sub);background:none;border-style:dashed}
+.pfh .pfed{display:block;width:calc(100% - 32px);margin:14px 16px 16px}
+.pfpick{display:flex;gap:12px;align-items:center;margin-top:10px}
+.pfpick .pfav{width:72px;height:72px;font-size:2.2rem}
+.pfpick .pfbt{display:flex;flex-direction:column;gap:8px;flex:1}
+.pfpick .pfbt .btn{width:100%}
+.ch2 .bsw{width:22px;height:16px;border-radius:5px;display:inline-block;background-size:200% 200%}
+.ch2.emo{font-size:1.25rem;padding:4px 10px;min-width:46px;justify-content:center}
+.ch2.emo.lock{font-size:.75rem}
+.ch2 .req{font-size:.66rem;opacity:.85;font-family:var(--mono)}
+.pfbioin{width:100%}
+
+/* ---------- v20: Erfolge mit Kategorien ---------- */
+#achGrid .agh{grid-column:1/-1;display:flex;align-items:center;gap:10px;margin:14px 2px 2px;font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sub)}
+#achGrid .agh:first-child{margin-top:2px}
+#achGrid .agh::after{content:"";flex:1;height:1px;background:var(--line)}
+#achGrid .agh span{color:var(--amber);letter-spacing:.06em}
+#achGrid .a.sec.off .ic{background:radial-gradient(circle at 35% 30%,#4a3b6b,#2a1f45 60%,#160f28);color:#b9a6ff}
+#achGrid .a.sec.off b{letter-spacing:.2em}
+
 /* ---------- v19: Update-Story für bisherige Nutzer ---------- */
+.ur .utitles{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.ur .utitles span{padding:8px 12px;border-radius:99px;background:#1d1708;border:1px solid #f5a623;color:#f5c451;font-family:var(--mono);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;animation:urT 2.8s ease-in-out infinite}
+.ur .utitles span:nth-child(2){animation-delay:.2s}.ur .utitles span:nth-child(3){animation-delay:.4s}.ur .utitles span:nth-child(4){animation-delay:.6s}.ur .utitles span:nth-child(5){animation-delay:.8s}
+@keyframes urT{0%,100%{transform:none;box-shadow:none}40%{transform:translateY(-6px) scale(1.05);box-shadow:0 0 18px rgba(245,166,35,.6)}}
+
+.ur .uprof{width:100%;border-radius:18px;overflow:hidden;background:#161b26;border:1px solid rgba(255,255,255,.1);position:relative;padding-bottom:12px}
+.ur .upb{height:62px;background:linear-gradient(135deg,#ff2bd6,#22e4ff,#7c3aed,#ff2bd6);background-size:200% 200%;animation:pfPan 4s ease-in-out infinite}
+.ur .upa{position:absolute;left:16px;top:28px;width:64px;height:64px;border-radius:50%;background:#1a202a;display:grid;place-items:center;font-size:2rem;box-shadow:0 0 0 3px #161b26,0 0 0 6px #f5a623;animation:urPop2 2.6s ease-in-out infinite}
+.ur .upa span{position:absolute;right:-6px;bottom:-4px;background:#f5a623;color:#111;font-size:.7rem;font-weight:900;border-radius:99px;padding:2px 6px}
+@keyframes urPop2{0%,100%{transform:none}50%{transform:scale(1.06)}}
+.ur .upn{text-align:left;padding:8px 14px 0 94px}
+.ur .upn b{display:block;font-size:1.05rem;background:linear-gradient(90deg,#b8860b,#fff1c2,#f5c451,#b8860b);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pfPan 3s linear infinite}
+.ur .upn small{color:rgba(255,255,255,.6);font-size:.78rem}
+.ur .upv{display:flex;gap:8px;padding:12px 14px 0}
+.ur .upv i{height:24px;flex:1;border-radius:99px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12)}
+.ur .umeds{display:flex;gap:10px}
+.ur .umeds i{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.3rem;background:radial-gradient(circle at 35% 30%,#fff7d6,#f5c451 40%,#b8860b 75%,#7a5508);color:#4a3000;box-shadow:0 6px 16px -6px rgba(245,166,35,.9);animation:urMed 2.4s ease-in-out infinite}
+.ur .umeds i:nth-child(2){animation-delay:.15s}.ur .umeds i:nth-child(3){animation-delay:.3s}.ur .umeds i:nth-child(4){animation-delay:.45s}.ur .umeds i:nth-child(5){animation-delay:.6s}
+.ur .umeds i.q{background:radial-gradient(circle at 35% 30%,#4a3b6b,#2a1f45 60%,#160f28);color:#b9a6ff;font-weight:900}
+@keyframes urMed{0%,100%{transform:translateY(0)}30%{transform:translateY(-14px) rotate(-8deg)}60%{transform:none}}
+
 .ur{position:fixed;inset:0;z-index:118;background:radial-gradient(120% 80% at 50% 0%,#14213a 0%,#07090e 60%);color:#fff;display:flex;flex-direction:column;padding:calc(10px + env(safe-area-inset-top,0px)) 0 calc(14px + env(safe-area-inset-bottom,0px));animation:urIn .35s ease both;-webkit-user-select:none;user-select:none;touch-action:manipulation}
 @keyframes urIn{from{opacity:0}}
 .ur.out{animation:urOut .3s ease forwards}@keyframes urOut{to{opacity:0}}
@@ -1971,6 +2062,12 @@ main.quake{animation:none}
   <!-- Erfolge -->
   <section class="view" id="v-game" data-view="game" hidden>
     <div class="vh"><h1>Erfolge</h1><span class="eyebrow">Freiwillig</span></div>
+    <div class="card pfh" id="pfHero"><div class="pfb" id="pfBanner"></div>
+      <div class="pfrow"><div class="pfav" id="pfAv"><span class="lvb" id="pfLv">1</span></div><div class="pfn"><b id="pfName">Dein Name</b><em id="pfTitle"></em></div></div>
+      <p class="pfbio" id="pfBio"></p>
+      <div class="pfst"><div><b id="pfS1">1</b><small>Level</small></div><div><b id="pfS2">0</b><small>Beste Serie</small></div><div><b id="pfS3">0</b><small>Erfolge</small></div></div>
+      <div class="pfsh" id="pfShow"></div>
+      <button type="button" class="btn pfed" id="pfEd">Profil bearbeiten</button></div>
     <button type="button" class="lvl" id="lvlCard" aria-label="Level und Serie">
       <span class="fl t0" id="flame" aria-hidden="true"><svg viewBox="0 0 40 52"><defs><linearGradient id="fgo" x1="0" y1="1" x2="0" y2="0"><stop offset="0" style="stop-color:var(--f1)"/><stop offset="1" style="stop-color:var(--f2)"/></linearGradient></defs><path class="fo" d="M20 51C10.6 51 4 44.6 4 35.6c0-7 4.2-11.8 7.8-15.6.8 3.6 2.8 5.8 5 6.6C15.6 18 19.8 9.6 26.8 2.6c-.4 7.6 3 11.8 6.4 16C36 22.2 36 27 36 35.6 36 44.6 29.4 51 20 51z" fill="url(#fgo)"/><path class="fi" d="M20 51c-5.2 0-8.8-3.6-8.8-8.6 0-4.4 2.6-7.4 5-10 .4 2.4 1.6 3.6 2.8 4.2-.4-5.2 1.8-9.6 5.8-12.8-.2 5 1.8 7.6 3.6 10 1.4 2 1.4 4 1.4 8.6 0 5-3.6 8.6-9.8 8.6z" style="fill:var(--f3)"/></svg><svg viewBox="0 0 60 52" class="phx"><defs><linearGradient id="phg" x1="0" y1="1" x2="0" y2="0"><stop offset="0" style="stop-color:var(--f1)"/><stop offset="1" style="stop-color:var(--f2)"/></linearGradient></defs><path class="wl" d="M30 30C22 22 10 20 2 8c6 14 4 20 12 24-6 0-9 4-12 8 10-2 18-2 24-4z" fill="url(#phg)"/><path class="wr2" d="M30 30c8-8 20-10 28-22-6 14-4 20-12 24 6 0 9 4 12 8-10-2-18-2-24-4z" fill="url(#phg)"/><path class="tl" d="M30 36c4 6 6 10 4 15-2-4-3-6-4-7-1 1-2 3-4 7-2-5 0-9 4-15z" fill="url(#phg)"/><path d="M30 14c3 0 5 3 4 7-1 5 0 11-4 17-4-6-3-12-4-17-1-4 1-7 4-7z" style="fill:var(--f3)"/><path d="M30 14c-1-4 0-7 2-10 0 4 1 6-1 10z" fill="url(#phg)"/></svg><span class="smoke"><i></i><i></i><i></i></span></span>
       <span class="lt"><span class="stg" id="stgN"></span><b><span class="num" id="stkN">0</span> <span id="stkW">Schultage am Stück</span></b><small id="stkSub">Jeder Schultag ohne Fehlzeit lässt die Flamme wachsen.</small><span class="xpb"><i id="xpFill"></i></span></span>
@@ -2003,8 +2100,15 @@ main.quake{animation:none}
     </div>
     <div class="card" id="prCard">
       <h3>Profil</h3>
-      <p style="margin-bottom:12px">Name, Titel, Flamme und Rahmen erscheinen auf deiner Level-Karte. Alles bleibt auf deinem Gerät.</p>
+      <p style="margin-bottom:12px">Bild, Banner, Name und Vitrine erscheinen oben in deinem Profil. Viele Sachen schaltest du durch Level und Erfolge frei. Alles bleibt auf deinem Gerät.</p>
       <div class="settings"><div class="set"><label for="prName">Name<small>Freiwillig, höchstens 20 Zeichen</small></label><input type="text" id="prName" maxlength="20" placeholder="Dein Name" autocomplete="off" autocapitalize="words"></div></div>
+      <div class="prsec"><div class="eyebrow">Profilbild</div><div class="pfpick"><div class="pfav" id="pfAv2"></div><div class="pfbt"><button type="button" class="btn" id="pfPick">Foto wählen</button><button type="button" class="btn" id="pfDel" hidden>Foto entfernen</button></div></div><input type="file" id="pfFile" accept="image/*" hidden>
+        <div class="chips2" id="pfEmo"></div></div>
+      <div class="settings" style="margin-top:14px"><div class="set"><label for="pfBioIn">Status<small>Höchstens 60 Zeichen</small></label><input type="text" id="pfBioIn" class="pfbioin" maxlength="60" placeholder="z. B. Nie wieder zu spät" autocomplete="off"></div></div>
+      <div class="prsec"><div class="eyebrow">Titel aus Erfolgen</div><div class="chips2" id="pfTit"></div></div>
+      <div class="prsec"><div class="eyebrow">Banner</div><div class="chips2" id="pfBan"></div></div>
+      <div class="prsec"><div class="eyebrow">Namensfarbe</div><div class="chips2" id="pfNc"></div></div>
+      <div class="prsec"><div class="eyebrow">Vitrine (bis zu 3 Erfolge)</div><div class="chips2" id="pfVit"></div></div>
       <div class="prsec"><div class="eyebrow">Titel</div><div class="chips2" id="prTitles"></div></div>
       <div class="prsec"><div class="eyebrow">Flamme</div><div class="chips2" id="prFlames"></div></div>
       <div class="prsec"><div class="eyebrow">Rahmen</div><div class="chips2" id="prFrames"></div></div>
@@ -2073,6 +2177,11 @@ main.quake{animation:none}
     </div>
 
     <div class="card">
+      <h3>Stand teilen</h3>
+      <p>Freiwillig: Erzeugt einen Code mit deinem Namen aus dem Profil und deinen Zahlen (Fehlstunden gesamt, Fehltage, Verspätungen, entschuldigt, Grenze). Nur wer den Code von dir bekommt, sieht ihn. Einzelne Tage und Gründe werden nicht geteilt.</p>
+      <button type="button" class="btn" id="shareMine" style="width:100%;margin-top:10px">Meinen Stand teilen</button>
+    </div>
+    <div class="card">
       <h3>So funktioniert's</h3>
       <ol>
         <li><b>Gefehlt</b>, wenn du den ganzen Tag nicht da warst. <b>Zu spät</b>, wenn du später gekommen bist, ein paar Minuten oder erst zu einer späteren Stunde.</li>
@@ -2112,7 +2221,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 19</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.1</span></div>
   </section>
 </main>
 
@@ -2639,23 +2748,38 @@ $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist ger
 
 /* ---------- start ---------- */
 /* ---------- v19: Update-Story für bisherige Nutzer (statt Neulings-Intro) ---------- */
+/* Welche Update-Seiten jemand schon gesehen hat – es kommen nur neue */
+const UPD_PAGES=["titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
+function updSeen(){ let a=null; try{ a=JSON.parse(localStorage.getItem("fh_upd_seen")||"null"); }catch(e){}
+  if(!Array.isArray(a)){ a=[]; const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } };
+    if(g("fh_intro16")) a.push("prog","due","morn","photos","months","tips","mode");
+    if(g("fh_upd21")||g("fh_upd22")) a.push("profile","ach");
+    if(g("fh_upd22")) a.push("titles","share"); }
+  return a; }
+function updMarkAll(){ try{ localStorage.setItem("fh_upd_seen",JSON.stringify(UPD_PAGES)); }catch(e){} }
+function updPending(){ const s=updSeen(); return UPD_PAGES.some(k=>!s.includes(k)); }
 function updReel(opts){ opts=opts||{}; if(document.querySelector(".ur")) return;
   const uS=(k,v)=>{ try{ localStorage.setItem(k,v); }catch(e){} };
-  const markSeen=()=>["fh_new7","fh_new8","fh_new9","fh_new10","fh_new11","fh_intro16"].forEach(k=>uS(k,"1"));
+  const markSeen=()=>{ ["fh_new7","fh_new8","fh_new9","fh_new10","fh_new11","fh_intro16"].forEach(k=>uS(k,"1")); updMarkAll(); };
   let mode=(typeof gameOn==="function"&&!gameOn())?"schlicht":"voll";
   const lamps=n=>{ let h=""; for(let k=0;k<32;k++) h+=`<i class="${k<9?"a":k<12?"l":k===n?"p":""}"></i>`; return h; };
   const ICK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const P=[
-    {c:"#f5a623",h:()=>`<div class="urbig">UP<span>DATE</span></div><h2>Das ist <em>neu</em></h2><p class="urt">Seit deinem letzten Besuch hat sich einiges getan. Tippe dich in deinem Tempo durch.</p>`},
-    {c:"#5aa2ff",h:()=>`<div class="urvis"><div class="ulamps">${lamps(21)}</div></div><h2>Hier <em>landest</em> du</h2><p class="urt">Die blinkende Lampe zeigt, wo du bei deinem Tempo am Ende des Schuljahrs stehst.</p>`},
-    {c:"#35c983",h:()=>`<div class="urvis"><div class="ucard"><div><small>Noch offen</small><b>2 Entschuldigungen</b></div><span class="uchk">${ICK}</span></div></div><h2>Fristen im <em>Blick</em></h2><p class="urt">Offene Entschuldigungen stehen oben auf der Startseite. Abgegeben? Einfach abhaken.</p>`},
-    {c:"#f5a623",h:()=>`<div class="urvis"><div class="umorn"><div class="ucard"><b>Heute zu spät?</b><span class="ubtns"><span class="y">Ja</span><span>Nein</span></span></div></div></div><h2>Die <em>Morgen</em>-Frage</h2><p class="urt">Schultags bis 13 Uhr fragt die App kurz nach. Ein Tipp, fertig eingetragen.</p>`},
-    {c:"#5aa2ff",h:()=>`<div class="urvis"><div class="uph"><i></i><i></i><i></i><i></i><i></i></div><div class="uph"><i></i><i></i><i></i><i></i><i></i></div><div class="uph"><i></i><i></i><i></i><i></i><i></i></div></div><h2>Alle <em>Atteste</em> an einem Ort</h2><p class="urt">Unter Einträge → Fotos siehst du alle Bilder auf einen Blick.</p>`},
-    {c:"#ff5b4d",h:()=>`<div class="urvis"><div class="ubars">${[["Sep",.35],["Okt",.6],["Nov",1,1],["Dez",.45],["Jan",.25]].map(([m,v,hi],k)=>`<div><b class="${hi?"hi":""}" style="height:${Math.round(v*120)}px;animation-delay:${k*.08}s"></b><small>${m}</small></div>`).join("")}</div></div><h2>Liste nach <em>Monaten</em></h2><p class="urt">Mit Balken siehst du sofort, welcher Monat schlimm war.</p>`},
-    {c:"#f5a623",h:()=>`<div class="urvis"><div class="utipw"><div class="utb">Hier abhaken!</div><div class="utbtn"></div></div></div><h2>Tipps zur <em>richtigen</em> Zeit</h2><p class="urt">Kleine Hinweise tauchen genau da auf, wo du sie gerade brauchst. Einmal antippen, weg.</p>`},
-    {c:"#f5a623",choose:1,h:()=>`<h2>Wie willst du die <em>App</em>?</h2><div class="uchoose"><button type="button" data-m="schlicht" class="${mode==="schlicht"?"sel":""}"><i style="background:#1d2a40">📋</i><span><b>Schlicht</b><small>Nur Fehlstunden. Ohne Spiel-Kram.</small></span></button><button type="button" data-m="voll" class="${mode==="voll"?"sel":""}"><i style="background:#3a2a10">🔥</i><span><b>Mit allem</b><small>Dazu Level, Flamme, Kisten und Duelle.</small></span></button></div><p class="urt">Kannst du jederzeit unter Mehr → Einstellungen ändern.</p>`},
-    {c:"#35c983",end:1,h:()=>`<div class="urbig">✓</div><h2>Du bist <em>bereit</em></h2><div class="uend"><button type="button" class="p" data-a="go">Los geht's</button><button type="button" class="s" data-a="tr">Training starten (1 Min.)</button></div><p class="urt">Intro und Training findest du jederzeit unter Mehr.</p>`}
+    {c:"#f5a623",k:"intro",h:()=>`<div class="urbig">UP<span>DATE</span></div><h2>Das ist <em>neu</em></h2><p class="urt">Seit deinem letzten Besuch hat sich einiges getan. Tippe dich in deinem Tempo durch.</p>`},
+    {c:"#f5a623",k:"titles",h:()=>`<div class="urvis"><div class="utitles"><span>DB-Veteran</span><span>SEV-Survivor</span><span>Atomuhr</span><span>Montags-Endgegner</span><span>Phantom der Anwesenheitsliste</span></div></div><h2>Neue <em>Titel</em></h2><p class="urt">Jeder Erfolg schaltet jetzt einen eigenen Titel frei. Zeig ihn im Profil und im Duell.</p>`},
+    {c:"#d946ef",k:"profile",h:()=>`<div class="urvis"><div class="uprof"><div class="upb"></div><div class="upa">🦊<span>12</span></div><div class="upn"><b>Dein Name</b><small>Status: Nie wieder zu spät</small></div><div class="upv"><i></i><i></i><i></i></div></div></div><h2>Dein <em>Profil</em></h2><p class="urt">Profilbild, Banner, Namensfarbe und Vitrine. Vieles schaltest du erst durch Level und Erfolge frei. Zu finden im Tab Erfolge.</p>`},
+    {c:"#f5a623",k:"ach",h:()=>`<div class="urvis"><div class="umeds"><i>★</i><i>🔥</i><i class="q">?</i><i>💎</i><i>🏆</i></div></div><h2><em>${achDefs().length}</em> Erfolge</h2><p class="urt">Sortiert nach Kategorien, mit neuer Bahn-Kategorie und 5 geheimen, die erst nach dem Freischalten verraten werden.</p>`},
+    {c:"#35c983",k:"share",h:()=>`<div class="urvis"><div class="ucard"><div><small>Freiwillig</small><b>Stand teilen</b></div><span class="uchk">${ICK}</span></div></div><h2>Stand <em>teilen</em></h2><p class="urt">Unter Mehr → Stand teilen schickst du deinen Stand als Code, z. B. per WhatsApp. Nur deine Zahlen, keine einzelnen Tage oder Gründe.</p>`},
+    {c:"#5aa2ff",k:"prog",h:()=>`<div class="urvis"><div class="ulamps">${lamps(21)}</div></div><h2>Hier <em>landest</em> du</h2><p class="urt">Die blinkende Lampe zeigt, wo du bei deinem Tempo am Ende des Schuljahrs stehst.</p>`},
+    {c:"#35c983",k:"due",h:()=>`<div class="urvis"><div class="ucard"><div><small>Noch offen</small><b>2 Entschuldigungen</b></div><span class="uchk">${ICK}</span></div></div><h2>Fristen im <em>Blick</em></h2><p class="urt">Offene Entschuldigungen stehen oben auf der Startseite. Abgegeben? Einfach abhaken.</p>`},
+    {c:"#f5a623",k:"morn",h:()=>`<div class="urvis"><div class="umorn"><div class="ucard"><b>Heute zu spät?</b><span class="ubtns"><span class="y">Ja</span><span>Nein</span></span></div></div></div><h2>Die <em>Morgen</em>-Frage</h2><p class="urt">Schultags bis 13 Uhr fragt die App kurz nach. Ein Tipp, fertig eingetragen.</p>`},
+    {c:"#5aa2ff",k:"photos",h:()=>`<div class="urvis"><div class="uph"><i></i><i></i><i></i><i></i><i></i></div><div class="uph"><i></i><i></i><i></i><i></i><i></i></div><div class="uph"><i></i><i></i><i></i><i></i><i></i></div></div><h2>Alle <em>Atteste</em> an einem Ort</h2><p class="urt">Unter Einträge → Fotos siehst du alle Bilder auf einen Blick.</p>`},
+    {c:"#ff5b4d",k:"months",h:()=>`<div class="urvis"><div class="ubars">${[["Sep",.35],["Okt",.6],["Nov",1,1],["Dez",.45],["Jan",.25]].map(([m,v,hi],k)=>`<div><b class="${hi?"hi":""}" style="height:${Math.round(v*120)}px;animation-delay:${k*.08}s"></b><small>${m}</small></div>`).join("")}</div></div><h2>Liste nach <em>Monaten</em></h2><p class="urt">Mit Balken siehst du sofort, welcher Monat schlimm war.</p>`},
+    {c:"#f5a623",k:"tips",h:()=>`<div class="urvis"><div class="utipw"><div class="utb">Hier abhaken!</div><div class="utbtn"></div></div></div><h2>Tipps zur <em>richtigen</em> Zeit</h2><p class="urt">Kleine Hinweise tauchen genau da auf, wo du sie gerade brauchst. Einmal antippen, weg.</p>`},
+    {c:"#f5a623",k:"mode",choose:1,h:()=>`<h2>Wie willst du die <em>App</em>?</h2><div class="uchoose"><button type="button" data-m="schlicht" class="${mode==="schlicht"?"sel":""}"><i style="background:#1d2a40">📋</i><span><b>Schlicht</b><small>Nur Fehlstunden. Ohne Spiel-Kram.</small></span></button><button type="button" data-m="voll" class="${mode==="voll"?"sel":""}"><i style="background:#3a2a10">🔥</i><span><b>Mit allem</b><small>Dazu Level, Flamme, Kisten und Duelle.</small></span></button></div><p class="urt">Kannst du jederzeit unter Mehr → Einstellungen ändern.</p>`},
+    {c:"#35c983",k:"end",end:1,h:()=>`<div class="urbig">✓</div><h2>Du bist <em>bereit</em></h2><div class="uend"><button type="button" class="p" data-a="go">Los geht's</button><button type="button" class="s" data-a="tr">Training starten (1 Min.)</button></div><p class="urt">Intro und Training findest du jederzeit unter Mehr.</p>`}
   ];
+  if(!opts.all){ const seen=updSeen(); const keep=P.filter(p=>p.k==="intro"||p.k==="end"||!seen.includes(p.k)); P.length=0; P.push(...keep); }
   const o=document.createElement("div"); o.className="ur"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Neu in der App");
   o.innerHTML=`<div class="urbar">${P.map(()=>"<i></i>").join("")}</div><div class="urtop"><span class="urtag">Neu in der App</span><button type="button" class="urskip">Überspringen</button></div><div class="urpg"></div><div class="urhint">Tippen = weiter · links = zurück</div>`;
   document.body.appendChild(o); try{ if(typeof TIP!=="undefined"&&TIP.cur) tipHide(false); }catch(e){}
@@ -3207,7 +3331,7 @@ function v9Render(X,loaded){ const si=stageOf(X.cur), sg=$("stgN"); if(sg) sg.te
 /* ---------- v8: Saison, Saison-Pass, Tages-Check-in, Meilensteine, Profil ---------- */
 const uGet=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } }, uSet=(k,v)=>{ try{ localStorage.setItem(k,v); }catch(e){} };
 function season(){ const f=uGet("fh_season_force"); if(f!=null) return f; const d=new Date(), m=d.getMonth(); return (m===11||(m===0&&d.getDate()<=6))?"winter":""; }
-function wnPending(){ return !uGet("fh_intro16")&&!!uGet("fh_onboarded"); }
+function wnPending(){ return updPending()&&!!uGet("fh_onboarded"); }
 function seasonFx(){ return uGet("fh_season_fx")!=="0"; }
 function passSeason(d){ const y=d.getFullYear(), m=d.getMonth(), yy=n=>String(n).slice(2);
   if(m>=7) return {s:`${y}-08-01`,n:`Herbst/Winter ${yy(y)}/${yy(y+1)}`,k:`${y}H`};
@@ -3477,8 +3601,8 @@ function medalOpen(a,on,date,pct){ if(document.querySelector(".mdo")) return; co
   document.body.appendChild(o); setT(); if(!RM()) requestAnimationFrame(loop);
   try{ on?setTimeout(()=>sfx.chime(false),350):sfx.click(); }catch(e){}
   if(on&&!RM()) setTimeout(()=>{ if(closed) return; const r=coin.getBoundingClientRect(), cx=r.left+r.width/2, cy=r.top+r.height/2; ring(cx,cy,"#f5c451",460); sparks(cx,cy,"#fde68a",34); },550); }
-function achTap(e){ const it=e.target.closest(".a"); if(!it) return; const g=$("achGrid"), i=[...g.children].indexOf(it); const defs=achDefs(), a=defs[i]; if(!a) return;
-  let got={}; try{ got=JSON.parse(tGet("fh_ach")||"{}")||{}; }catch(_){} const on=!!got[a.id]; const pct=Math.round(Math.min(1,a.p!=null?a.p:a.v/a.t)*100);
+function achTap(e){ const it=e.target.closest(".a"); if(!it) return; const defs=achDefs(); let a=defs.find(x=>x.id===it.dataset.id); if(!a) return;
+  let got={}; try{ got=JSON.parse(tGet("fh_ach")||"{}")||{}; }catch(_){} const on=!!got[a.id]; if(a.s&&!on) a=Object.assign({},a,{n:"???",d:"Geheimer Erfolg. Finde ihn selbst heraus.",ic:"star"}); const pct=a.s&&!on?0:Math.round(Math.min(1,a.p!=null?a.p:a.v/a.t)*100);
   medalOpen(a,on,on?pd(got[a.id]).toLocaleDateString("de-DE",{day:"numeric",month:"long",year:"numeric"}):"",pct); }
 
 /* Level-Karte */
@@ -3585,8 +3709,8 @@ function whatsNew(){ if(document.querySelector(".wr")) return; ["fh_new7","fh_ne
   xb.onclick=close; const key=e=>{ if(e.key==="Escape") close(); if(e.key==="ArrowRight"||e.key===" "){ e.preventDefault(); go(i+1); } if(e.key==="ArrowLeft") go(i-1); }; document.addEventListener("keydown",key);
   go(0); }
 let wnTried=false;
-function wnCheck(){ if(wnTried) return; wnTried=true; if(tGet("fh_intro16")) return;
-  const t=()=>{ if(tGet("fh_intro16")) return; if(!tGet("fh_onboarded")||document.querySelector("#splash,.ob,.ur,.cel,.lvup,.tour,.wr,.chs,.vs,.pso,.gal")||document.hidden){ setTimeout(t,1200); return; } updReel(); }; setTimeout(t,900); }
+function wnCheck(){ if(wnTried) return; wnTried=true; if(!updPending()) return;
+  const t=()=>{ if(!updPending()) return; if(!tGet("fh_onboarded")||document.querySelector("#splash,.ob,.ur,.cel,.lvup,.tour,.wr,.chs,.vs,.pso,.gal")||document.hidden){ setTimeout(t,1200); return; } updReel(); }; setTimeout(t,900); }
 function v7Render(X,loaded){ if(loaded) wnCheck(); auraRender(); chRender(X,loaded); if(view==="stats"||$("hm").childElementCount) hmRender(X); if(typeof v8Render==="function"){ try{ v8Render(X,loaded); }catch(e){ console.error(e); } }
   if(loaded&&!v7Started){ v7Started=true; skinQueueIntro(curSkin()); } }
 (function v7Init(){ const g=$("achGrid"); if(g) g.addEventListener("click",achTap); const h=$("hm"); if(h) h.addEventListener("click",hmTap);
@@ -3864,17 +3988,243 @@ function achDefs(){ const st=streaks(), per=entries.filter(e=>inPeriod(e.date)),
 let achShown=null, achQueue=[], achBusy=false;
 function renderAch(){ let got={}; try{ got=JSON.parse(aGet("fh_ach")||"{}"); }catch(e){}
   const defs=achDefs(), fresh=[]; for(const a of defs){ if(a.v>=a.t&&!got[a.id]){ got[a.id]=iso(new Date()); fresh.push(a); } } if(fresh.length) aSet("fh_ach",JSON.stringify(got));
-  const g=$("achGrid"); if(g){ g.innerHTML=""; for(const a of defs){ const on=!!got[a.id], c=H("div","a "+(on?"on":"off")); const ic=H("div","ic"); ic.innerHTML=ico(a.ic); const tx=H("div"); tx.style.minWidth="0"; tx.append(H("b","",a.n),H("small","",on?`${a.d} · ${pd(got[a.id]).toLocaleDateString("de-DE")}`:a.d));
-      if(!on){ const pr=H("div","pr"), f=document.createElement("i"); f.style.width=Math.round(Math.min(1,a.p!=null?a.p:a.v/a.t)*100)+"%"; pr.appendChild(f); tx.appendChild(pr); } c.append(ic,tx); g.appendChild(c); }
+  const g=$("achGrid"); if(g){ g.innerHTML=""; let lastG=null; for(const a of defs){ const on=!!got[a.id];
+      if(a.g&&a.g!==lastG){ lastG=a.g; const grp=defs.filter(x=>x.g===a.g), hh=H("div","agh"); hh.append(document.createTextNode(a.g+" "),H("span","",`${grp.filter(x=>got[x.id]).length}/${grp.length}`)); g.appendChild(hh); }
+      const hide=a.s&&!on, c=H("div","a "+(on?"on":"off")+(a.s?" sec":"")); c.dataset.id=a.id; const ic=H("div","ic"); ic.innerHTML=hide?'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 9a3 3 0 1 1 4 2.8c-.7.3-1 .9-1 1.7V14M12 18h.01"/></svg>':ico(a.ic); const tx=H("div"); tx.style.minWidth="0"; tx.append(H("b","",hide?"???":a.n),H("small","",on?`${a.d} · ${pd(got[a.id]).toLocaleDateString("de-DE")}`:hide?"Geheimer Erfolg. Finde ihn selbst heraus.":a.d)); if(a.ti&&!hide){ const tt=H("small","achti",(on?"Titel: ":"Belohnung: Titel ")+"„"+a.ti+"“"); tx.appendChild(tt); }
+      if(!on&&!hide){ const pr=H("div","pr"), f=document.createElement("i"); f.style.width=Math.round(Math.min(1,a.p!=null?a.p:a.v/a.t)*100)+"%"; pr.appendChild(f); tx.appendChild(pr); } c.append(ic,tx); g.appendChild(c); }
     $("achCount").textContent=`${Object.keys(got).filter(k=>defs.some(d=>d.id===k)).length}/${defs.length}`; }
-  if(achShown===null){ achShown=true; if(fresh.length&&aGet("fh_ach_seen")) achQueue.push(...fresh); else if(fresh.length&&entries.length) { toast(`${fresh.length} ${fresh.length===1?"Erfolg":"Erfolge"} freigeschaltet. Schau unter Erfolge.`); } aSet("fh_ach_seen","1"); }
-  else achQueue.push(...fresh);
+  if(achShown===null){ achShown=true; if(fresh.length&&aGet("fh_ach_seen")) achPushMany(fresh); else if(fresh.length&&entries.length) { toast(`${fresh.length} ${fresh.length===1?"Erfolg":"Erfolge"} freigeschaltet. Schau unter Erfolge.`); } aSet("fh_ach_seen","1"); }
+  else achPushMany(fresh);
   if(!achBusy&&achQueue.length) setTimeout(showAch,900); }
 function showAch(){ const a=achQueue.shift(); if(!a){ achBusy=false; return; } if(typeof gameOn==="function"&&!gameOn()){ achQueue.length=0; achBusy=false; return; } achBusy=true; const o=H("div","achpop"), box=H("div","box"), md=H("div","md"); md.innerHTML=ico(a.ic);
   box.append(md,H("div","k2","Erfolg freigeschaltet"),H("b","",a.n),H("small","",a.d)); o.appendChild(box); document.body.appendChild(o); sfx.chime(false);
   if(!RM()){ setTimeout(()=>{ const r=md.getBoundingClientRect(); ring(r.left+r.width/2,r.top+r.height/2,"#f5a623",420); sparks(r.left+r.width/2,r.top+r.height/2,"#fde68a",36); },500); }
   setTimeout(()=>{ o.classList.add("out"); setTimeout(()=>{ o.remove(); showAch(); },350); },2400); }
 
+/* ---------- v20: Viele neue Erfolge (mit Kategorien und geheimen Erfolgen) ---------- */
+Object.assign(AIC,{
+  trophy:'<path d="M8 21h8M12 17v4M7 4h10v5a5 5 0 0 1-10 0z"/><path d="M17 5h3v2a3 3 0 0 1-3 3M7 5H4v2a3 3 0 0 0 3 3"/>',
+  moon:'<path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>',
+  sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>',
+  clover:'<path d="M12 12c-3-3-6-1-5 1.5S11 15 12 12zm0 0c3-3 6-1 5 1.5S13 15 12 12zm0 0c-3 3-1 6 1.5 5S15 13 12 12zm0 0c3 3 1 6-1.5 5S9 13 12 12z"/><path d="M12 12c-2 4-2 7-1 10"/>',
+  box:'<path d="M3 9h18v11H3zM3 9l2-5h14l2 5M12 9v11M9 13h6"/>',
+  paper:'<path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 12h7M9 16h5"/>',
+  cal:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/>',
+  up:'<path d="M12 19V5M5 12l7-7 7 7"/>',
+  gem:'<path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21L8 9l4-6 4 6z"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  palette:'<path d="M12 3a9 9 0 1 0 0 18c1.5 0 2-1 2-2s-1-1.5-1-2.5 1-1.5 2-1.5h2a4 4 0 0 0 4-4c0-4.4-4-8-9-8z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/>',
+  target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+  clock:'<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  rocket:'<path d="M5 15c-1 1-2 4-2 6 2 0 5-1 6-2M14 4c3-1 6-1 6-1s0 3-1 6l-7 7-5-5z"/><circle cx="15" cy="9" r="1.5"/>',
+  book:'<path d="M4 4h6a2 2 0 0 1 2 2v14a2 2 0 0 0-2-2H4zM20 4h-6a2 2 0 0 0-2 2v14a2 2 0 0 1 2-2h6z"/>',
+  party:'<path d="M3 21l5-14 9 9z"/><path d="M14 3v2M19 5l-1.5 1.5M21 10h-2M11 4l1 2M17 11l2 1"/>'
+});
+/* Besondere Momente merken (für geheime Erfolge) */
+function achMoments(){ const d=new Date(), h=d.getHours(), wd=d.getDay(), s=k=>{ try{ if(!localStorage.getItem(k)) localStorage.setItem(k,iso(d)); }catch(e){} };
+  if(h>=0&&h<4) s("fh_x_owl"); if(wd>=1&&wd<=5&&(h<6||(h===6&&d.getMinutes()<30))&&h>=4) s("fh_x_early");
+  if(wd===5&&d.getDate()===13) s("fh_x_f13"); if((d.getMonth()===11&&d.getDate()===31)||(d.getMonth()===0&&d.getDate()===1)) s("fh_x_ny");
+  if(wd===0||wd===6) s("fh_x_wknd"); }
+function achMore(){ const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } };
+  let X={L:1,cur:0,best:0,clean:0,weeks:0,chN:0,ciN:0}; try{ X=xpData()||X; }catch(e){}
+  const today=iso(new Date()), per=entries.filter(e=>inPeriod(e.date)&&e.date<=today), ab=per.filter(e=>typeOf(e)==="absent"), lt=per.filter(e=>typeOf(e)==="late");
+  const tot=per.reduce((s,e)=>s+lessonsOf(e),0), exN=per.filter(e=>e.excused).length, reasonN=per.filter(e=>(e.reason||"").trim().length>=3).length, photos=entries.filter(e=>photoRefs(e).length).length;
+  const start=new Date(+SET.start.slice(0,4),+SET.start.slice(5)-1,1), end=new Date(+SET.end.slice(0,4),+SET.end.slice(5),0), frac=Math.max(0,Math.min(1,(Date.now()-start)/(end-start)));
+  /* volle, vergangene Monate im Zeitraum ohne jeden Eintrag */
+  let perfM=0; { const n=new Date(); let y=start.getFullYear(), m=start.getMonth(); while(new Date(y,m+1,1)<=new Date(n.getFullYear(),n.getMonth(),1)&&new Date(y,m,1)<=end){ const key=`${y}-${String(m+1).padStart(2,"0")}`; if(m!==6&&m!==7&&!entries.some(e=>e.date.startsWith(key))) perfM++; m++; if(m>11){ m=0; y++; } } }
+  /* Schultage seit der letzten Verspätung */
+  const lastLate=lt.map(e=>e.date).sort().pop(); let sinceLate=0; { const d=new Date(lastLate?pd(lastLate):start); d.setDate(d.getDate()+1); const t=new Date(); let k=0; while(d<=t&&k<400){ const w=d.getDay(); if(w>=1&&w<=5) sinceLate++; d.setDate(d.getDate()+1); k++; } }
+  /* Montage am Stück ohne Fehlzeit */
+  let mon=0; { const d=new Date(); d.setDate(d.getDate()-((d.getDay()+6)%7)); if(iso(d)>today) d.setDate(d.getDate()-7); while(d>=start&&mon<60){ if(entries.some(e=>e.date===iso(d))) break; mon++; d.setDate(d.getDate()-7); } }
+  const ch=(()=>{ try{ return Object.values(chestAll()); }catch(e){ return []; } })(), opened=ch.filter(c=>c&&c.o).length;
+  const ci=(()=>{ try{ return ciList().length; }catch(e){ return 0; } })();
+  let gotN=0; try{ gotN=Object.keys(JSON.parse(g("fh_ach")||"{}")||{}).length; }catch(e){}
+  let prof={}; try{ prof=profGet(); }catch(e){}
+  const S="Serien", O="Ordnung", L="Level & Spiel", B="Bilanz", A="App-Profi", G="Geheim";
+  return [
+    {g:S,id:"sd5",n:"Fünf am Stück",d:"5 Schultage in Folge ohne Fehlzeit",ic:"flame",v:X.best,t:5},
+    {g:S,id:"sd20",n:"Unaufhaltsam",d:"20 Schultage in Folge ohne Fehlzeit",ic:"flame",v:X.best,t:20},
+    {g:S,id:"sd50",n:"Maschine",d:"50 Schultage in Folge ohne Fehlzeit",ic:"rocket",v:X.best,t:50},
+    {g:S,id:"sd100",n:"Hundert",d:"100 Schultage in Folge ohne Fehlzeit",ic:"crown",v:X.best,t:100},
+    {g:S,id:"sd150",n:"Legende",d:"150 Schultage in Folge ohne Fehlzeit",ic:"gem",v:X.best,t:150},
+    {g:S,id:"pw1",n:"Perfekte Woche",d:"Eine ganze Schulwoche ohne Fehlzeit",ic:"cal",v:X.weeks||0,t:1},
+    {g:S,id:"pw10",n:"Wochen-Sammler",d:"10 perfekte Schulwochen",ic:"cal",v:X.weeks||0,t:10},
+    {g:S,id:"pm1",n:"Perfekter Monat",d:"Ein ganzer Monat ohne Eintrag (ohne Sommerferien)",ic:"star",v:perfM,t:1},
+    {g:S,id:"pm3",n:"Drei weiße Monate",d:"3 ganze Monate ohne Eintrag",ic:"trophy",v:perfM,t:3},
+    {g:S,id:"pt20",n:"Pünktlich wie die Uhr",d:"20 Schultage ohne Verspätung",ic:"clock",v:sinceLate,t:20},
+    {g:S,id:"pt60",n:"Schweizer Uhrwerk",d:"60 Schultage ohne Verspätung",ic:"clock",v:sinceLate,t:60},
+    {g:S,id:"mo8",n:"Montags-Bezwinger",d:"8 Montage in Folge ohne Fehlzeit",ic:"sun",v:mon,t:8},
+    {g:O,id:"ex5",n:"Papierkram-Profi",d:"5 Einträge als entschuldigt markiert",ic:"paper",v:exN,t:5},
+    {g:O,id:"ex15",n:"Liebling vom Sekretariat",d:"15 Einträge entschuldigt",ic:"paper",v:exN,t:15},
+    {g:O,id:"rs10",n:"Gut dokumentiert",d:"10 Einträge mit Grund",ic:"book",v:reasonN,t:10},
+    {g:O,id:"ph1",n:"Schnappschuss",d:"Erstes Foto an einem Eintrag",ic:"cam",v:photos,t:1},
+    {g:O,id:"ph15",n:"Fotoalbum",d:"15 Einträge mit Foto",ic:"cam",v:photos,t:15},
+    {g:L,id:"lv5",n:"Aufsteiger",d:"Level 5 erreicht",ic:"up",v:X.L,t:5},
+    {g:L,id:"lv10",n:"Fortgeschritten",d:"Level 10 erreicht",ic:"up",v:X.L,t:10},
+    {g:L,id:"lv20",n:"Veteran",d:"Level 20 erreicht",ic:"crown",v:X.L,t:20},
+    {g:L,id:"lv35",n:"Meister",d:"Level 35 erreicht",ic:"gem",v:X.L,t:35},
+    {g:L,id:"ci7",n:"Stammgast",d:"An 7 Tagen eingecheckt",ic:"check",v:ci,t:7},
+    {g:L,id:"ci30",n:"Treue Seele",d:"An 30 Tagen eingecheckt",ic:"check",v:ci,t:30},
+    {g:L,id:"ci100",n:"Inventar",d:"An 100 Tagen eingecheckt",ic:"trophy",v:ci,t:100},
+    {g:L,id:"bx10",n:"Schatzsucher",d:"10 Kisten geöffnet",ic:"box",v:opened,t:10},
+    {g:L,id:"bx50",n:"Schatzmeister",d:"50 Kisten geöffnet",ic:"box",v:opened,t:50},
+    {g:L,id:"bxe",n:"Episch!",d:"Eine epische Kiste gefunden",ic:"gem",v:ch.some(c=>c&&(c.r==="epic"||c.r==="leg"))?1:0,t:1},
+    {g:L,id:"bxl",n:"Glückskind",d:"Eine legendäre Kiste gefunden",ic:"clover",v:ch.some(c=>c&&c.r==="leg")?1:0,t:1},
+    {g:L,id:"chl5",n:"Herausforderer",d:"5 Wochen-Challenges geschafft",ic:"target",v:X.chN||0,t:5},
+    {g:B,id:"q25",n:"Sparfuchs",d:"Ein Viertel des Zeitraums vorbei, unter 10 % verbraucht",ic:"half",v:frac>=.25&&tot<SET.limit*.1?1:0,t:1,p:Math.min(1,frac/.25)*(tot<SET.limit*.1?1:.5)},
+    {g:B,id:"q75",n:"Fast geschafft",d:"Drei Viertel vorbei, unter der Hälfte verbraucht",ic:"half",v:frac>=.75&&tot<SET.limit/2?1:0,t:1,p:Math.min(1,frac/.75)*(tot<SET.limit/2?1:.5)},
+    {g:B,id:"fin",n:"Ziel erreicht",d:"Zeitraum beendet und unter der Grenze geblieben",ic:"trophy",v:frac>=1&&tot<=SET.limit?1:0,t:1,p:frac},
+    {g:A,id:"prof",n:"Das bin ich",d:"Profil mit Namen angelegt",ic:"user",v:prof&&prof.name?1:0,t:1},
+    {g:A,id:"skin",n:"Neuer Look",d:"Einen anderen Skin ausgewählt",ic:"palette",v:g("fh_skin")&&g("fh_skin")!=="tafel"?1:0,t:1},
+    {g:A,id:"train",n:"Trainiert",d:"Das Training abgeschlossen",ic:"target",v:g("fh_train1")?1:0,t:1},
+    {g:A,id:"coll",n:"Sammler",d:"25 Erfolge freigeschaltet",ic:"trophy",v:gotN,t:25},
+    {g:A,id:"coll2",n:"Komplettist",d:"45 Erfolge freigeschaltet",ic:"gem",v:gotN,t:45},
+    {g:"Bahn",id:"sig",n:"Signalstörung",d:"3 Verspätungen wegen Signal- oder Weichenstörung (Grund eintragen)",ic:"train",v:per.filter(e=>typeOf(e)==="late"&&/signal|weiche|stellwerk/i.test(e.reason||"")).length,t:3},
+    {g:"Bahn",id:"sev",n:"Schienenersatzverkehr",d:"Einmal wegen Ersatzbus/SEV zu spät (Grund eintragen)",ic:"train",v:per.filter(e=>typeOf(e)==="late"&&/sev|ersatz|bus/i.test(e.reason||"")).length,t:1},
+    {g:"Bahn",id:"ausf",n:"Zugausfall",d:"3 Verspätungen wegen Zugausfall (Grund eintragen)",ic:"train",v:per.filter(e=>typeOf(e)==="late"&&/ausfall|f(ä|ae)llt aus|gestrichen/i.test(e.reason||"")).length,t:3},
+    {g:"Bahn",id:"bahn25",n:"Bahn-Legende",d:"25 Verspätungen wegen der Bahn, alle mit Grund",ic:"crown",v:per.filter(e=>typeOf(e)==="late"&&/bahn|zug|db\b|s-?bahn|\bice\b|\bre ?\d|\brb ?\d/i.test(e.reason||"")).length,t:25},
+
+    {g:G,s:1,id:"owl",n:"Nachteule",d:"Die App zwischen Mitternacht und 4 Uhr geöffnet",ic:"moon",v:g("fh_x_owl")?1:0,t:1},
+    {g:G,s:1,id:"early",n:"Früher Vogel",d:"Vor 6:30 Uhr an einem Schultag reingeschaut",ic:"sun",v:g("fh_x_early")?1:0,t:1},
+    {g:G,s:1,id:"f13",n:"Freitag der 13.",d:"Die App an einem Freitag, dem 13., geöffnet",ic:"clover",v:g("fh_x_f13")?1:0,t:1},
+    {g:G,s:1,id:"ny",n:"Prost Neujahr",d:"An Silvester oder Neujahr reingeschaut",ic:"party",v:g("fh_x_ny")?1:0,t:1},
+    {g:G,s:1,id:"wknd",n:"Wochenend-Streber",d:"Am Wochenende die Fehlstunden gecheckt",ic:"book",v:g("fh_x_wknd")?1:0,t:1}
+  ]; }
+(function v20Init(){ achMoments(); document.addEventListener("visibilitychange",()=>{ if(!document.hidden){ achMoments(); try{ renderAch(); }catch(e){} } });
+  const _d=achDefs; achDefs=function(){ return _d().map(a=>Object.assign({g:"Klassiker"},a)).concat(achMore()); }; })();
+function achPushMany(fresh){ if(fresh.length>3){ achQueue.push(Object.assign({},fresh[0],{n:`${fresh.length} neue Erfolge!`,d:`Darunter „${fresh[0].n}“. Schau unter Erfolge.`,ic:"trophy"})); } else achQueue.push(...fresh); }
+/* ---------- v21: Profil richtig personalisieren (Bild, Banner, Status, Vitrine) ---------- */
+const PF={
+  emo:[["😎",1],["🙂",1],["🦊",1],["🐱",1],["🐼",1],["🐸",1],["🚀",1],["⚡",1],["🐺",3],["🦁",3],["🐙",5],["🦉",5],["🐲",8],["🦄",8],["🤖",11],["👽",11],["🥷",14],["🧙",14],["👑",18],["💎",18],["🔥",22],["🌈",22],["🌌",26],["🏆",30]],
+  ban:{nacht:{n:"Nacht",bg:"linear-gradient(135deg,#0f1b33,#1d3a6b)"},
+    tafel:{n:"Tafel",bg:"linear-gradient(135deg,#123326,#1f4d3a)"},
+    sunset:{n:"Sonnenuntergang",L:3,bg:"linear-gradient(135deg,#ff7a59,#c2378a,#3b1d6e)"},
+    ozean:{n:"Ozean",L:6,bg:"linear-gradient(135deg,#0ea5e9,#1e3a8a,#0f766e)"},
+    wald:{n:"Wald",L:9,bg:"linear-gradient(135deg,#14532d,#4d7c0f,#166534)"},
+    neon:{n:"Neon",L:12,anim:1,bg:"linear-gradient(135deg,#ff2bd6,#22e4ff,#7c3aed,#ff2bd6)"},
+    aurora:{n:"Polarlicht",a:15,anim:1,bg:"linear-gradient(135deg,#052e2b,#10b981,#6366f1,#052e2b)"},
+    lava:{n:"Lava",id:"sd50",anim:1,bg:"linear-gradient(135deg,#450a0a,#dc2626,#f59e0b,#450a0a)"},
+    galaxie:{n:"Galaxie",L:20,stars:1,anim:1,bg:"linear-gradient(135deg,#0b0420,#3b0764,#1e1b4b,#0b0420)"},
+    gold:{n:"Gold",a:30,anim:1,bg:"linear-gradient(135deg,#7a5508,#f5c451,#fff1c2,#b8860b)"},
+    glueck:{n:"Glückskind",id:"bxl",bg:"linear-gradient(135deg,#065f46,#34d399,#a7f3d0)"},
+    regen:{n:"Regenbogen",L:30,anim:1,bg:"linear-gradient(90deg,#ef4444,#f59e0b,#eab308,#22c55e,#06b6d4,#6366f1,#d946ef,#ef4444)"},
+    diamant:{n:"Diamant",id:"coll2",anim:1,stars:1,bg:"linear-gradient(135deg,#e0fbff,#9fe3ff,#c9b6ff,#ffffff,#9fe3ff)"}},
+  nc:{weiss:{n:"Weiß",c:"var(--ink)"},amber:{n:"Bernstein",L:4,c:"#f5a623"},cyan:{n:"Cyan",L:10,c:"#22d3ee"},pink:{n:"Pink",L:15,c:"#f472b6"},
+    gold:{n:"Gold-Glanz",L:25,g:"linear-gradient(90deg,#b8860b,#fff1c2,#f5c451,#b8860b)"},regen:{n:"Regenbogen",a:40,g:"linear-gradient(90deg,#ef4444,#f59e0b,#22c55e,#06b6d4,#d946ef,#ef4444)"}}
+};
+function pfRaw(){ try{ return JSON.parse(localStorage.getItem("fh_prof")||"{}")||{}; }catch(e){ return {}; } }
+function pfPut(k,v){ const p=pfRaw(); p[k]=v; try{ localStorage.setItem("fh_prof",JSON.stringify(p)); }catch(e){ toast("Konnte nicht speichern.",true); } }
+function pfAvatar(){ try{ return localStorage.getItem("fh_avatar")||""; }catch(e){ return ""; } }
+function pfGot(){ try{ return JSON.parse(localStorage.getItem("fh_ach")||"{}")||{}; }catch(e){ return {}; } }
+function pfOk(r,X,got){ if(r.L&&X.L<r.L) return false; if(r.a&&Object.keys(got).length<r.a) return false; if(r.id&&!got[r.id]) return false; return true; }
+function pfReq(r){ if(r.L) return "Level "+r.L; if(r.a) return r.a+" Erfolge"; if(r.id){ const d=(achDefs().find(x=>x.id===r.id)||{}); return "Erfolg „"+(d.n||r.id)+"“"; } return ""; }
+function pfAvHTML(el,X,p){ const av=pfAvatar(), f=FRAMES[p.frame], own=ownedAll(X); el.style.backgroundImage=av?`url("${av}")`:""; el.firstChild&&el.firstChild.nodeType===3&&el.removeChild(el.firstChild);
+  [...el.childNodes].forEach(n=>{ if(!n.classList||!n.classList.contains("lvb")) n.remove(); }); if(!av) el.insertBefore(document.createTextNode(p.emoji||((p.name||"").trim()[0]||"😎").toUpperCase()),el.firstChild);
+  const fr=f&&f.c&&own.has("r:"+p.frame); el.classList.toggle("ring",!!fr); if(fr) el.style.setProperty("--rg",`conic-gradient(${f.c.concat(f.c[0]).join(",")})`); else el.style.removeProperty("--rg"); }
+function pfRender(X){ const hero=$("pfHero"); if(!hero) return; X=X||xpData(); const p=Object.assign({},pfRaw(),profGet()), got=pfGot(), defs=achDefs();
+  /* Banner */ let bk=p.banner&&PF.ban[p.banner]&&pfOk(PF.ban[p.banner],X,got)?p.banner:"nacht"; const B=PF.ban[bk], bb=$("pfBanner"); bb.style.setProperty("--bn",B.bg); bb.classList.toggle("anim",!!B.anim&&!RM()); bb.classList.toggle("stars",!!B.stars);
+  /* Avatar */ const av=$("pfAv"); pfAvHTML(av,X,p); $("pfLv").textContent=X.L;
+  /* Name */ const nm=$("pfName"); nm.textContent=p.name||"Dein Name"; let nk=p.nc&&PF.nc[p.nc]&&pfOk(PF.nc[p.nc],X,got)?p.nc:"weiss"; const NC=PF.nc[nk]; nm.classList.toggle("ncg",!!NC.g); if(NC.g){ nm.style.setProperty("--ng",NC.g); nm.style.removeProperty("--nc"); } else { nm.style.setProperty("--nc",NC.c); }
+  $("pfTitle").textContent=profTitleCustom(X)||X.rank; $("pfBio").textContent=p.bio||"";
+  $("pfS1").textContent=X.L; $("pfS2").textContent=X.best; $("pfS3").textContent=Object.keys(got).filter(k=>defs.some(d=>d.id===k)).length;
+  /* Vitrine */ const sh=$("pfShow"); sh.innerHTML=""; const show=(Array.isArray(p.show)?p.show:[]).filter(id=>got[id]).slice(0,3);
+  show.forEach(id=>{ const d=defs.find(x=>x.id===id); if(!d) return; const s=document.createElement("span"), i=document.createElement("i"); i.innerHTML=ico(d.ic); s.append(i,document.createTextNode(d.n)); sh.appendChild(s); });
+  if(!show.length){ const s=document.createElement("span"); s.className="empty"; s.textContent="Vitrine leer: Wähle unten bis zu 3 Erfolge"; sh.appendChild(s); }
+  pfEditor(X,p,got,defs); try{ achTitlesRender(X); }catch(e){} }
+function pfEditor(X,p,got,defs){ const card=$("prCard"); if(!card) return; const mk=(html,on,lock,fn,cls)=>{ const b=document.createElement("button"); b.type="button"; b.className="ch2"+(cls?" "+cls:"")+(lock?" lock":""); b.innerHTML=html; b.setAttribute("aria-pressed",on?"true":"false"); b.onclick=fn; return b; };
+  const click=()=>{ try{ sfx.click(); }catch(e){} }, rer=()=>{ try{ lvlRender(); }catch(e){ pfRender(); } };
+  pfAvHTML($("pfAv2"),X,p); $("pfDel").hidden=!pfAvatar();
+  const bi=$("pfBioIn"); if(bi&&document.activeElement!==bi) bi.value=p.bio||"";
+  const eb=$("pfEmo"); eb.innerHTML=""; PF.emo.forEach(([e,L])=>{ const ok=X.L>=L; eb.appendChild(mk(ok?e:`${IC_LOCK}<span class="req">L${L}</span>`,ok&&p.emoji===e&&!pfAvatar(),!ok,()=>{ if(!ok){ toast(`${e} gibt es ab Level ${L}.`,true); return; } if(pfAvatar()){ try{ localStorage.removeItem("fh_avatar"); }catch(_){} } pfPut("emoji",e); click(); rer(); },"emo")); });
+  const bn=$("pfBan"); bn.innerHTML=""; Object.entries(PF.ban).forEach(([k,B])=>{ const ok=pfOk(B,X,got), on=(p.banner||"nacht")===k&&ok; bn.appendChild(mk(`${ok?"":IC_LOCK}<span class="bsw" style="background:${B.bg}"></span>${B.n}`,on,!ok,()=>{ if(!ok){ toast(`Banner „${B.n}“: ${pfReq(B)} nötig.`,true); return; } pfPut("banner",k); click(); rer(); })); });
+  const nc=$("pfNc"); nc.innerHTML=""; Object.entries(PF.nc).forEach(([k,N])=>{ const ok=pfOk(N,X,got), on=(p.nc||"weiss")===k&&ok; nc.appendChild(mk(`${ok?"":IC_LOCK}<span class="bsw" style="background:${N.g||N.c};width:16px;border-radius:50%"></span>${N.n}`,on,!ok,()=>{ if(!ok){ toast(`Namensfarbe „${N.n}“: ${pfReq(N)} nötig.`,true); return; } pfPut("nc",k); click(); rer(); })); });
+  const vs=$("pfVit"); vs.innerHTML=""; const cur=(Array.isArray(p.show)?p.show:[]).filter(id=>got[id]); const mine=defs.filter(d=>got[d.id]);
+  if(!mine.length){ const s=document.createElement("small"); s.style.color="var(--sub)"; s.textContent="Schalte zuerst Erfolge frei."; vs.appendChild(s); }
+  mine.forEach(d=>{ const on=cur.includes(d.id); vs.appendChild(mk(d.n,on,false,()=>{ let a=cur.slice(); if(on) a=a.filter(x=>x!==d.id); else { if(a.length>=3){ toast("Höchstens 3 Erfolge in der Vitrine.",true); return; } a.push(d.id); } pfPut("show",a); click(); rer(); })); }); }
+/* Foto laden: mehrere Wege, weil iPhone-Fotos (HEIC) und manche Vorschauen blob:-Links blockieren */
+function pfPhoto(file){ if(!file) return; toast("Bild wird geladen …");
+  const save=(src,w,h)=>{ const S=320, c=document.createElement("canvas"); c.width=c.height=S; const x=c.getContext("2d"), m=Math.min(w,h); x.fillStyle="#1a202a"; x.fillRect(0,0,S,S);
+    x.drawImage(src,(w-m)/2,(h-m)/2,m,m,0,0,S,S); let d=""; try{ d=c.toDataURL("image/jpeg",.82); }catch(e){ return false; } if(!d||d.length<200) return false;
+    try{ localStorage.setItem("fh_avatar",d); }catch(e){ toast("Bild zu groß zum Speichern.",true); return true; } toast("Profilbild gespeichert."); try{ sfx.chime(false); }catch(_){} try{ lvlRender(); }catch(e){ pfRender(); } return true; };
+  const viaImg=(src,cleanup)=>new Promise(res=>{ const img=new Image(); img.onload=()=>{ const ok=save(img,img.naturalWidth||img.width,img.naturalHeight||img.height); if(cleanup) cleanup(); res(ok); }; img.onerror=()=>{ if(cleanup) cleanup(); res(false); }; img.src=src; });
+  const viaReader=()=>new Promise(res=>{ const r=new FileReader(); r.onload=()=>viaImg(r.result).then(res); r.onerror=()=>res(false); r.readAsDataURL(file); });
+  const viaBitmap=()=>(typeof createImageBitmap==="function"?createImageBitmap(file).then(b=>{ const ok=save(b,b.width,b.height); try{ b.close(); }catch(e){} return ok; }).catch(()=>false):Promise.resolve(false));
+  const viaBlob=()=>{ let u; try{ u=URL.createObjectURL(file); }catch(e){ return Promise.resolve(false); } return viaImg(u,()=>URL.revokeObjectURL(u)); };
+  (async()=>{ for(const f of [viaReader,viaBitmap,viaBlob]){ try{ if(await f()) return; }catch(e){} }
+    toast(/heic|heif/i.test(file.type+file.name)?"Dieses Foto-Format (HEIC) geht hier nicht. Mach am besten einen Screenshot vom Foto und wähle den.":"Das Bild konnte nicht geöffnet werden. Versuch ein anderes Foto oder einen Screenshot.",true); })(); }
+(function v21Init(){ const _pr=profRender; profRender=function(X){ _pr.apply(this,arguments); try{ pfRender(X); }catch(e){ console.error(e); } };
+  const f=$("pfFile"); if(f) f.onchange=()=>{ pfPhoto(f.files&&f.files[0]); f.value=""; };
+  const pb=$("pfPick"); if(pb) pb.onclick=()=>$("pfFile").click();
+  const dl=$("pfDel"); if(dl) dl.onclick=()=>{ try{ localStorage.removeItem("fh_avatar"); }catch(e){} toast("Profilbild entfernt."); try{ lvlRender(); }catch(e){ pfRender(); } };
+  const bi=$("pfBioIn"); if(bi) bi.oninput=()=>{ pfPut("bio",bi.value.slice(0,60)); const b=$("pfBio"); if(b) b.textContent=bi.value.slice(0,60); };
+  const ed=$("pfEd"); if(ed) ed.onclick=()=>{ const c=$("prCard"); if(c) c.scrollIntoView({behavior:RM()?"auto":"smooth",block:"start"}); };
+  const nm=$("prName"); if(nm) nm.addEventListener("input",()=>{ const b=$("pfName"); if(b) b.textContent=nm.value||"Dein Name"; }); })();
+/* ---------- v22: Stand freiwillig teilen + verstecktes Admin-Panel ---------- */
+const ADM_H="fa4bf29dda3a5626374cb8a1ec565626b87b1dceb34746fc1e68925d38b3ffdb";
+function admOn(){ try{ return localStorage.getItem("fh_adm")==="1"; }catch(e){ return false; } }
+function b64u(str){ return btoa(unescape(encodeURIComponent(str))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+function unb64u(s){ s=s.replace(/-/g,"+").replace(/_/g,"/"); while(s.length%4) s+="="; return decodeURIComponent(escape(atob(s))); }
+function shareCode(){ const today=iso(new Date()), per=entries.filter(e=>inPeriod(e.date)&&e.date<=today), tot=per.reduce((s,e)=>s+lessonsOf(e),0), ex=per.filter(e=>e.excused).reduce((s,e)=>s+lessonsOf(e),0);
+  const o={v:1,n:(profGet().name||"").slice(0,20),h:tot,x:ex,l:SET.limit,a:per.filter(e=>typeOf(e)==="absent").length,t:per.filter(e=>typeOf(e)==="late").length,d:today};
+  return "FHS1-"+b64u(JSON.stringify(o)); }
+function shareParse(txt){ const m=String(txt||"").replace(/\s+/g,"").match(/FHS1-([A-Za-z0-9_-]+)/); if(!m) return null; try{ const o=JSON.parse(unb64u(m[1])); if(!o||o.v!==1||typeof o.h!=="number") return null; return o; }catch(e){ return null; } }
+async function shareMine(){ const c=shareCode(), txt=`Mein Fehlstunden-Stand (Code zum Einfügen in die App):\n${c}`;
+  if(navigator.share){ try{ await navigator.share({text:txt}); return; }catch(e){ if(e&&e.name==="AbortError") return; } }
+  try{ await navigator.clipboard.writeText(c); toast("Code kopiert. Schick ihn, wem du willst."); }catch(e){ toast("Kopieren ging nicht. Code: "+c); } }
+async function admHash(pw){ if(!(window.crypto&&crypto.subtle)) return null; const enc=new TextEncoder(), k=await crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveBits"]);
+  const b=await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt:enc.encode("fh-adm-v1"),iterations:150000},k,256); return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join(""); }
+function admSheet(html){ const o=document.createElement("div"); o.className="adm"; o.innerHTML=`<div class="admb">${html}</div>`; o.addEventListener("click",e=>{ if(e.target===o||e.target.closest(".x")) o.remove(); }); document.body.appendChild(o); return o; }
+function admLogin(){ let ok=false; try{ ok=sessionStorage.getItem("fh_adm_ok")==="1"; }catch(e){} if(ok){ admPanel(); return; }
+  const o=admSheet(`<h3>Admin <button type="button" class="x" aria-label="Schließen">✕</button></h3><input type="password" id="admPw" placeholder="Passwort" autocomplete="off"><div class="err" id="admErr"></div><div class="row"><button type="button" class="btn next" id="admGo">Entsperren</button></div>`);
+  const pw=o.querySelector("#admPw"), go=o.querySelector("#admGo"), er=o.querySelector("#admErr"); setTimeout(()=>pw.focus(),100);
+  const tryIt=async()=>{ go.disabled=true; er.textContent="Prüfe …"; let h=null; try{ h=await admHash(pw.value); }catch(e){}
+    if(h===null){ er.textContent="Dieser Browser kann das Passwort nicht prüfen."; go.disabled=false; return; }
+    if(h===ADM_H){ try{ sessionStorage.setItem("fh_adm_ok","1"); }catch(e){} o.remove(); admPanel(); } else { er.textContent="Falsches Passwort."; pw.value=""; go.disabled=false; } };
+  go.onclick=tryIt; pw.addEventListener("keydown",e=>{ if(e.key==="Enter") tryIt(); }); }
+function admCodes(){ try{ return JSON.parse(localStorage.getItem("fh_adm_codes")||"[]")||[]; }catch(e){ return []; } }
+function admPanel(){ const o=admSheet(`<h3>Admin <button type="button" class="x" aria-label="Schließen">✕</button></h3>
+    <div class="settings"><div class="set"><label for="admSw">Admin-Modus<small>Alle Erfolge, alles freigeschaltet, Level ∞</small></label><span class="switch-t"><input type="checkbox" id="admSw" role="switch"><span></span></span></div></div>
+    <h3 style="margin-top:18px">Geteilte Stände</h3><small style="color:var(--sub)">Nur Codes, die dir jemand freiwillig geschickt hat.</small>
+    <textarea id="admIn" placeholder="Code hier einfügen (FHS1-…)"></textarea><div class="err" id="admE2"></div><div class="row"><button type="button" class="btn next" id="admAdd">Hinzufügen</button></div>
+    <div class="sl" id="admList"></div><div class="row" style="margin-top:16px"><button type="button" class="btn" id="admLock">Sperren</button></div>`);
+  const sw=o.querySelector("#admSw"); sw.checked=admOn(); sw.onchange=()=>admSet(sw.checked);
+  const list=o.querySelector("#admList"), draw=()=>{ const L=admCodes().sort((a,b)=>b.h-a.h); list.innerHTML=""; if(!L.length){ list.innerHTML='<small style="color:var(--sub)">Noch keine Codes.</small>'; return; }
+    L.forEach((c,k)=>{ const it=document.createElement("div"); it.className="si"; const pct=Math.min(100,Math.round(c.h/Math.max(1,c.l)*100));
+      const nm=document.createElement("b"); nm.textContent=c.n||"Ohne Namen"; const sm=document.createElement("small"); sm.textContent=`${c.a} Fehltage · ${c.t} Verspätungen · ${c.x} entschuldigt · Stand ${pd(c.d).toLocaleDateString("de-DE")}`;
+      const big=document.createElement("span"); big.className="big"; big.innerHTML=`${c.h}<em>von ${c.l}</em>`; const bar=document.createElement("div"); bar.className="bar"; bar.innerHTML=`<i class="${pct>=80?"r":pct>=50?"w":""}" style="width:${pct}%"></i>`;
+      const del=document.createElement("button"); del.type="button"; del.className="del"; del.textContent="Entfernen"; del.onclick=()=>{ const a=admCodes().filter(x=>!(x.n===c.n&&x.d===c.d&&x.h===c.h)); localStorage.setItem("fh_adm_codes",JSON.stringify(a)); draw(); };
+      it.append(nm,big,sm,bar,del); list.appendChild(it); }); };
+  o.querySelector("#admAdd").onclick=()=>{ const ta=o.querySelector("#admIn"), e2=o.querySelector("#admE2"), c=shareParse(ta.value); if(!c){ e2.textContent="Kein gültiger Code."; return; } e2.textContent="";
+    const a=admCodes().filter(x=>(x.n||"")!==(c.n||"")||!c.n); a.push(c); try{ localStorage.setItem("fh_adm_codes",JSON.stringify(a.slice(-100))); }catch(e){} ta.value=""; toast((c.n||"Stand")+" hinzugefügt."); draw(); };
+  o.querySelector("#admLock").onclick=()=>{ try{ sessionStorage.removeItem("fh_adm_ok"); }catch(e){} o.remove(); toast("Admin gesperrt."); };
+  draw(); }
+function admSet(on){ const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } }, s=(k,v)=>{ try{ if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){} };
+  const KEYS=["fh_ach","fh_skins_un","fh_level","fh_ms","fh_evo"];
+  if(on&&!admOn()){ const bk={}; KEYS.forEach(k=>bk[k]=g(k)); s("fh_adm_bk",JSON.stringify(bk)); s("fh_adm","1"); }
+  else if(!on&&admOn()){ let bk={}; try{ bk=JSON.parse(g("fh_adm_bk")||"{}")||{}; }catch(e){} KEYS.forEach(k=>s(k,k in bk?bk[k]:g(k))); s("fh_adm_bk",null); s("fh_adm",null); }
+  try{ XPC=null; }catch(e){} try{ lvlRender(); }catch(e){} try{ renderAch(); }catch(e){} toast(on?"Admin-Modus an.":"Admin-Modus aus. Alles wieder wie vorher."); }
+(function v22Init(){
+  const _xp=xpData; xpData=function(){ const X=_xp.apply(this,arguments); if(!X||!admOn()) return X; const L=999; return Object.assign({},X,{L,rank:rankOf(L),base:lvlAt(L),next:lvlAt(L+1),xp:lvlAt(L+1)-1}); };
+  const _own=ownedAll; ownedAll=function(){ const s=_own.apply(this,arguments); if(!admOn()) return s; Object.values(PASS).forEach(r=>s.add(r.ty+":"+r.id)); s.add("f:plasma"); s.add("t:Glückspilz"); return s; };
+  const _ad=achDefs; achDefs=function(){ const d=_ad.apply(this,arguments); return admOn()?d.map(a=>Object.assign({},a,{v:a.t,p:1})):d; };
+  const _lr=lvlRender; lvlRender=function(){ const r=_lr.apply(this,arguments); if(admOn()){ ["lvN","lsN","pfLv","pfS1"].forEach(id=>{ const e=$(id); if(e) e.textContent="∞"; }); const x=$("lsX"); if(x) x.textContent="∞ XP · Level unendlich"; } return r; };
+  const v=$("verLbl"); let n=0, t=0; if(v) v.addEventListener("click",()=>{ const now=Date.now(); n=now-t<1500?n+1:1; t=now; if(n>=7){ n=0; admLogin(); } });
+  const sb=$("shareMine"); if(sb) sb.onclick=shareMine; })();
+/* ---------- v23: Jeder Erfolg schaltet einen Titel frei ---------- */
+const ACHT={start:"Neu im Game",w1:"Wochen-Krieger",m1:"Monats-Monster",m2:"Schulbank-Titan",photo:"Paparazzo",clean:"Weiße Weste",bahn:"DB-Veteran",backup:"Datenbunker",half:"Halbzeit-Boss",tour:"Insider",wrap:"Zeitreisender",
+  sd5:"Durchstarter",sd20:"Dampflok",sd50:"ICE ohne Verspätung",sd100:"Hundert-Club",sd150:"Lebende Legende",pw1:"Wochen-Gewinner",pw10:"Fehlzeiten-Vernichter",pm1:"Monat ohne Makel",pm3:"Phantom der Anwesenheitsliste",pt20:"Pünktlichkeits-Ninja",pt60:"Atomuhr",mo8:"Montags-Endgegner",
+  ex5:"Zettel-König",ex15:"Sekretariats-VIP",rs10:"Chronist",ph1:"Beweisfotograf",ph15:"Akten-Archivar",
+  lv5:"Rookie mit Ambitionen",lv10:"Stammspieler",lv20:"Veteran der Schulbank",lv35:"Großmeister",ci7:"Stammgast",ci30:"Inventar der Klasse",ci100:"Teil des Schulgebäudes",bx10:"Schatzjäger",bx50:"Kisten-Baron",bxe:"Episch Beschenkt",bxl:"Glückskind",chl5:"Challenge-Bezwinger",
+  q25:"Sparfuchs",q75:"Zielgerade-Sprinter",fin:"Endboss besiegt",prof:"Persönlichkeit",skin:"Stilikone",train:"Ausgebildet",coll:"Sammelwütig",coll2:"100-Prozent-Maschine",
+  sig:"Signalstörungs-Überlebender",sev:"SEV-Survivor",ausf:"Zugausfall-Zombie",bahn25:"Bahn-Legende",
+  owl:"Nachteule",early:"Bahnsteig-Frühaufsteher",f13:"Pechvogel-Bezwinger",ny:"Silvester-Rakete",wknd:"Wochenend-Streber"};
+(function v23Init(){
+  const _ad=achDefs; achDefs=function(){ return _ad.apply(this,arguments).map(a=>ACHT[a.id]&&!a.ti?Object.assign({},a,{ti:ACHT[a.id]}):a); };
+  const _own=ownedAll; ownedAll=function(){ const s=_own.apply(this,arguments); let got={}; try{ got=JSON.parse(localStorage.getItem("fh_ach")||"{}")||{}; }catch(e){} for(const id in got) if(ACHT[id]) s.add("t:"+ACHT[id]); return s; };
+  const _sa=showAch; showAch=function(){ const a=achQueue[0]; if(a&&a.ti&&!/Titel/.test(a.d)) achQueue[0]=Object.assign({},a,{d:a.d+` · Neuer Titel: „${a.ti}“`}); return _sa.apply(this,arguments); }; })();
+function achTitlesRender(X){ const box=$("pfTit"); if(!box) return; X=X||xpData(); let got={}; try{ got=JSON.parse(localStorage.getItem("fh_ach")||"{}")||{}; }catch(e){} const cur=profTitleCustom(X), defs=achDefs(); box.innerHTML=""; let locked=0;
+  defs.forEach(d=>{ if(!d.ti) return; if(!got[d.id]){ locked++; return; } const b=document.createElement("button"); b.type="button"; b.className="ch2"; b.textContent=d.ti; b.setAttribute("aria-pressed",cur===d.ti?"true":"false"); b.onclick=()=>{ profSet("title",cur===d.ti?"":d.ti); try{ sfx.click(); }catch(e){} lvlRender(); }; box.appendChild(b); });
+  if(locked){ const b=document.createElement("button"); b.type="button"; b.className="ch2 lock"; b.innerHTML=IC_LOCK+`${locked} weitere durch Erfolge`; b.onclick=()=>{ const g=$("achGrid"); if(g) g.scrollIntoView({behavior:"smooth",block:"start"}); }; box.appendChild(b); } }
 /* ---------- guided tour ---------- */
 function tour(){ if(document.querySelector(".tour")) return; clearSel(); closeSheet();
   const hasRow=()=>document.querySelector("#list .swipe");
@@ -4021,7 +4371,7 @@ function onboarding(opts){ opts=opts||{}; const EX=!!opts.existing; return new P
     if(k==="week"){ const wk={}; pages.querySelectorAll("#obWeek input").forEach(inp=>{ const n=Math.round(+inp.value); if(n>=1&&n<=12) wk[inp.dataset.wd]=n; }); SET={...SET,week:wk}; saveSet(); }
     return true; }
   let done=false;
-  function finish(){ if(done) return; done=true; next.disabled=true; skip.disabled=true; lsSet("fh_onboarded","1"); ["fh_new7","fh_new8","fh_new9","fh_new10","fh_new11","fh_intro16"].forEach(k=>lsSet(k,"1")); lsSet("fh_tour_snooze",String(Date.now()+3e11)); fillSettings();
+  function finish(){ if(done) return; done=true; next.disabled=true; skip.disabled=true; lsSet("fh_onboarded","1"); ["fh_new7","fh_new8","fh_new9","fh_new10","fh_new11","fh_intro16"].forEach(k=>lsSet(k,"1")); updMarkAll(); lsSet("fh_tour_snooze",String(Date.now()+3e11)); fillSettings();
     document.querySelectorAll("#week input").forEach(inp=>{ const v=(SET.week||{})[inp.dataset.wd]; inp.value=v>0?v:""; });
     clearInterval(obT); prevTot=-1; render(); renderBanners();
     if(RM()){ ob.remove(); resolve(); return; }
@@ -4031,7 +4381,7 @@ function onboarding(opts){ opts=opts||{}; const EX=!!opts.existing; return new P
   back.onclick=()=>{ dir=-1; i=Math.max(0,i-1); page(); };
   skip.onclick=()=>{ finish(); };
   page(); }); }
-$("replayOb").onclick=()=>onboarding({existing:true}); $("showNews").onclick=()=>updReel();
+$("replayOb").onclick=()=>onboarding({existing:true}); $("showNews").onclick=()=>updReel({all:true});
 
 async function shareOrSave(name,blob,mime,title){
   try{ const file=new File([blob],name,{type:mime}); if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],title}); return; } }catch(err){ if(err&&err.name==="AbortError") return; }
@@ -4187,7 +4537,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="19";
+const APP_VERSION="23.1";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
