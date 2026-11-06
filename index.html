@@ -2222,7 +2222,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.4</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.5</span></div>
   </section>
 </main>
 
@@ -3353,6 +3353,7 @@ const PASS=(()=>{ const P={}; for(const [k,f] of Object.entries(FLAMES)) if(f.t)
 const TIER=200;
 function passTier(X){ return Math.min(30,Math.floor((X.sXp||0)/TIER)); }
 function ownedAll(X){ let u=[]; try{ u=JSON.parse(uGet("fh_pass_un")||"[]")||[]; }catch(e){} const s=new Set(u), t=X?passTier(X):0; for(let i=1;i<=t;i++){ const r=PASS[i]; if(r) s.add(r.ty+":"+r.id); } return s; }
+const ownedAllRaw=ownedAll; /* nur echte Freischaltungen (Pass, Kisten) werden gespeichert */
 function profGet(){ let p={}; try{ p=JSON.parse(uGet("fh_prof")||"{}")||{}; }catch(e){} return {name:String(p.name||"").slice(0,20),title:p.title||"",flame:p.flame||"klassik",frame:p.frame||"schlicht"}; }
 function profSet(k,v){ let p={}; try{ p=JSON.parse(uGet("fh_prof")||"{}")||{}; }catch(e){} p[k]=v; uSet("fh_prof",JSON.stringify(p)); } /* alles andere im Profil (Banner, Bild, Status …) bleibt erhalten */
 function profTitleCustom(X){ const p=profGet(); return p.title&&ownedAll(X).has("t:"+p.title)?p.title:""; }
@@ -3438,7 +3439,7 @@ function passRender(X,loaded){ const c=$("psCard"); if(!c||!X.season) return; co
   $("psName").textContent=X.season.n; $("psTier").textContent=t>=30?"Pass komplett!":`Stufe ${t} / 30`;
   $("psFill").style.width=(t>=30?100:Math.max(2,Math.round(into/TIER*100)))+"%";
   const nx=PASS[t+1]; $("psNext").textContent=nx?`Bei Stufe ${t+1}: ${nx.n} · noch ${TIER-into} XP`:"Alle 30 Belohnungen freigeschaltet.";
-  if(loaded){ uSet("fh_pass_un",JSON.stringify([...ownedAll(X)])); const key="fh_pass_t_"+X.season.k, raw=uGet(key);
+  if(loaded){ uSet("fh_pass_un",JSON.stringify([...ownedAllRaw(X)])); const key="fh_pass_t_"+X.season.k, raw=uGet(key);
     if(raw==null) uSet(key,String(t)); else if(t>+raw){ uSet(key,String(t)); const r=PASS[t]; if(gameOn()) setTimeout(()=>toast(`Saison-Pass Stufe ${t}: ${r?r.n:""} freigeschaltet`,false,{label:"Ansehen",fn:passOpen}),1600); } } }
 function passOpen(){ if(document.querySelector(".pso")) return; const X=xpData(); if(!X.season) return; const t=passTier(X), into=(X.sXp||0)-t*TIER, vkey="fh_pass_v_"+X.season.k, seen=Math.min(t,+(uGet("fh_pass_v_"+X.season.k)||0));
   const o=H("div","pso"); o.setAttribute("role","dialog"); o.setAttribute("aria-label","Saison-Pass");
@@ -4035,12 +4036,14 @@ function achMore(){ const g=k=>{ try{ return localStorage.getItem(k); }catch(e){
   const today=iso(new Date()), per=entries.filter(e=>inPeriod(e.date)&&e.date<=today), ab=per.filter(e=>typeOf(e)==="absent"), lt=per.filter(e=>typeOf(e)==="late");
   const tot=per.reduce((s,e)=>s+lessonsOf(e),0), exN=per.filter(e=>e.excused).length, reasonN=per.filter(e=>(e.reason||"").trim().length>=3).length, photos=entries.filter(e=>photoRefs(e).length).length;
   const start=new Date(+SET.start.slice(0,4),+SET.start.slice(5)-1,1), end=new Date(+SET.end.slice(0,4),+SET.end.slice(5),0), frac=Math.max(0,Math.min(1,(Date.now()-start)/(end-start)));
+  /* Zählbeginn: erst ab dem ersten Tag, an dem die App genutzt wurde (oder erster Eintrag) – nicht ab Zeitraum-Beginn */
+  const base=(()=>{ let b=start; try{ if(X.start){ const d=pd(X.start); if(d>b) b=d; } }catch(e){} return b; })();
   /* volle, vergangene Monate im Zeitraum ohne jeden Eintrag */
-  let perfM=0; { const n=new Date(); let y=start.getFullYear(), m=start.getMonth(); while(new Date(y,m+1,1)<=new Date(n.getFullYear(),n.getMonth(),1)&&new Date(y,m,1)<=end){ const key=`${y}-${String(m+1).padStart(2,"0")}`; if(m!==6&&m!==7&&!entries.some(e=>e.date.startsWith(key))) perfM++; m++; if(m>11){ m=0; y++; } } }
+  let perfM=0; { const n=new Date(); let y=base.getFullYear(), m=base.getMonth(); if(base.getDate()>1){ m++; if(m>11){ m=0; y++; } } while(new Date(y,m+1,1)<=new Date(n.getFullYear(),n.getMonth(),1)&&new Date(y,m,1)<=end){ const key=`${y}-${String(m+1).padStart(2,"0")}`; if(m!==6&&m!==7&&!entries.some(e=>e.date.startsWith(key))) perfM++; m++; if(m>11){ m=0; y++; } } }
   /* Schultage seit der letzten Verspätung */
-  const lastLate=lt.map(e=>e.date).sort().pop(); let sinceLate=0; { const d=new Date(lastLate?pd(lastLate):start); d.setDate(d.getDate()+1); const t=new Date(); let k=0; while(d<=t&&k<400){ const w=d.getDay(); if(w>=1&&w<=5) sinceLate++; d.setDate(d.getDate()+1); k++; } }
+  const lastLate=lt.map(e=>e.date).sort().pop(); let sinceLate=0; { const d=new Date(lastLate&&pd(lastLate)>base?pd(lastLate):new Date(base.getFullYear(),base.getMonth(),base.getDate()-1)); d.setDate(d.getDate()+1); const t=new Date(); let k=0; while(d<=t&&k<400){ const w=d.getDay(); if(w>=1&&w<=5) sinceLate++; d.setDate(d.getDate()+1); k++; } }
   /* Montage am Stück ohne Fehlzeit */
-  let mon=0; { const d=new Date(); d.setDate(d.getDate()-((d.getDay()+6)%7)); if(iso(d)>today) d.setDate(d.getDate()-7); while(d>=start&&mon<60){ if(entries.some(e=>e.date===iso(d))) break; mon++; d.setDate(d.getDate()-7); } }
+  let mon=0; { const d=new Date(); d.setDate(d.getDate()-((d.getDay()+6)%7)); if(iso(d)>today) d.setDate(d.getDate()-7); while(d>=base&&mon<60){ if(entries.some(e=>e.date===iso(d))) break; mon++; d.setDate(d.getDate()-7); } }
   const ch=(()=>{ try{ return Object.values(chestAll()); }catch(e){ return []; } })(), opened=ch.filter(c=>c&&c.o).length;
   const ci=(()=>{ try{ return ciList().length; }catch(e){ return 0; } })();
   let gotN=0; try{ gotN=Object.keys(JSON.parse(g("fh_ach")||"{}")||{}).length; }catch(e){}
@@ -4204,7 +4207,7 @@ function admPanel(){ const o=admSheet(`<h3>Admin <button type="button" class="x"
   o.querySelector("#admLock").onclick=()=>{ try{ sessionStorage.removeItem("fh_adm_ok"); }catch(e){} o.remove(); toast("Admin gesperrt."); };
   draw(); }
 function admSet(on){ const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } }, s=(k,v)=>{ try{ if(v===null) localStorage.removeItem(k); else localStorage.setItem(k,v); }catch(e){} };
-  const KEYS=["fh_ach","fh_skins_un","fh_level","fh_ms","fh_evo"];
+  const KEYS=["fh_ach","fh_skins_un","fh_level","fh_ms","fh_evo","fh_pass_un"];
   if(on&&!admOn()){ const bk={}; KEYS.forEach(k=>bk[k]=g(k)); s("fh_adm_bk",JSON.stringify(bk)); s("fh_adm","1"); }
   else if(!on&&admOn()){ let bk={}; try{ bk=JSON.parse(g("fh_adm_bk")||"{}")||{}; }catch(e){} KEYS.forEach(k=>s(k,k in bk?bk[k]:g(k))); s("fh_adm_bk",null); s("fh_adm",null); }
   try{ XPC=null; }catch(e){} try{ lvlRender(); }catch(e){} try{ renderAch(); }catch(e){} toast(on?"Admin-Modus an.":"Admin-Modus aus. Alles wieder wie vorher."); }
@@ -4230,6 +4233,18 @@ const ACHT={start:"Neu im Game",w1:"Wochen-Krieger",m1:"Monats-Monster",m2:"Schu
 function achTitlesRender(X){ const box=$("pfTit"); if(!box) return; X=X||xpData(); let got={}; try{ got=JSON.parse(localStorage.getItem("fh_ach")||"{}")||{}; }catch(e){} const cur=profTitleCustom(X), defs=achDefs(); box.innerHTML=""; let locked=0;
   defs.forEach(d=>{ if(!d.ti) return; if(!got[d.id]){ locked++; return; } const b=document.createElement("button"); b.type="button"; b.className="ch2"; b.textContent=d.ti; b.setAttribute("aria-pressed",cur===d.ti?"true":"false"); b.onclick=()=>{ profSet("title",cur===d.ti?"":d.ti); try{ sfx.click(); }catch(e){} lvlRender(); }; box.appendChild(b); });
   if(locked){ const b=document.createElement("button"); b.type="button"; b.className="ch2 lock"; b.innerHTML=IC_LOCK+`${locked} weitere durch Erfolge`; b.onclick=()=>{ const g=$("achGrid"); if(g) g.scrollIntoView({behavior:"smooth",block:"start"}); }; box.appendChild(b); } }
+/* v23.5: Erfolge, die wegen falschem Zählbeginn zu früh freigeschaltet wurden, einmalig neu prüfen */
+(function achFix1(){ const run=()=>{ try{ if(localStorage.getItem("fh_achfix1")) return; const ids=["pt20","pt60","mo8","pm1","pm3"];
+    const adm=typeof admOn==="function"&&admOn(); let defs; if(adm){ localStorage.removeItem("fh_adm"); defs=achDefs(); localStorage.setItem("fh_adm","1"); } else defs=achDefs();
+    const clean=got=>{ let ch=false; ids.forEach(id=>{ const d=defs.find(x=>x.id===id); if(got[id]&&d&&d.v<d.t){ delete got[id]; ch=true; } }); return ch; };
+    if(adm){ const bk=JSON.parse(localStorage.getItem("fh_adm_bk")||"{}")||{}; const got=JSON.parse(bk.fh_ach||"{}")||{}; if(clean(got)){ bk.fh_ach=JSON.stringify(got); localStorage.setItem("fh_adm_bk",JSON.stringify(bk)); } }
+    else { const got=JSON.parse(localStorage.getItem("fh_ach")||"{}")||{}; if(clean(got)){ localStorage.setItem("fh_ach",JSON.stringify(got)); try{ renderAch(); lvlRender(); }catch(e){} } }
+    /* Erfolgs-Titel gehören nicht in die dauerhaften Pass-Freischaltungen */
+    const titles=new Set(Object.values(ACHT).map(t=>"t:"+t)), fixU=raw=>{ let u=[]; try{ u=JSON.parse(raw||"[]")||[]; }catch(e){} return JSON.stringify(u.filter(x=>!titles.has(x))); };
+    localStorage.setItem("fh_pass_un",fixU(localStorage.getItem("fh_pass_un")));
+    try{ lvlRender(); }catch(e){}
+    localStorage.setItem("fh_achfix1","1"); }catch(e){} };
+  const wait=()=>{ if(window.__fhLoaded) setTimeout(run,300); else setTimeout(wait,500); }; wait(); })();
 /* ---------- guided tour ---------- */
 function tour(){ if(document.querySelector(".tour")) return; clearSel(); closeSheet();
   const hasRow=()=>document.querySelector("#list .swipe");
@@ -4542,7 +4557,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="23.4";
+const APP_VERSION="23.5";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
