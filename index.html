@@ -415,7 +415,8 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 .pfh .pfsh span i svg{width:14px;height:14px}
 .pfh .pfsh .empty{color:var(--sub);background:none;border-style:dashed}
 .pfh .pfed{display:block;width:calc(100% - 32px);margin:14px 16px 16px}
-.pfpick{display:flex;gap:12px;align-items:center;margin-top:10px}
+.pfpick{display:flex;gap:12px;align-items:center;margin-top:10px;position:relative}
+.pfpick label.btn{justify-content:center}
 .pfpick .pfav{width:72px;height:72px;font-size:2.2rem}
 .pfpick .pfbt{display:flex;flex-direction:column;gap:8px;flex:1}
 .pfpick .pfbt .btn{width:100%}
@@ -2102,7 +2103,7 @@ main.quake{animation:none}
       <h3>Profil</h3>
       <p style="margin-bottom:12px">Bild, Banner, Name und Vitrine erscheinen oben in deinem Profil. Viele Sachen schaltest du durch Level und Erfolge frei. Alles bleibt auf deinem Gerät.</p>
       <div class="settings"><div class="set"><label for="prName">Name<small>Freiwillig, höchstens 20 Zeichen</small></label><input type="text" id="prName" maxlength="20" placeholder="Dein Name" autocomplete="off" autocapitalize="words"></div></div>
-      <div class="prsec"><div class="eyebrow">Profilbild</div><div class="pfpick"><div class="pfav" id="pfAv2"></div><div class="pfbt"><button type="button" class="btn" id="pfPick">Foto wählen</button><button type="button" class="btn" id="pfDel" hidden>Foto entfernen</button></div></div><input type="file" id="pfFile" accept="image/*" hidden>
+      <div class="prsec"><div class="eyebrow">Profilbild</div><div class="pfpick"><div class="pfav" id="pfAv2"></div><div class="pfbt"><label class="btn" id="pfPick" for="pfFile" role="button" style="text-align:center;cursor:pointer">Foto wählen</label><button type="button" class="btn" id="pfDel" hidden>Foto entfernen</button></div></div><input type="file" id="pfFile" accept="image/*" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none" tabindex="-1" aria-hidden="true">
         <div class="chips2" id="pfEmo"></div></div>
       <div class="settings" style="margin-top:14px"><div class="set"><label for="pfBioIn">Status<small>Höchstens 60 Zeichen</small></label><input type="text" id="pfBioIn" class="pfbioin" maxlength="60" placeholder="z. B. Nie wieder zu spät" autocomplete="off"></div></div>
       <div class="prsec"><div class="eyebrow">Titel aus Erfolgen</div><div class="chips2" id="pfTit"></div></div>
@@ -2221,7 +2222,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.1</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.2</span></div>
   </section>
 </main>
 
@@ -2899,7 +2900,11 @@ function tipBusy(allowSheet){ if(document.hidden) return true; if((typeof lvBusy
   if(!allowSheet){ const sc=$("scrim"); if(sc&&!sc.hidden) return true; } const lb=$("lb"); if(lb&&!lb.hidden) return true; return false; }
 function tipHide(mark){ const c=TIP.cur; if(!c) return; TIP.cur=null; cancelAnimationFrame(TIP.raf); clearTimeout(TIP.timer); if(mark!==false) tipMark(c.id);
   c.b.classList.add("out"); [c.ring,c.dim,c.hand].forEach(x=>x&&x.remove()); setTimeout(()=>c.b.remove(),260); if(c.cleanup) c.cleanup(); document.removeEventListener("pointerdown",c.off,true); }
-function tipShow(id,target,html,opt){ opt=opt||{}; if(TIP.cur||!target||tipSeen(id)) return false; const r0=target.getBoundingClientRect(); if(!r0.width||r0.bottom<0||r0.top>innerHeight) return false;
+function tipShow(id,target,html,opt){ opt=opt||{}; if(TIP.cur||!target||tipSeen(id)) return false; const r0=target.getBoundingClientRect(); if(!r0.width) return false;
+  /* Ziel muss ganz sichtbar sein (nicht unter der Tab-Leiste) – sonst erst hinscrollen */
+  const tb=document.querySelector(".tabbar"), tbTop=tb&&tb.getBoundingClientRect().height?Math.min(innerHeight,tb.getBoundingClientRect().top):innerHeight, okTop=60;
+  if(r0.top<okTop||r0.bottom>tbTop-8){ if(opt._scrolled||r0.height>tbTop-okTop-20) return false; try{ target.scrollIntoView({behavior:RM()?"auto":"smooth",block:"center"}); }catch(e){} TIP.last=performance.now();
+    setTimeout(()=>{ if(!TIP.cur&&!tipBusy(true)) tipShow(id,target,html,Object.assign({},opt,{_scrolled:1})); },650); return true; }
   const rr=parseFloat(getComputedStyle(target).borderRadius)||14, pad=opt.pad==null?6:opt.pad;
   const dim=H("div","tipdim"), ring=H("div","tipring"), b=H("div","tipb"); dim.style.setProperty("--rr",(rr+pad)+"px"); ring.style.setProperty("--rr",(rr+pad)+"px");
   b.innerHTML=html+`<small>Tippen zum Weitermachen</small>`; const hand=opt.hand?H("div","tiph h-"+opt.hand):null; if(hand) hand.innerHTML=TIP_HAND;
@@ -4150,11 +4155,11 @@ function pfPhoto(file){ if(!file) return; toast("Bild wird geladen …");
   const viaReader=()=>new Promise(res=>{ const r=new FileReader(); r.onload=()=>viaImg(r.result).then(res); r.onerror=()=>res(false); r.readAsDataURL(file); });
   const viaBitmap=()=>(typeof createImageBitmap==="function"?createImageBitmap(file).then(b=>{ const ok=save(b,b.width,b.height); try{ b.close(); }catch(e){} return ok; }).catch(()=>false):Promise.resolve(false));
   const viaBlob=()=>{ let u; try{ u=URL.createObjectURL(file); }catch(e){ return Promise.resolve(false); } return viaImg(u,()=>URL.revokeObjectURL(u)); };
-  (async()=>{ for(const f of [viaReader,viaBitmap,viaBlob]){ try{ if(await f()) return; }catch(e){} }
+  (async()=>{ for(const f of [viaBlob,viaReader,viaBitmap]){ try{ if(await f()) return; }catch(e){} }
     toast(/heic|heif/i.test(file.type+file.name)?"Dieses Foto-Format (HEIC) geht hier nicht. Mach am besten einen Screenshot vom Foto und wähle den.":"Das Bild konnte nicht geöffnet werden. Versuch ein anderes Foto oder einen Screenshot.",true); })(); }
 (function v21Init(){ const _pr=profRender; profRender=function(X){ _pr.apply(this,arguments); try{ pfRender(X); }catch(e){ console.error(e); } };
   const f=$("pfFile"); if(f) f.onchange=()=>{ pfPhoto(f.files&&f.files[0]); f.value=""; };
-  const pb=$("pfPick"); if(pb) pb.onclick=()=>$("pfFile").click();
+  
   const dl=$("pfDel"); if(dl) dl.onclick=()=>{ try{ localStorage.removeItem("fh_avatar"); }catch(e){} toast("Profilbild entfernt."); try{ lvlRender(); }catch(e){ pfRender(); } };
   const bi=$("pfBioIn"); if(bi) bi.oninput=()=>{ pfPut("bio",bi.value.slice(0,60)); const b=$("pfBio"); if(b) b.textContent=bi.value.slice(0,60); };
   const ed=$("pfEd"); if(ed) ed.onclick=()=>{ const c=$("prCard"); if(c) c.scrollIntoView({behavior:RM()?"auto":"smooth",block:"start"}); };
@@ -4537,7 +4542,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="23.1";
+const APP_VERSION="23.2";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
