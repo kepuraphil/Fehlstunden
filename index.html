@@ -2222,7 +2222,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.3</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.4</span></div>
   </section>
 </main>
 
@@ -3354,7 +3354,7 @@ const TIER=200;
 function passTier(X){ return Math.min(30,Math.floor((X.sXp||0)/TIER)); }
 function ownedAll(X){ let u=[]; try{ u=JSON.parse(uGet("fh_pass_un")||"[]")||[]; }catch(e){} const s=new Set(u), t=X?passTier(X):0; for(let i=1;i<=t;i++){ const r=PASS[i]; if(r) s.add(r.ty+":"+r.id); } return s; }
 function profGet(){ let p={}; try{ p=JSON.parse(uGet("fh_prof")||"{}")||{}; }catch(e){} return {name:String(p.name||"").slice(0,20),title:p.title||"",flame:p.flame||"klassik",frame:p.frame||"schlicht"}; }
-function profSet(k,v){ const p=profGet(); p[k]=v; uSet("fh_prof",JSON.stringify(p)); }
+function profSet(k,v){ let p={}; try{ p=JSON.parse(uGet("fh_prof")||"{}")||{}; }catch(e){} p[k]=v; uSet("fh_prof",JSON.stringify(p)); } /* alles andere im Profil (Banner, Bild, Status …) bleibt erhalten */
 function profTitleCustom(X){ const p=profGet(); return p.title&&ownedAll(X).has("t:"+p.title)?p.title:""; }
 function flameCls(){ const p=profGet(); if(!FLAMES[p.flame]||p.flame==="klassik") return ""; const X=typeof XPC!=="undefined"?XPC:null; if(!X||!ownedAll(X).has("f:"+p.flame)) return ""; return " s-"+p.flame; }
 function frameColors(amber,X){ const p=profGet(), f=FRAMES[p.frame]; if(f&&f.c&&ownedAll(X).has("r:"+p.frame)) return f.c; return ["#fff3c4",amber,amber]; }
@@ -4542,7 +4542,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="23.3";
+const APP_VERSION="23.4";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
