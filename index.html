@@ -2381,7 +2381,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 27.2</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 27.3</span></div>
   </section>
 </main>
 
@@ -2933,7 +2933,7 @@ function updReel(opts){ opts=opts||{}; if(document.querySelector(".ur")) return;
     {c:"#ff5b4d",k:"chal",h:()=>`<div class="urvis"><div class="ucard"><div><small>Challenge · 10 Tage</small><b>🔥 Keine Verspätung</b></div><span class="uchk">${ICK}</span></div></div><h2><em>Challenges</em></h2><p class="urt">Unter Erfolge: Challenge erstellen, Code in die Klassengruppe – wer hält durch?</p>`},
     {c:"#35c983",k:"week",h:()=>`<div class="urvis"><div class="ucard"><div><small>Wochen-Bilanz · KW 46</small><b>2 Fehlstunden · Im Plan</b></div><span class="uchk">${ICK}</span></div></div><h2>Deine <em>Woche</em></h2><p class="urt">Jeden Freitag eine kurze Bilanz: Wie lief die Woche, und wo landest du am Ende?</p>`},
     {c:"#7c3aed",k:"icon",h:()=>`<div class="urvis"><div class="uicons"><i style="background:linear-gradient(135deg,#f5a623,#d9820b)">🔥</i><i style="background:linear-gradient(135deg,#db2777,#831843)">🦊</i><i style="background:linear-gradient(135deg,#7c3aed,#3b0764)">👑</i><i style="background:linear-gradient(135deg,#16a34a,#14532d)">🐸</i></div></div><h2>Dein <em>App-Symbol</em></h2><p class="urt">Unter Mehr: Farbe und Symbol wählen. Wird beim Installieren übernommen.</p>`},
-    {c:"#39ff7a",k:"secret",h:()=>`<div class="urvis"><div class="usec">&gt; GEHEIMNIS ERKANNT_<br>&gt; ORT: UNBEKANNT<br>&gt; BELOHNUNG: EXKLUSIV</div></div><h2>Ein <em>Geheimnis</em></h2><p class="urt">Irgendwo in der App ist ein Zugang versteckt. Dahinter: Logik-Rätsel und Geheimnisse. Viel Glück.</p>`},
+    {c:"#39ff7a",k:"secret",h:()=>`<div class="urvis"><div class="usec">&gt; GEHEIMNIS ERKANNT_<br>&gt; ORT: UNBEKANNT<br>&gt; BELOHNUNG: EXKLUSIV</div></div><h2>Ein <em>Geheimnis</em></h2><p class="urt">Irgendwo in der App ist ein Zugang versteckt. Dahinter: Geheimnisse und ein Logik-Rätsel. Viel Glück.</p>`},
     {c:"#5eead4",k:"sick",h:()=>`<div class="urvis"><div class="ucard"><div><small>Krank-Modus</small><b>🤒 Mo – Fr · 5 Tage</b></div><span class="uchk">${ICK}</span></div></div><h2>Krank? <em>Ein</em> Eintrag.</h2><p class="urt">Beim Eintragen „Mehrere Tage krank“ einschalten und das Ende wählen. Wochenenden zählen nicht, und die App erinnert dich ans Attest.</p>`},
     {c:"#35c983",k:"invite",h:()=>`<div class="urvis"><div class="uinv"><i>🦊</i><i>🐼</i><i>🐸</i><i class="add">+</i></div></div><h2>Freunde <em>einladen</em></h2><p class="urt">Unter Mehr → Freunde einladen schickst du die App samt Anleitung. Jede Einladung zählt für neue Erfolge.</p>`},
     {c:"#f5a623",k:"titles",h:()=>`<div class="urvis"><div class="utitles"><span>DB-Veteran</span><span>SEV-Survivor</span><span>Atomuhr</span><span>Montags-Endgegner</span><span>Phantom der Anwesenheitsliste</span></div></div><h2>Neue <em>Titel</em></h2><p class="urt">Jeder Erfolg schaltet jetzt einen eigenen Titel frei. Zeig ihn im Profil und im Duell.</p>`},
@@ -4668,27 +4668,27 @@ function icRender(){ const box=$("icCard"); if(!box) return; const o=icGet(); bo
   ICBG.forEach(([a,b],i)=>{ const t=document.createElement("button"); t.type="button"; t.style.background=`linear-gradient(135deg,${a},${b})`; t.setAttribute("aria-pressed",o.b===i?"true":"false"); t.setAttribute("aria-label","Farbe "+(i+1)); t.onclick=()=>icSet({...icGet(),b:i}); rb.appendChild(t); });
   ICSYM.forEach(s=>{ const t=document.createElement("button"); t.type="button"; t.textContent=s; t.setAttribute("aria-pressed",o.s===s?"true":"false"); t.onclick=()=>icSet({...icGet(),s}); rs.appendChild(t); }); }
 /* ---------- v27: Geheimes Rätsel ---------- */
-const RZ=[{q:"ZUGANG VERWEIGERT.\n\nVier Prüfungen: zwei Logik-Rätsel, zwei Geheimnisse in der App.\n\nPRÜFUNG 1/4 · LOGIK\nAnna, Ben und Can. Einer von ihnen kommt jeden Tag zu spät.\n\nAnna: „Ben ist es.“\nBen: „Ich bin es nicht.“\nCan: „Ich bin es nicht.“\n\nGenau EINER sagt die Wahrheit.\nWer kommt zu spät?",a:"bmFj"},
-  {q:"RICHTIG.\n\nPRÜFUNG 2/4 · GEHEIMNIS\nGanz oben zählt eine kleine Anzeige ständig mit.\nSie ist kitzlig.\n\nWelches Wort verrät sie dir?",a:"bGVrcml6"},
-  {q:"GEFUNDEN.\n\nPRÜFUNG 3/4 · LOGIK\nIch bin eine zweistellige Zahl.\nMeine Quersumme ist 9.\nIch bin durch 4 teilbar.\nIch bin kleiner als 50.\n\nWer bin ich?",a:"NjM="},
-  {q:"STARK.\n\nPRÜFUNG 4/4 · GEHEIMNIS\nDie letzte Antwort gibst du nicht hier ein.\n\nSchreib in deinen Status im Profil\ndas Wort, das jeder Schüler am liebsten hört.\n\nDas Terminal merkt es.",fin:1}];
-function rzHint(s,n){ const T=[["Probier jede Person durch: Wenn Anna zu spät kommt – wer sagt dann die Wahrheit? Es darf nur einer sein.","Wenn Can zu spät ist: Anna lügt, Ben sagt die Wahrheit, Can lügt. Passt das?"],
-  ["Oben rechts steht immer so etwas wie „12 / 200“. Kitzlig heißt: mehrmals schnell antippen.","Tippe 3-mal schnell oben rechts auf „… / 200“."],
+const RZ=[{q:"ZUGANG VERWEIGERT.\n\nDrei Prüfungen: zwei Geheimnisse in der App, ein Logik-Rätsel.\n\nPRÜFUNG 1/3 · GEHEIMNIS\nGanz oben zählt eine kleine Anzeige ständig mit.\nSie ist kitzlig.\n\nWelches Wort verrät sie dir?",a:"bGVrcml6"},
+  {q:"GEFUNDEN.\n\nPRÜFUNG 2/3 · LOGIK\nIch bin eine zweistellige Zahl.\nMeine Quersumme ist 9.\nIch bin durch 4 teilbar.\nIch bin kleiner als 50.\n\nWer bin ich?",a:"NjM="},
+  {q:"STARK.\n\nPRÜFUNG 3/3 · GEHEIMNIS\nDie letzte Antwort gibst du nicht hier ein.\n\nSchreib in deinen Status im Profil\ndas Wort, das jeder Schüler am liebsten hört.\n\nDas Terminal merkt es.",fin:1}];
+function rzHint(s,n){ const T=[["Oben rechts steht immer so etwas wie „12 / 200“. Kitzlig heißt: mehrmals schnell antippen.","Tippe 3-mal schnell oben rechts auf „… / 200“."],
   ["Zahlen mit Quersumme 9 unter 50: 18, 27, 36, 45. Welche davon geht durch 4?","36 : 4 = 9."],
   ["Gesucht ist nicht „Pause“…","Es ist eine Zeit ohne Schule. Mehrere Wochen am Stück."]][s]||[]; return n>=4?T[1]:n>=2?T[0]:""; }
-function rzStage(){ try{ return Math.max(0,Math.min(4,+localStorage.getItem("fh_rz2")||0)); }catch(e){ return 0; } }
-function rzSet(v){ try{ localStorage.setItem("fh_rz2",String(v)); }catch(e){} }
-function rzDone(){ return rzStage()>=4||(()=>{ try{ return +localStorage.getItem("fh_rz")>=3; }catch(e){ return false; } })(); }
-function rzWin(){ rzSet(4); ["rz_ban","rz_nc","rz_emo","rz_ti"].forEach(k=>evtGive(k,null)); try{ fireworks(14,3200); sfx.chime(false); }catch(e){} try{ renderAch(); lvlRender(); }catch(e){} toast("🔓 Geheimnis gelöst! Belohnungen im Profil."); }
+function rzStage(){ try{ return Math.max(0,Math.min(3,+localStorage.getItem("fh_rz3")||0)); }catch(e){ return 0; } }
+function rzSet(v){ try{ localStorage.setItem("fh_rz3",String(v)); }catch(e){} }
+function rzSeen(){ try{ return !!localStorage.getItem("fh_rz3_open"); }catch(e){ return false; } }
+function rzDone(){ return rzStage()>=3||(()=>{ try{ return +localStorage.getItem("fh_rz2")>=4||+localStorage.getItem("fh_rz")>=3; }catch(e){ return false; } })(); }
+function rzWin(){ rzSet(3); ["rz_ban","rz_nc","rz_emo","rz_ti"].forEach(k=>evtGive(k,null)); try{ fireworks(14,3200); sfx.chime(false); }catch(e){} try{ renderAch(); lvlRender(); }catch(e){} toast("🔓 Geheimnis gelöst! Belohnungen im Profil."); }
 function rzCheck(i,v){ try{ const x=String(v||"").trim().toLowerCase().replace(/[^a-z0-9äöüß]/g,""); return !!RZ[i].a&&x.split("").reverse().join("")===atob(RZ[i].a).toLowerCase(); }catch(e){ return false; } }
 function rzOpen(){ if(document.querySelector(".rz")) return; const o=document.createElement("div"); o.className="rz"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Geheimer Bereich");
   o.innerHTML=`<canvas></canvas><pre class="cur"></pre><input type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Antwort"><div class="err"></div><div class="rb"><button type="button" data-r="ok">ENTER</button><button type="button" data-r="x">EXIT</button></div>`;
   document.body.appendChild(o); const pre=o.querySelector("pre"), inp=o.querySelector("input"), err=o.querySelector(".err"), cv=o.querySelector("canvas");
   if(!RM()){ cv.width=innerWidth; cv.height=innerHeight; const cx=cv.getContext("2d"), cols=Math.floor(innerWidth/14), ys=Array(cols).fill(0); const t=setInterval(()=>{ if(!o.isConnected){ clearInterval(t); return; } cx.fillStyle="rgba(2,5,2,.12)"; cx.fillRect(0,0,cv.width,cv.height); cx.fillStyle="#39ff7a"; cx.font="13px monospace"; ys.forEach((y,i)=>{ cx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*14,y); ys[i]=y>cv.height&&Math.random()>.975?0:y+14; }); },55); }
   let typing=0; const type=(txt,cb)=>{ clearInterval(typing); pre.textContent=""; let i=0; if(RM()){ pre.textContent=txt; cb&&cb(); return; } typing=setInterval(()=>{ pre.textContent=txt.slice(0,++i); if(i>=txt.length){ clearInterval(typing); cb&&cb(); } },22); };
-  const show=()=>{ const s=rzStage(); if(s===3){ inp.hidden=true; o.querySelector("[data-r=ok]").hidden=true; type(RZ[3].q); return; } if(s>=4){ type("ZUGANG GEWÄHRT.\n\nDu hast alle vier Prüfungen bestanden.\n\nBelohnung:\n· Banner „Matrix“\n· Namensfarbe „Glitch“\n· Emoji 🧩\n· Titel „Rätselmeister“\n\nVerrate niemandem die Lösung. 🤫"); inp.hidden=true; o.querySelector("[data-r=ok]").hidden=true; return; } inp.hidden=false; inp.value=""; type(RZ[s].q,()=>inp.focus()); };
-  const submit=()=>{ const s=rzStage(); if(s>=3) return; if(rzCheck(s,inp.value)){ err.textContent=""; rzSet(s+1); try{ sfx.chime(false); }catch(e){} show(); }
-    else { let n=0; try{ n=(+localStorage.getItem("fh_rz2_try"+s)||0)+1; localStorage.setItem("fh_rz2_try"+s,String(n)); }catch(e){} const H=rzHint(s,n); err.textContent="> FALSCH."+(H?"\n> TIPP: "+H:" VERSUCH ES NOCHMAL."); err.style.whiteSpace="pre-wrap"; try{ sfx.chime(true); o.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:280}); }catch(e){} } };
+  try{ localStorage.setItem("fh_rz3_open","1"); }catch(e){}
+  const show=()=>{ const s=rzStage(); if(s===2){ inp.hidden=true; o.querySelector("[data-r=ok]").hidden=true; type(RZ[2].q); return; } if(s>=3){ type("ZUGANG GEWÄHRT.\n\nDu hast alle drei Prüfungen bestanden.\n\nBelohnung:\n· Banner „Matrix“\n· Namensfarbe „Glitch“\n· Emoji 🧩\n· Titel „Rätselmeister“\n\nVerrate niemandem die Lösung. 🤫"); inp.hidden=true; o.querySelector("[data-r=ok]").hidden=true; return; } inp.hidden=false; inp.value=""; type(RZ[s].q,()=>inp.focus()); };
+  const submit=()=>{ const s=rzStage(); if(s>=2) return; if(rzCheck(s,inp.value)){ err.textContent=""; rzSet(s+1); try{ sfx.chime(false); }catch(e){} show(); }
+    else { let n=0; try{ n=(+localStorage.getItem("fh_rz3_try"+s)||0)+1; localStorage.setItem("fh_rz3_try"+s,String(n)); }catch(e){} const H=rzHint(s,n); err.textContent="> FALSCH."+(H?"\n> TIPP: "+H:" VERSUCH ES NOCHMAL."); err.style.whiteSpace="pre-wrap"; try{ sfx.chime(true); o.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:280}); }catch(e){} } };
   o.querySelector("[data-r=ok]").onclick=submit; inp.addEventListener("keydown",e=>{ if(e.key==="Enter") submit(); }); o.querySelector("[data-r=x]").onclick=()=>{ clearInterval(typing); o.remove(); };
   show(); }
 /* ---------- v27: Verdrahtung ---------- */
@@ -4720,8 +4720,8 @@ function rzOpen(){ if(document.querySelector(".rz")) return; const o=document.cr
   const ca=$("cxAdd"); if(ca) ca.onclick=()=>{ cxImport($("cxIn").value); $("cxIn").value=""; $("cxPaste").classList.remove("on"); };
   /* Rätsel: 5× aufs Logo; Codewort: Name der App lange drücken */
   const lg=document.querySelector(".appbar .logo"); let lc=0, lt=0; if(lg){ lg.style.cursor="pointer"; lg.addEventListener("click",()=>{ const n=Date.now(); lc=n-lt<900?lc+1:1; lt=n; if(lc>=5){ lc=0; rzOpen(); } }); }
-  const rs=$("chip"); let rc=0, rt=0; if(rs) rs.addEventListener("click",()=>{ const n=Date.now(); rc=n-rt<700?rc+1:1; rt=n; if(rc>=3){ rc=0; if(rzStage()>=1&&rzStage()<4){ toast("🔍 Geheimes Wort: ZIRKEL"); try{ navigator.vibrate&&navigator.vibrate(60); }catch(e){} } } });
-  const bi=$("pfBioIn"); if(bi) bi.addEventListener("input",()=>{ if(rzStage()===3&&/ferien/i.test(bi.value)) rzWin(); });
+  const rs=$("chip"); let rc=0, rt=0; if(rs) rs.addEventListener("click",()=>{ const n=Date.now(); rc=n-rt<700?rc+1:1; rt=n; if(rc>=3){ rc=0; if(rzSeen()&&rzStage()<3){ toast("🔍 Geheimes Wort: ZIRKEL"); try{ navigator.vibrate&&navigator.vibrate(60); }catch(e){} } } });
+  const bi=$("pfBioIn"); if(bi) bi.addEventListener("input",()=>{ if(rzStage()===2&&/ferien/i.test(bi.value)) rzWin(); });
   /* App-Symbol in der Installations-Hilfe */
   const _is=instShow; instShow=function(done){ const r=_is.apply(this,arguments); try{ const o=document.querySelector(".inst"), st=o&&o.querySelector(".isteps"); if(st){ const q=document.createElement("div"); q.className="icq"; q.innerHTML='<div class="lbl">Vorher: Wähl dein App-Symbol</div><div class="row"></div>'; const row=q.querySelector(".row"), cur=icGet();
       [[0,"F"],[1,"F"],[2,"🔥"],[4,"🦊"],[5,"👑"],[3,"🐸"],[6,"🚀"],[7,"💀"]].forEach(([b,s])=>{ const btn=document.createElement("button"); btn.type="button"; btn.setAttribute("aria-pressed",cur.b===b&&cur.s===s?"true":"false"); const im=document.createElement("img"); im.alt=""; im.src=icDraw({b,s},104); btn.appendChild(im); btn.onclick=()=>{ icSet({b,s}); row.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===btn?"true":"false")); }; row.appendChild(btn); });
@@ -5039,7 +5039,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="27.2";
+const APP_VERSION="27.3";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
