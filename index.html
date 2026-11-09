@@ -2381,7 +2381,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 27</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 27.1</span></div>
   </section>
 </main>
 
@@ -4671,6 +4671,9 @@ function icRender(){ const box=$("icCard"); if(!box) return; const o=icGet(); bo
 const RZ=[{q:"ZUGANG VERWEIGERT.\n\nDrei Rätsel. Keine Tipps.\n\nRÄTSEL 1/3:\nEin römischer Feldherr hat dir geschrieben:\n\n   VWXQGHQSODQ\n\nJeder Buchstabe wurde verschoben –\num so viele Stellen, wie ein Dreieck Ecken hat.\n\nWas steht wirklich da?",a:"bmFscG5lZG51dHM="},
   {q:"KORREKT.\n\nRÄTSEL 2/3:\nZähle alle Erfolge, die es in dieser App gibt –\nauch die, die du noch nie gesehen hast.\nNimm die Zahl mal die Schultage einer Woche.\n\nAntworte mit einer Zahl.",n:1},
   {q:"BEEINDRUCKEND.\n\nRÄTSEL 3/3:\nDie letzte Antwort steht dort, wo die App endet.\nDrück lange auf meinen Namen.\n\nWas du dann siehst,\nist keine Sprache für Menschen.",a:"ZWVmZmFr"}];
+function rzHint(s,n){ const T=[["Caesar verschiebt jeden Buchstaben im Alphabet. Aus A wurde D. Geh also bei jedem Buchstaben 3 zurück: V→S, W→T …","Die Antwort fängt mit S T U N D an. Du kennst das Wort aus der Schule."],
+  ["Unter Erfolge im Trophäenraum steht oben rechts eine Zahl wie „3/61“. Die zweite Zahl sind alle Erfolge.","Es gibt "+achDefs().length+" Erfolge. Schultage pro Woche: Montag bis Freitag. Jetzt nur noch malnehmen."],
+  ["Das ist Morsecode: Punkt = kurz, Strich = lang. Jede Gruppe zwischen den / ist ein Buchstabe.","-.- = K, .- = A, ..-. = F, . = E. Das Getränk trinken Lehrer morgens."]][s]||[]; return n>=4?T[1]:n>=2?T[0]:""; }
 function rzStage(){ try{ return Math.max(0,Math.min(3,+localStorage.getItem("fh_rz")||0)); }catch(e){ return 0; } }
 function rzCheck(i,v){ try{ const x=String(v||"").trim().toLowerCase().replace(/[^a-z0-9äöüß]/g,""); if(RZ[i].n) return x===String(achDefs().length*5); return x.split("").reverse().join("")===atob(RZ[i].a).toLowerCase(); }catch(e){ return false; } }
 function rzOpen(){ if(document.querySelector(".rz")) return; const o=document.createElement("div"); o.className="rz"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Geheimer Bereich");
@@ -4681,7 +4684,7 @@ function rzOpen(){ if(document.querySelector(".rz")) return; const o=document.cr
   const show=()=>{ const s=rzStage(); if(s>=3){ type("ZUGANG GEWÄHRT.\n\nDu hast alle drei Rätsel gelöst.\n\nBelohnung:\n· Banner „Matrix“\n· Namensfarbe „Glitch“\n· Emoji 🧩\n· Titel „Rätselmeister“\n\nVerrate niemandem die Lösung. 🤫"); inp.hidden=true; o.querySelector("[data-r=ok]").hidden=true; return; } inp.hidden=false; inp.value=""; type(RZ[s].q,()=>inp.focus()); };
   const submit=()=>{ const s=rzStage(); if(s>=3) return; if(rzCheck(s,inp.value)){ err.textContent=""; try{ localStorage.setItem("fh_rz",String(s+1)); }catch(e){} try{ sfx.chime(false); }catch(e){}
       if(s+1>=3){ ["rz_ban","rz_nc","rz_emo","rz_ti"].forEach(k=>evtGive(k,null)); try{ fireworks(14,3200); }catch(e){} try{ renderAch(); }catch(e){} } show(); }
-    else { err.textContent="> FALSCH. VERSUCH ES NOCHMAL."; try{ sfx.chime(true); o.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:280}); }catch(e){} } };
+    else { let n=0; try{ n=(+localStorage.getItem("fh_rz_try"+s)||0)+1; localStorage.setItem("fh_rz_try"+s,String(n)); }catch(e){} const H=rzHint(s,n); err.textContent="> FALSCH."+(H?"\n> TIPP: "+H:" VERSUCH ES NOCHMAL."); err.style.whiteSpace="pre-wrap"; try{ sfx.chime(true); o.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:280}); }catch(e){} } };
   o.querySelector("[data-r=ok]").onclick=submit; inp.addEventListener("keydown",e=>{ if(e.key==="Enter") submit(); }); o.querySelector("[data-r=x]").onclick=()=>{ clearInterval(typing); o.remove(); };
   show(); }
 /* ---------- v27: Verdrahtung ---------- */
@@ -5032,7 +5035,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="27";
+const APP_VERSION="27.1";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
