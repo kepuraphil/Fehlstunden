@@ -2381,7 +2381,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 27.3</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 27.4</span></div>
   </section>
 </main>
 
@@ -4668,10 +4668,10 @@ function icRender(){ const box=$("icCard"); if(!box) return; const o=icGet(); bo
   ICBG.forEach(([a,b],i)=>{ const t=document.createElement("button"); t.type="button"; t.style.background=`linear-gradient(135deg,${a},${b})`; t.setAttribute("aria-pressed",o.b===i?"true":"false"); t.setAttribute("aria-label","Farbe "+(i+1)); t.onclick=()=>icSet({...icGet(),b:i}); rb.appendChild(t); });
   ICSYM.forEach(s=>{ const t=document.createElement("button"); t.type="button"; t.textContent=s; t.setAttribute("aria-pressed",o.s===s?"true":"false"); t.onclick=()=>icSet({...icGet(),s}); rs.appendChild(t); }); }
 /* ---------- v27: Geheimes Rätsel ---------- */
-const RZ=[{q:"ZUGANG VERWEIGERT.\n\nDrei Prüfungen: zwei Geheimnisse in der App, ein Logik-Rätsel.\n\nPRÜFUNG 1/3 · GEHEIMNIS\nGanz oben zählt eine kleine Anzeige ständig mit.\nSie ist kitzlig.\n\nWelches Wort verrät sie dir?",a:"bGVrcml6"},
+const RZ=[{q:"ZUGANG VERWEIGERT.\n\nDrei Prüfungen: zwei Geheimnisse in der App, ein Logik-Rätsel.\n\nPRÜFUNG 1/3 · GEHEIMNIS\nEine Seite der App ist voller Zahlen.\nIhre Überschrift ist kitzlig.\n\nWelches Wort verrät sie dir?",a:"bGVrcml6"},
   {q:"GEFUNDEN.\n\nPRÜFUNG 2/3 · LOGIK\nIch bin eine zweistellige Zahl.\nMeine Quersumme ist 9.\nIch bin durch 4 teilbar.\nIch bin kleiner als 50.\n\nWer bin ich?",a:"NjM="},
   {q:"STARK.\n\nPRÜFUNG 3/3 · GEHEIMNIS\nDie letzte Antwort gibst du nicht hier ein.\n\nSchreib in deinen Status im Profil\ndas Wort, das jeder Schüler am liebsten hört.\n\nDas Terminal merkt es.",fin:1}];
-function rzHint(s,n){ const T=[["Oben rechts steht immer so etwas wie „12 / 200“. Kitzlig heißt: mehrmals schnell antippen.","Tippe 3-mal schnell oben rechts auf „… / 200“."],
+function rzHint(s,n){ const T=[["Gemeint ist der Tab „Statistik“. Kitzlig heißt: mehrmals schnell antippen.","Tippe im Tab Statistik 3-mal schnell auf das große Wort „Statistik“ ganz oben."],
   ["Zahlen mit Quersumme 9 unter 50: 18, 27, 36, 45. Welche davon geht durch 4?","36 : 4 = 9."],
   ["Gesucht ist nicht „Pause“…","Es ist eine Zeit ohne Schule. Mehrere Wochen am Stück."]][s]||[]; return n>=4?T[1]:n>=2?T[0]:""; }
 function rzStage(){ try{ return Math.max(0,Math.min(3,+localStorage.getItem("fh_rz3")||0)); }catch(e){ return 0; } }
@@ -4719,8 +4719,8 @@ function rzOpen(){ if(document.querySelector(".rz")) return; const o=document.cr
   const cp=$("cxPasteBtn"); if(cp) cp.onclick=async()=>{ let t=""; try{ if(navigator.clipboard&&navigator.clipboard.readText) t=await navigator.clipboard.readText(); }catch(e){} if(t&&/FH[CR]1-/.test(t)){ cxImport(t); return; } $("cxPaste").classList.toggle("on"); $("cxForm").classList.remove("on"); $("cxIn").focus(); };
   const ca=$("cxAdd"); if(ca) ca.onclick=()=>{ cxImport($("cxIn").value); $("cxIn").value=""; $("cxPaste").classList.remove("on"); };
   /* Rätsel: 5× aufs Logo; Codewort: Name der App lange drücken */
-  const lg=document.querySelector(".appbar .logo"); let lc=0, lt=0; if(lg){ lg.style.cursor="pointer"; lg.addEventListener("click",()=>{ const n=Date.now(); lc=n-lt<900?lc+1:1; lt=n; if(lc>=5){ lc=0; rzOpen(); } }); }
-  const rs=$("chip"); let rc=0, rt=0; if(rs) rs.addEventListener("click",()=>{ const n=Date.now(); rc=n-rt<700?rc+1:1; rt=n; if(rc>=3){ rc=0; if(rzSeen()&&rzStage()<3){ toast("🔍 Geheimes Wort: ZIRKEL"); try{ navigator.vibrate&&navigator.vibrate(60); }catch(e){} } } });
+  const lg=document.querySelector(".appbar .logo"); let lc=0, lt=0; if(lg){ lg.style.cursor="pointer"; lg.style.touchAction="manipulation"; lg.addEventListener("pointerdown",()=>{ const n=Date.now(); lc=n-lt<1200?lc+1:1; lt=n; if(lc>=5){ lc=0; rzOpen(); } }); }
+  const rs=document.querySelector("#v-stats .vh h1"); let rc=0, rt=0; if(rs){ rs.style.touchAction="manipulation"; rs.style.webkitUserSelect="none"; rs.style.userSelect="none"; rs.style.cursor="pointer"; rs.addEventListener("pointerdown",()=>{ const n=Date.now(); rc=n-rt<1200?rc+1:1; rt=n; if(rc>=3){ rc=0; if(rzStage()<3){ toast("🔍 Geheimes Wort: ZIRKEL"); try{ navigator.vibrate&&navigator.vibrate(60); sfx.chime(false); }catch(e){} try{ rs.animate([{transform:"none"},{transform:"rotate(-3deg) scale(1.05)"},{transform:"rotate(3deg)"},{transform:"none"}],{duration:450}); }catch(e){} } } }); }
   const bi=$("pfBioIn"); if(bi) bi.addEventListener("input",()=>{ if(rzStage()===2&&/ferien/i.test(bi.value)) rzWin(); });
   /* App-Symbol in der Installations-Hilfe */
   const _is=instShow; instShow=function(done){ const r=_is.apply(this,arguments); try{ const o=document.querySelector(".inst"), st=o&&o.querySelector(".isteps"); if(st){ const q=document.createElement("div"); q.className="icq"; q.innerHTML='<div class="lbl">Vorher: Wähl dein App-Symbol</div><div class="row"></div>'; const row=q.querySelector(".row"), cur=icGet();
@@ -5039,7 +5039,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="27.3";
+const APP_VERSION="27.4";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
