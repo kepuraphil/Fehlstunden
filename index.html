@@ -363,6 +363,96 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 #splash small{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;animation:fieldin .5s var(--e-out) .5s both}
 #splash .ln{height:2px;box-shadow:0 0 14px var(--amber)}
 /*v21*/
+/* ---------- v27: Umrechner, Urkunden, Wochen-Check, Challenges, Events, App-Symbol, Rätsel ---------- */
+.umr .ubig{font-size:clamp(2.4rem,11vw,3.4rem);font-weight:900;line-height:1;font-family:var(--mono);color:var(--amber);margin:10px 0 4px}
+.umr .utx{font-size:1.1rem;font-weight:700;line-height:1.3}
+.umr .ust{color:var(--sub);font-size:.8rem;margin-top:8px}
+.umr .ubtn{display:flex;gap:8px;margin-top:14px}.umr .ubtn .btn{flex:1}
+.umr .uemo{font-size:2.2rem;float:right;margin:-4px 0 0 10px;animation:skBob 3s ease-in-out infinite}
+.umr .utx.in{animation:umrIn .45s cubic-bezier(.2,1.2,.3,1)}@keyframes umrIn{from{opacity:0;transform:translateY(10px) scale(.96)}}
+.mtx .murk{margin-top:12px;border:0;border-radius:12px;padding:10px 16px;font:inherit;font-weight:750;background:linear-gradient(135deg,#f5c451,#b8860b);color:#2a1a00;box-shadow:0 8px 20px -8px rgba(245,196,81,.7)}
+.wkc{border:1px solid var(--line)}
+.wkc .wh{display:flex;justify-content:space-between;align-items:baseline}
+.wkc .wbig{display:flex;align-items:baseline;gap:8px;margin:8px 0 2px}
+.wkc .wbig b{font-size:2.4rem;font-family:var(--mono);line-height:1}
+.wkc .wst{display:inline-block;padding:4px 10px;border-radius:99px;font-weight:800;font-size:.8rem;margin-top:8px}
+.wkc .wst.g{background:color-mix(in srgb,#35c983 20%,transparent);color:#35c983}.wkc .wst.y{background:color-mix(in srgb,var(--amber) 20%,transparent);color:var(--amber)}.wkc .wst.r{background:color-mix(in srgb,var(--red) 20%,transparent);color:var(--red)}
+.wkc .wdays{display:flex;gap:6px;margin-top:12px}
+.wkc .wdays div{flex:1;text-align:center;font-size:.7rem;color:var(--sub)}
+.wkc .wdays i{display:block;height:34px;border-radius:8px;background:var(--flap);margin-bottom:4px;position:relative;overflow:hidden}
+.wkc .wdays i.ok{background:color-mix(in srgb,#35c983 35%,var(--flap))}.wkc .wdays i.l{background:color-mix(in srgb,var(--amber) 50%,var(--flap))}.wkc .wdays i.a{background:color-mix(in srgb,var(--red) 50%,var(--flap))}
+.wkc p{margin:10px 0 0;color:var(--sub);font-size:.9rem}
+.cxc .chl{display:flex;flex-direction:column;gap:8px;margin:10px 0}
+.cxc .chi{border:1px solid var(--line2);background:var(--flap);border-radius:14px;padding:10px 12px}
+.cxc .chi .t{display:flex;justify-content:space-between;gap:8px;align-items:baseline}
+.cxc .chi .t b{font-size:.98rem}.cxc .chi .t span{font-family:var(--mono);font-size:.75rem;color:var(--sub);white-space:nowrap}
+.cxc .chi .pb{height:8px;border-radius:4px;background:var(--raise);overflow:hidden;margin:8px 0 4px}.cxc .chi .pb i{display:block;height:100%;background:linear-gradient(90deg,#5aa2ff,#35c983);transition:width .8s}
+.cxc .chi.won{border-color:#35c983}.cxc .chi.lost{opacity:.7}.cxc .chi.lost .pb i{background:var(--red)}
+.cxc .chi small{color:var(--sub);font-size:.78rem}
+.cxc .chi .ppl{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.cxc .chi .ppl span{font-size:.72rem;padding:3px 8px;border-radius:99px;background:var(--raise);border:1px solid var(--line2)}
+.cxc .chi .acts{display:flex;gap:10px;margin-top:8px}.cxc .chi .acts button{background:none;border:0;color:var(--amber);font:inherit;font-size:.8rem;padding:0;font-weight:650}
+.cxc .chform{display:none;margin-top:10px}.cxc .chform.on{display:block}
+.cxc .chform .chips{margin:6px 0 10px}
+.cxc textarea{width:100%;box-sizing:border-box;min-height:70px;background:var(--flap);border:1px solid var(--line2);border-radius:12px;color:var(--ink);padding:10px;font-family:var(--mono);font-size:.78rem}
+.evc{position:relative;overflow:hidden;margin-bottom:12px}
+.evc.herbst{background:linear-gradient(135deg,color-mix(in srgb,#b45309 30%,var(--raise)),var(--raise) 70%);border:1px solid color-mix(in srgb,#f59e0b 40%,var(--line))}
+.evc.advent{background:linear-gradient(135deg,color-mix(in srgb,#7f1d1d 40%,var(--raise)),color-mix(in srgb,#14532d 25%,var(--raise)));border:1px solid color-mix(in srgb,#fca5a5 35%,var(--line))}
+.evc .eh{display:flex;gap:12px;align-items:center}.evc .eh .em{font-size:2.3rem;animation:skBob 3s ease-in-out infinite}
+.evc h3{margin:0;font-size:1.1rem}.evc .eh p{margin:2px 0 0;color:var(--sub);font-size:.85rem}
+.evc .leaves{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:12px 0 4px}
+.evc .leaves i{font-style:normal;aspect-ratio:1;border-radius:8px;display:grid;place-items:center;background:rgba(0,0,0,.25);font-size:1rem;filter:grayscale(1);opacity:.35}
+.evc .leaves i.on{filter:none;opacity:1;animation:lfIn .6s cubic-bezier(.2,1.4,.4,1) both}@keyframes lfIn{from{transform:rotate(-40deg) scale(.3)}}
+.evc .rw{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}.evc .rw span{font-size:.75rem;padding:4px 9px;border-radius:99px;background:rgba(0,0,0,.25);border:1px solid rgba(255,255,255,.12)}.evc .rw span.got{border-color:#f5c451;color:#f5c451}
+.evc .fall{position:absolute;top:-20px;font-size:1.1rem;pointer-events:none;animation:lfFall linear infinite;opacity:.7}
+@keyframes lfFall{to{transform:translateY(260px) rotate(360deg)}}
+.evc .btn{margin-top:12px;width:100%}
+.adv{position:fixed;inset:0;z-index:121;background:radial-gradient(120% 80% at 50% 0%,#3b0d0d,#0a0f0a 70%);color:#fff;overflow:auto;padding:calc(18px + env(safe-area-inset-top,0px)) 16px calc(24px + env(safe-area-inset-bottom,0px));animation:fade .3s}
+.adv .ah{display:flex;justify-content:space-between;align-items:center;max-width:560px;margin:0 auto 14px}
+.adv .ah h2{margin:0;font-size:1.5rem}.adv .ah button{background:rgba(255,255,255,.12);border:0;color:#fff;width:38px;height:38px;border-radius:50%;font-size:1.1rem}
+.adv .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:560px;margin:0 auto;perspective:800px}
+.adv .door{aspect-ratio:1;position:relative;border:0;padding:0;background:none;font:inherit;color:#fff}
+.adv .door .f,.adv .door .b{position:absolute;inset:0;border-radius:12px;display:grid;place-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden;transition:transform .7s cubic-bezier(.3,1.3,.5,1)}
+.adv .door .f{background:linear-gradient(145deg,#b91c1c,#7f1d1d);border:2px solid #fca5a5;font-weight:900;font-size:1.5rem;font-family:var(--mono);box-shadow:inset 0 0 0 3px rgba(0,0,0,.15)}
+.adv .door:nth-child(3n) .f{background:linear-gradient(145deg,#15803d,#14532d);border-color:#86efac}
+.adv .door:nth-child(4n+1) .f{background:linear-gradient(145deg,#b45309,#78350f);border-color:#fcd34d}
+.adv .door .b{background:#fff7ed;color:#7f1d1d;transform:rotateY(180deg);font-size:1.6rem}
+.adv .door.open .f{transform:rotateY(-180deg)}.adv .door.open .b{transform:rotateY(0)}
+.adv .door.lock .f{filter:saturate(.4) brightness(.6)}
+.adv .door.today .f{animation:advPulse 1.4s ease-in-out infinite}@keyframes advPulse{50%{box-shadow:0 0 0 4px #fde68a,0 0 24px 6px rgba(253,230,138,.6)}}
+.adv .msg{max-width:560px;margin:16px auto 0;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:14px 16px;min-height:20px;line-height:1.4;text-align:center}
+.adv .msg b{color:#fde68a}
+.adv .snow{position:fixed;top:-10px;color:#fff;pointer-events:none;animation:snowF linear infinite;opacity:.8}@keyframes snowF{to{transform:translateY(110vh)}}
+.icc .icprev{display:flex;gap:14px;align-items:center;margin:10px 0}
+.icc .icprev img{width:72px;height:72px;border-radius:16px;box-shadow:0 8px 20px -8px rgba(0,0,0,.7)}
+.icc .icrow{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.icc .icrow button{width:42px;height:42px;border-radius:12px;border:2px solid transparent;padding:0;font-size:1.3rem;display:grid;place-items:center;background:var(--flap);color:#fff}
+.icc .icrow button[aria-pressed=true]{border-color:var(--amber)}
+.icc small{color:var(--sub);display:block;line-height:1.4}
+.inst .icq{width:100%;max-width:400px;margin:0 0 14px;text-align:left}
+.inst .icq .lbl{font-size:.8rem;color:rgba(255,255,255,.6);margin-bottom:6px}
+.inst .icq .row{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.inst .icq .row button{flex:none;width:52px;height:52px;border-radius:13px;border:2px solid transparent;padding:0;background:none}
+.inst .icq .row button img{width:100%;height:100%;border-radius:11px;display:block}
+.inst .icq .row button[aria-pressed=true]{border-color:#f5a623}
+.rz{position:fixed;inset:0;z-index:131;background:#020502;color:#39ff7a;font-family:var(--mono);padding:calc(30px + env(safe-area-inset-top,0px)) 22px 30px;display:flex;flex-direction:column;animation:fade .3s;overflow:auto}
+.rz pre{white-space:pre-wrap;font:inherit;font-size:.95rem;line-height:1.5;margin:0;text-shadow:0 0 8px rgba(57,255,122,.6);min-height:8em}
+.rz .cur::after{content:"█";animation:dsaBlink 1s steps(2) infinite}
+.rz input{margin-top:18px;background:transparent;border:0;border-bottom:2px solid #39ff7a;color:#39ff7a;font:inherit;font-size:1.1rem;padding:8px 2px;outline:none;text-transform:uppercase}
+.rz .rb{display:flex;gap:10px;margin-top:16px}.rz .rb button{background:transparent;border:1px solid #39ff7a;color:#39ff7a;font:inherit;padding:10px 14px;border-radius:6px}
+.rz .err{color:#ff4d4d;min-height:1.4em;margin-top:8px}
+.rz canvas{position:fixed;inset:0;z-index:-1;opacity:.25}
+@keyframes dsaBlink{50%{opacity:.25}}
+.ur .uumr{font-family:var(--mono);font-size:2.6rem;font-weight:900;color:#f5a623}.ur .uumr small{display:block;font-size:.9rem;color:#fff;font-family:inherit}
+.ur .uurk{width:150px;height:200px;background:#fbf6e9;border-radius:6px;border:6px double #b8860b;color:#5a3d00;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;font-family:Georgia,serif;transform:rotate(-4deg);animation:urPop2 3s ease-in-out infinite}
+.ur .uurk b{font-size:1.2rem;letter-spacing:.1em}.ur .uurk i{width:44px;height:44px;border-radius:50%;background:radial-gradient(circle,#f5c451,#b8860b);display:grid;place-items:center;font-style:normal;color:#fff}
+.ur .uadv{display:grid;grid-template-columns:repeat(4,40px);gap:6px}.ur .uadv i{height:40px;border-radius:8px;background:#b91c1c;border:2px solid #fca5a5;display:grid;place-items:center;font-style:normal;font-weight:900;font-size:.8rem}
+.ur .uadv i:nth-child(3n){background:#15803d;border-color:#86efac}.ur .uadv i.o{background:#fff7ed;color:#7f1d1d}
+.ur .uicons{display:flex;gap:10px}.ur .uicons i{width:52px;height:52px;border-radius:13px;display:grid;place-items:center;font-style:normal;font-size:1.6rem;animation:uiPop 2.4s ease-in-out infinite}
+.ur .uicons i:nth-child(2){animation-delay:.2s}.ur .uicons i:nth-child(3){animation-delay:.4s}.ur .uicons i:nth-child(4){animation-delay:.6s}
+@keyframes uiPop{0%,100%{transform:none}30%{transform:translateY(-10px)}}
+.ur .usec{font-family:var(--mono);color:#39ff7a;font-size:1.05rem;text-shadow:0 0 10px rgba(57,255,122,.7);text-align:left;background:#020502;border:1px solid #1a4d2a;border-radius:10px;padding:14px;width:100%}
+:root.rm .adv *,:root.rm .evc *,:root.rm .rz *{animation:none!important}
+
 /* ---------- v25: Krank-Modus ---------- */
 #sickRow .toggle{margin:0}
 #sickTo{margin-top:10px;display:flex;flex-direction:column;gap:6px}
@@ -2035,7 +2125,7 @@ main.quake{animation:none}
     
     
     
-    <div id="banners"></div><div id="banners2"></div><div id="banners3"></div><div id="sickCard" hidden></div>
+    <div id="banners"></div><div id="banners2"></div><div id="banners3"></div><div id="sickCard" hidden></div><div id="evtHome"></div><div id="weekCard" hidden></div>
     <div id="nudge"></div>
     <div class="mnote" id="mnote" hidden><span>Animationen sind aus, weil auf deinem Gerät „Bewegung reduzieren“ eingeschaltet ist.</span><button type="button" class="btn" id="mnoteOn">Einschalten</button></div>
     <div class="actions">
@@ -2104,6 +2194,8 @@ main.quake{animation:none}
       <p class="hmsum" id="hmSum"></p>
     </div>
     <button type="button" class="wrapcard" id="wrapCard2"><div><b>Dein Rückblick</b><span>Alle Zahlen als animierte Story</span></div><span class="pl"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></button>
+      <div class="card umr" id="umrCard"><span class="uemo">⏳</span><div class="eyebrow">Was du verpasst hast</div><div class="ubig">–</div><div class="utx"></div><div class="ust"></div>
+      <div class="ubtn"><button type="button" class="btn" id="umrNext">Nächster Vergleich</button><button type="button" class="btn next" id="umrShare">Als Bild teilen</button></div></div>
   </section>
 
   <!-- Erfolge -->
@@ -2140,6 +2232,16 @@ main.quake{animation:none}
       <div class="dui" id="duNameRow" hidden><input type="text" id="duName" maxlength="20" placeholder="Dein Name" autocomplete="off" autocapitalize="words"><button type="button" class="btn" id="duNameSave">Weiter</button></div>
       <div class="btngrid"><button type="button" class="btn" id="duShare">Meinen Code senden</button><button type="button" class="btn" id="duPaste">Code einfügen</button></div>
       <div class="dui" id="duIn" hidden><input type="text" id="duCode" placeholder="FH1-…" autocomplete="off" autocapitalize="off" spellcheck="false"><button type="button" class="btn" id="duGo">Duell starten</button></div>
+    </div>
+    <div class="card cxc" id="cxCard">
+      <div class="duh"><div><div class="eyebrow">Challenges</div><b>Fordere deine Klasse heraus</b></div><span class="vsb">🔥</span></div>
+      <div class="chl" id="cxBox"></div>
+      <div class="btngrid"><button type="button" class="btn" id="cxNew">Challenge starten</button><button type="button" class="btn" id="cxPasteBtn">Code einfügen</button></div>
+      <div class="chform" id="cxForm"><div class="eyebrow" style="margin-top:6px">Was?</div><div class="chips"><button type="button" data-ty="late" aria-pressed="true">Keine Verspätung</button><button type="button" data-ty="absent" aria-pressed="false">Kein Fehltag</button><button type="button" data-ty="all" aria-pressed="false">Gar kein Eintrag</button></div>
+        <div class="eyebrow">Wie lange?</div><div class="chips"><button type="button" data-days="5" aria-pressed="false">5 Schultage</button><button type="button" data-days="10" aria-pressed="true">10 Schultage</button><button type="button" data-days="20" aria-pressed="false">20 Schultage</button></div>
+        <button type="button" class="btn next" id="cxGo" style="width:100%">Erstellen & teilen</button></div>
+      <div class="chform" id="cxPaste"><textarea id="cxIn" placeholder="Challenge- oder Ergebnis-Code einfügen (FHC1-… / FHR1-…)"></textarea><button type="button" class="btn" id="cxAdd" style="width:100%;margin-top:8px">Hinzufügen</button></div>
+      <p style="margin-top:10px;font-size:.82rem;color:var(--sub)">Start ist immer am nächsten Schultag. Am Ende schickt jeder sein Ergebnis – fügst du die Ergebnis-Codes ein, siehst du, wer durchgehalten hat.</p>
     </div>
     <div class="card">
       <div style="display:flex;justify-content:space-between;align-items:baseline"><div class="eyebrow">Trophäenraum · antippen</div><span class="eyebrow" id="achCount"></span></div>
@@ -2223,6 +2325,12 @@ main.quake{animation:none}
       </div>
     </div>
 
+    <div class="card icc" id="icCard">
+      <h3>App-Symbol</h3>
+      <div class="icprev"><img alt="Vorschau App-Symbol"><small>Dein eigenes Symbol für den Home-Bildschirm. Wird beim <b>Installieren</b> übernommen.</small></div>
+      <div class="eyebrow">Farbe</div><div class="icrow" data-ic="b"></div><div class="eyebrow">Symbol</div><div class="icrow" data-ic="s"></div>
+      <small>Schon installiert? Das neue Symbol gibt es nur durch Neu-Installieren. Achtung: Auf dem iPhone startet die neu installierte App leer – sichere vorher unter „Sicherung“ und lade die Datei danach wieder.</small>
+    </div>
     <div class="card">
       <h3>Freunde einladen</h3>
       <p>Schick die App mit Anleitung an Freunde oder andere Klassen. Wer jemanden einlädt, bekommt den Erfolg „Botschafter“.</p>
@@ -2273,7 +2381,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 25</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 27</span></div>
   </section>
 </main>
 
@@ -2802,7 +2910,7 @@ $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist ger
 /* ---------- start ---------- */
 /* ---------- v19: Update-Story für bisherige Nutzer (statt Neulings-Intro) ---------- */
 /* Welche Update-Seiten jemand schon gesehen hat – es kommen nur neue */
-const UPD_PAGES=["sick","invite","titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
+const UPD_PAGES=["evt","umr","urk","chal","week","icon","secret","sick","invite","titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
 function updSeen(){ let a=null; try{ a=JSON.parse(localStorage.getItem("fh_upd_seen")||"null"); }catch(e){}
   if(!Array.isArray(a)){ a=[]; const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } };
     if(g("fh_intro16")) a.push("prog","due","morn","photos","months","tips","mode");
@@ -2819,6 +2927,13 @@ function updReel(opts){ opts=opts||{}; if(document.querySelector(".ur")) return;
   const ICK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const P=[
     {c:"#f5a623",k:"intro",h:()=>`<div class="urbig">UP<span>DATE</span></div><h2>Das ist <em>neu</em></h2><p class="urt">Seit deinem letzten Besuch hat sich einiges getan. Tippe dich in deinem Tempo durch.</p>`},
+    {c:"#f59e0b",k:"evt",h:()=>`<div class="urvis"><div class="uadv">${[1,2,3,4,5,6,7,8].map(i=>`<i class="${i===6?"o":""}">${i===6?"🎅":i}</i>`).join("")}</div></div><h2>Saison-<em>Events</em></h2><p class="urt">Jetzt: Herbst-Event mit Blättersammeln. Ab 1. Dezember: Adventskalender mit 24 Türchen und Geschenken, die es nur dieses Jahr gibt.</p>`},
+    {c:"#f5a623",k:"umr",h:()=>`<div class="urvis"><div class="uumr">≈ 3,2<small>mal alle „Herr der Ringe“-Filme</small></div></div><h2>Was du <em>verpasst</em> hast</h2><p class="urt">Unter Statistik: deine Fehlstunden umgerechnet in Filme, Flüge, Minecraft-Tage und mehr. Als Bild zum Teilen.</p>`},
+    {c:"#b8860b",k:"urk",h:()=>`<div class="urvis"><div class="uurk"><b>URKUNDE</b><i>★</i><small>Der Wecker</small></div></div><h2>Echte <em>Urkunden</em></h2><p class="urt">Tippe auf einen freigeschalteten Erfolg: Es gibt Urkunde, Siegerurkunde oder Ehrenurkunde – zum Teilen oder Ausdrucken.</p>`},
+    {c:"#ff5b4d",k:"chal",h:()=>`<div class="urvis"><div class="ucard"><div><small>Challenge · 10 Tage</small><b>🔥 Keine Verspätung</b></div><span class="uchk">${ICK}</span></div></div><h2><em>Challenges</em></h2><p class="urt">Unter Erfolge: Challenge erstellen, Code in die Klassengruppe – wer hält durch?</p>`},
+    {c:"#35c983",k:"week",h:()=>`<div class="urvis"><div class="ucard"><div><small>Wochen-Bilanz · KW 46</small><b>2 Fehlstunden · Im Plan</b></div><span class="uchk">${ICK}</span></div></div><h2>Deine <em>Woche</em></h2><p class="urt">Jeden Freitag eine kurze Bilanz: Wie lief die Woche, und wo landest du am Ende?</p>`},
+    {c:"#7c3aed",k:"icon",h:()=>`<div class="urvis"><div class="uicons"><i style="background:linear-gradient(135deg,#f5a623,#d9820b)">🔥</i><i style="background:linear-gradient(135deg,#db2777,#831843)">🦊</i><i style="background:linear-gradient(135deg,#7c3aed,#3b0764)">👑</i><i style="background:linear-gradient(135deg,#16a34a,#14532d)">🐸</i></div></div><h2>Dein <em>App-Symbol</em></h2><p class="urt">Unter Mehr: Farbe und Symbol wählen. Wird beim Installieren übernommen.</p>`},
+    {c:"#39ff7a",k:"secret",h:()=>`<div class="urvis"><div class="usec">&gt; GEHEIMNIS ERKANNT_<br>&gt; ORT: UNBEKANNT<br>&gt; BELOHNUNG: EXKLUSIV</div></div><h2>Ein <em>Geheimnis</em></h2><p class="urt">Irgendwo in der App ist etwas versteckt. Mehr verraten wir nicht. Viel Glück.</p>`},
     {c:"#5eead4",k:"sick",h:()=>`<div class="urvis"><div class="ucard"><div><small>Krank-Modus</small><b>🤒 Mo – Fr · 5 Tage</b></div><span class="uchk">${ICK}</span></div></div><h2>Krank? <em>Ein</em> Eintrag.</h2><p class="urt">Beim Eintragen „Mehrere Tage krank“ einschalten und das Ende wählen. Wochenenden zählen nicht, und die App erinnert dich ans Attest.</p>`},
     {c:"#35c983",k:"invite",h:()=>`<div class="urvis"><div class="uinv"><i>🦊</i><i>🐼</i><i>🐸</i><i class="add">+</i></div></div><h2>Freunde <em>einladen</em></h2><p class="urt">Unter Mehr → Freunde einladen schickst du die App samt Anleitung. Jede Einladung zählt für neue Erfolge.</p>`},
     {c:"#f5a623",k:"titles",h:()=>`<div class="urvis"><div class="utitles"><span>DB-Veteran</span><span>SEV-Survivor</span><span>Atomuhr</span><span>Montags-Endgegner</span><span>Phantom der Anwesenheitsliste</span></div></div><h2>Neue <em>Titel</em></h2><p class="urt">Jeder Erfolg schaltet jetzt einen eigenen Titel frei. Zeig ihn im Profil und im Duell.</p>`},
@@ -4399,6 +4514,212 @@ function sickRender(){ const box=$("sickCard"); if(!box) return; const today=iso
   const _r=render; render=function(){ const r=_r.apply(this,arguments); try{ sickRender(); }catch(e){} return r; };
   const at=$("setAttest"); if(at){ at.value=attestDays(); at.onchange=()=>{ const v=Math.max(0,Math.min(30,Math.round(+at.value||0))); at.value=v; try{ localStorage.setItem("fh_attest",String(v)); }catch(e){} toast(v?`Attest-Erinnerung ab Tag ${v}.`:"Attest-Erinnerung aus."); sickRender(); }; }
   document.addEventListener("visibilitychange",()=>{ if(!document.hidden) try{ sickRender(); }catch(e){} }); })();
+/* ---------- v27: Umrechner ---------- */
+const UMR=[{m:90,e:"⚽",t:"komplette Fußballspiele (ohne Halbzeit)"},{m:194,e:"🚢",t:"mal den Film „Titanic“"},{m:686,e:"💍",t:"mal alle drei „Herr der Ringe“-Filme (Extended Edition)"},
+  {m:1179,e:"⚡",t:"mal alle acht „Harry Potter“-Filme"},{m:20,e:"⛏️",t:"Minecraft-Tage"},{m:510,e:"✈️",t:"Flüge von Frankfurt nach New York"},{m:92,e:"🛰️",t:"Erdumrundungen der ISS"},
+  {m:480,e:"😴",t:"Nächte mit 8 Stunden Schlaf"},{m:3,e:"🎧",t:"Songs à 3 Minuten"},{m:10,e:"🍝",t:"Portionen Nudeln kochen"},{m:12,e:"🚶",t:"Kilometer zu Fuß",km:1},{m:120,e:"🏃",t:"Marathons in Weltrekord-Tempo"}];
+let umrIdx=-1;
+function umrHours(){ const L=entries.filter(e=>inPeriod(e.date)).reduce((s,e)=>s+lessonsOf(e),0); return {L,min:L*SET.lesson}; }
+function umrPick(next){ const {min}=umrHours(); const ok=UMR.map((u,i)=>i).filter(i=>min/UMR[i].m>=.5&&min/UMR[i].m<=5000); const pool=ok.length?ok:UMR.map((u,i)=>i);
+  if(next||umrIdx<0||!pool.includes(umrIdx)){ let k=pool[Math.floor(Math.random()*pool.length)]; if(pool.length>1) while(k===umrIdx) k=pool[Math.floor(Math.random()*pool.length)]; umrIdx=k; } return UMR[umrIdx]; }
+function umrFmt(v){ return v>=100?Math.round(v).toLocaleString("de-DE"):v>=10?(Math.round(v*10)/10).toLocaleString("de-DE"):(Math.round(v*10)/10).toLocaleString("de-DE"); }
+function umrRender(next){ const c=$("umrCard"); if(!c) return; const {L,min}=umrHours(), h=Math.round(min/6)/10;
+  if(!L){ c.querySelector(".ubig").textContent="0"; c.querySelector(".utx").textContent="Keine Fehlstunden – du hast nichts verpasst. Respekt."; c.querySelector(".uemo").textContent="🏆"; c.querySelector(".ust").textContent=""; return; }
+  const u=umrPick(next), v=min/u.m; c.querySelector(".uemo").textContent=u.e; c.querySelector(".ubig").textContent="≈ "+umrFmt(v);
+  const tx=c.querySelector(".utx"); tx.textContent=u.t; tx.classList.remove("in"); void tx.offsetWidth; tx.classList.add("in");
+  c.querySelector(".ust").textContent=`${L} Fehlstunden à ${SET.lesson} Min = ${h.toLocaleString("de-DE")} Stunden. Alle Vergleiche sind ungefähre Werte.`; }
+async function shareCanvas(cv,name,text){ const blob=await new Promise(r=>cv.toBlob(r,"image/png")); if(!blob){ toast("Bild konnte nicht erstellt werden.",true); return; }
+  const file=new File([blob],name,{type:"image/png"});
+  try{ if(navigator.canShare&&navigator.canShare({files:[file]})){ await navigator.share({files:[file],text}); return; } }catch(e){ if(e&&e.name==="AbortError") return; }
+  try{ const u=URL.createObjectURL(blob), a=document.createElement("a"); a.href=u; a.download=name; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(u),30000); toast("Bild gespeichert."); }catch(e){ toast("Teilen ging nicht.",true); } }
+function umrShare(){ const {L,min}=umrHours(); const u=UMR[umrIdx]||UMR[0], v=L?min/u.m:0, cv=document.createElement("canvas"); cv.width=1080; cv.height=1350; const x=cv.getContext("2d");
+  const g=x.createLinearGradient(0,0,1080,1350); g.addColorStop(0,"#1b2a4a"); g.addColorStop(1,"#07090e"); x.fillStyle=g; x.fillRect(0,0,1080,1350);
+  x.textAlign="center"; x.fillStyle="rgba(255,255,255,.6)"; x.font="600 40px system-ui,sans-serif"; x.fillText("MEINE FEHLSTUNDEN ENTSPRECHEN",540,250);
+  x.font="200px serif"; x.fillText(L?u.e:"🏆",540,520); x.fillStyle="#f5a623"; x.font="900 170px system-ui,sans-serif"; x.fillText(L?"≈ "+umrFmt(v):"0",540,760);
+  x.fillStyle="#fff"; x.font="700 54px system-ui,sans-serif"; const words=(L?u.t:"Fehlstunden. Nichts verpasst.").split(" "); let line="", y=880; for(const w of words){ const t=line?line+" "+w:w; if(x.measureText(t).width>900){ x.fillText(line,540,y); y+=70; line=w; } else line=t; } x.fillText(line,540,y);
+  x.fillStyle="rgba(255,255,255,.5)"; x.font="500 34px system-ui,sans-serif"; x.fillText(`${L} Fehlstunden · Fehlstunden-Heft`,540,1250);
+  shareCanvas(cv,"fehlstunden-vergleich.png","Meine Fehlstunden im Vergleich 😅"); }
+/* ---------- v27: Urkunden ---------- */
+const URK_EHREN=new Set(["sd100","sd150","pm3","pt60","fin","coll2","lv35","ci100","bx50","bahn25"]), URK_SIEGER=new Set(["sd20","sd50","pw10","pm1","pt20","mo8","q75","lv20","ci30","coll","ex15","w1","m1","m2","clean","half","bahn"]);
+function urkunde(a,date){ const p=profGet(), name=(p.name||"").trim()||"Ohne Namen", kind=URK_EHREN.has(a.id)?"Ehrenurkunde":URK_SIEGER.has(a.id)?"Siegerurkunde":"Urkunde";
+  const W=1240,Hh=1754, cv=document.createElement("canvas"); cv.width=W; cv.height=Hh; const x=cv.getContext("2d");
+  x.fillStyle="#fbf6e9"; x.fillRect(0,0,W,Hh);
+  x.strokeStyle="rgba(184,134,11,.08)"; x.lineWidth=2; for(let k=0;k<60;k++){ x.beginPath(); for(let i=0;i<=W;i+=10){ const yy=k*30+Math.sin(i/60+k)*14; i?x.lineTo(i,yy):x.moveTo(i,yy); } x.stroke(); }
+  const gold=kind==="Ehrenurkunde"?"#b8860b":kind==="Siegerurkunde"?"#8a8f98":"#a0522d";
+  x.strokeStyle=gold; x.lineWidth=14; x.strokeRect(50,50,W-100,Hh-100); x.lineWidth=3; x.strokeRect(80,80,W-160,Hh-160);
+  [[80,80],[W-80,80],[80,Hh-80],[W-80,Hh-80]].forEach(([cx,cy])=>{ x.fillStyle=gold; x.beginPath(); x.arc(cx,cy,18,0,Math.PI*2); x.fill(); });
+  x.textAlign="center"; x.fillStyle=gold; x.font="700 120px Georgia,'Times New Roman',serif"; x.fillText(kind.toUpperCase(),W/2,330);
+  x.fillStyle="#5a3d00"; x.font="italic 46px Georgia,serif"; x.fillText("verliehen an",W/2,470);
+  x.font="700 104px Georgia,serif"; let fs=104; while(x.measureText(name).width>W-260&&fs>50){ fs-=6; x.font=`700 ${fs}px Georgia,serif`; } x.fillText(name,W/2,600);
+  x.strokeStyle=gold; x.lineWidth=2; x.beginPath(); x.moveTo(260,640); x.lineTo(W-260,640); x.stroke();
+  x.font="italic 46px Georgia,serif"; x.fillText("für den Erfolg",W/2,760); x.font="700 76px Georgia,serif"; x.fillText("„"+a.n+"“",W/2,870);
+  x.font="44px Georgia,serif"; const words=a.d.split(" "); let line="", y=970; for(const w of words){ const t=line?line+" "+w:w; if(x.measureText(t).width>W-320){ x.fillText(line,W/2,y); y+=60; line=w; } else line=t; } x.fillText(line,W/2,y);
+  if(a.ti){ x.font="italic 40px Georgia,serif"; x.fillText(`und trägt ab sofort den Titel „${a.ti}“`,W/2,y+90); }
+  const sx=W/2, sy=1290; x.save(); x.translate(sx,sy); for(let k=0;k<32;k++){ x.rotate(Math.PI/16); x.fillStyle=gold; x.beginPath(); x.moveTo(0,-150); x.lineTo(14,-118); x.lineTo(-14,-118); x.fill(); } x.restore();
+  const sg=x.createRadialGradient(sx-30,sy-30,10,sx,sy,125); sg.addColorStop(0,"#fff1c2"); sg.addColorStop(.5,kind==="Siegerurkunde"?"#cfd4db":"#f5c451"); sg.addColorStop(1,gold); x.fillStyle=sg; x.beginPath(); x.arc(sx,sy,122,0,Math.PI*2); x.fill();
+  x.fillStyle="#fff"; x.font="900 110px Georgia,serif"; x.fillText("★",sx,sy+38); x.fillStyle="#5a3d00"; x.font="700 24px Georgia,serif"; x.fillText("FEHLSTUNDEN-HEFT",sx,sy+168);
+  x.textAlign="left"; x.font="italic 64px 'Snell Roundhand','Segoe Script','Brush Script MT',cursive"; x.fillStyle="#1e3a8a"; x.fillText("Der Wecker",170,1560);
+  x.strokeStyle="#5a3d00"; x.lineWidth=2; x.beginPath(); x.moveTo(160,1585); x.lineTo(560,1585); x.stroke(); x.font="30px Georgia,serif"; x.fillStyle="#5a3d00"; x.fillText("Schulleitung der Pünktlichkeit",160,1630);
+  x.textAlign="right"; x.font="40px Georgia,serif"; x.fillText(date||new Date().toLocaleDateString("de-DE"),W-160,1560); x.beginPath(); x.moveTo(W-560,1585); x.lineTo(W-160,1585); x.stroke(); x.font="30px Georgia,serif"; x.fillText("Datum",W-160,1630);
+  return cv; }
+/* ---------- v27: Wochen-Check ---------- */
+function isoWeek(d){ const t=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())); const day=t.getUTCDay()||7; t.setUTCDate(t.getUTCDate()+4-day); const y0=new Date(Date.UTC(t.getUTCFullYear(),0,1)); return [t.getUTCFullYear(),Math.ceil(((t-y0)/864e5+1)/7)]; }
+function weekRender(){ const box=$("weekCard"); if(!box) return; const now=new Date(), wd=now.getDay(); const show=(wd===5&&now.getHours()>=12)||wd===6||wd===0;
+  const [Y,KW]=isoWeek(now), key=Y+"-"+KW; let ok=""; try{ ok=localStorage.getItem("fh_wk_ok")||""; }catch(e){}
+  if(!show||ok===key||!lsGet("fh_onboarded")){ box.hidden=true; return; }
+  const mon=new Date(now); mon.setDate(now.getDate()-((wd+6)%7)); const days=[]; for(let i=0;i<5;i++){ const d=new Date(mon); d.setDate(mon.getDate()+i); days.push(iso(d)); }
+  const wk=entries.filter(e=>days.includes(e.date)), h=wk.reduce((s,e)=>s+lessonsOf(e),0);
+  const st=new Date(+SET.start.slice(0,4),+SET.start.slice(5)-1,1), en=new Date(+SET.end.slice(0,4),+SET.end.slice(5),0), weeks=Math.max(1,Math.round((en-st)/(7*864e5)*39/52));
+  const budget=Math.round(SET.limit/weeks*10)/10, tot=entries.filter(e=>inPeriod(e.date)).reduce((s,e)=>s+lessonsOf(e),0);
+  const el=Math.max(1,(Math.min(Date.now(),+en)-st)/(7*864e5)*39/52), prog=Math.round(tot/el*weeks);
+  const cls=h<=budget?"g":h<=budget*2?"y":"r", lab=h===0?"Perfekte Woche!":cls==="g"?"Im Plan":cls==="y"?"Etwas viel":"Zu viel";
+  const msg=h===0?"Keine einzige Fehlstunde diese Woche. Genau so weiter.":cls==="g"?`Unter deinem Wochen-Budget von ca. ${budget.toLocaleString("de-DE")} Stunden.`:`Dein Wochen-Budget liegt bei ca. ${budget.toLocaleString("de-DE")} Stunden. Nächste Woche weniger, dann passt es wieder.`;
+  box.className="card wkc"; box.hidden=false;
+  box.innerHTML=`<div class="wh"><div class="eyebrow">Wochen-Bilanz · KW ${KW}</div><button type="button" class="btn" data-w="ok" style="padding:6px 12px">Verstanden</button></div>
+    <div class="wbig"><b>${h}</b><span>${h===1?"Fehlstunde":"Fehlstunden"} diese Woche</span></div><span class="wst ${cls}">${lab}</span>
+    <div class="wdays">${days.map((d,i)=>{ const es=entries.filter(e=>e.date===d); const c=es.some(e=>typeOf(e)==="absent")?"a":es.length?"l":(d<=iso(now)?"ok":""); return `<div><i class="${c}"></i>${["Mo","Di","Mi","Do","Fr"][i]}</div>`; }).join("")}</div>
+    <p>${msg} Bei deinem Tempo landest du am Ende bei ca. <b>${prog}</b> von ${SET.limit}.</p>`;
+  box.onclick=e=>{ if(e.target.closest("[data-w=ok]")){ try{ localStorage.setItem("fh_wk_ok",key); }catch(_){} box.hidden=true; if(h===0) try{ const r=box.getBoundingClientRect(); sparks(r.left+r.width/2,r.top+40,"#35c983",24); }catch(_){} } }; }
+/* ---------- v27: Challenges ---------- */
+const CHT={late:{n:"Pünktlich-Challenge",d:"Keine Verspätung",f:e=>typeOf(e)==="late"},absent:{n:"Anwesend-Challenge",d:"Kein Fehltag",f:e=>typeOf(e)==="absent"},all:{n:"Perfekt-Challenge",d:"Gar kein Eintrag",f:()=>true}};
+function cxList(){ try{ const a=JSON.parse(localStorage.getItem("fh_cx")||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function cxSave(a){ try{ localStorage.setItem("fh_cx",JSON.stringify(a.slice(-20))); }catch(e){} }
+function cxEnd(c){ const d=pd(c.s); let n=0, last=c.s; while(n<c.days){ const w=d.getDay(); if(w>=1&&w<=5){ n++; last=iso(d); } d.setDate(d.getDate()+1); } return last; }
+function cxState(c){ const today=iso(new Date()), end=cxEnd(c), T=CHT[c.ty]||CHT.all; const fail=entries.filter(e=>e.date>=c.s&&e.date<=end&&T.f(e)).map(e=>e.date).sort()[0]||null;
+  const done=schoolDaysBetween(c.s,today<end?today:end).filter(d=>d<today||(d===today&&new Date().getHours()>=14)).length;
+  return {end,fail,prog:fail?schoolDaysBetween(c.s,fail).length-1:Math.min(c.days,done),won:!fail&&today>end,lost:!!fail,started:today>=c.s}; }
+function cxCode(o,p){ return p+b64u(JSON.stringify(o)); }
+function cxParse(t){ const s=String(t||"").replace(/\s+/g,""); const out=[]; (s.match(/FH[CR]1-[A-Za-z0-9_-]+/g)||[]).forEach(m=>{ try{ const o=JSON.parse(unb64u(m.slice(5))); o.__k=m[2]; out.push(o); }catch(e){} }); return out; }
+async function cxShareText(text){ try{ if(navigator.share){ await navigator.share({text}); return true; } }catch(e){ if(e&&e.name==="AbortError") return false; } try{ await navigator.clipboard.writeText(text); toast("Kopiert. Jetzt in WhatsApp einfügen."); return true; }catch(e){ toast("Kopieren ging nicht.",true); return false; } }
+function cxCreate(ty,days){ const p=profGet(), d=new Date(); d.setDate(d.getDate()+1); while([0,6].includes(d.getDay())) d.setDate(d.getDate()+1);
+  const c={id:Math.random().toString(36).slice(2,8),ty,days,s:iso(d),by:(p.name||"").slice(0,20)||"Jemand"}; const a=cxList(); a.push({...c,res:{}}); cxSave(a); cxRender();
+  const T=CHT[ty]; cxShareText(`🔥 ${T.n}: ${days} Schultage – ${T.d}! Start am ${pd(c.s).toLocaleDateString("de-DE",{weekday:"long",day:"numeric",month:"long"})}. Wer ist dabei?\n\nCode:\n${cxCode(c,"FHC1-")}\n\nSo geht's: Fehlstunden-Heft → Erfolge → Challenges → „Code einfügen“.`); }
+function cxImport(text){ const L=cxParse(text); if(!L.length){ toast("Kein Challenge-Code gefunden.",true); return; } const a=cxList(); let j=0,r=0;
+  L.forEach(o=>{ if(o.__k==="C"){ if(!CHT[o.ty]||!o.id) return; if(!a.some(c=>c.id===o.id)){ a.push({id:o.id,ty:o.ty,days:Math.max(1,Math.min(60,+o.days||5)),s:String(o.s).slice(0,10),by:String(o.by||"").slice(0,20),res:{}}); j++; } }
+    else if(o.__k==="R"){ const c=a.find(c=>c.id===o.id); if(c&&o.n){ c.res=c.res||{}; c.res[String(o.n).slice(0,20)]={p:Math.max(0,+o.p||0),w:!!o.w,l:!!o.l}; r++; } } });
+  cxSave(a); cxRender(); toast(j?`Challenge angenommen! 💪`:r?`${r} ${r===1?"Ergebnis":"Ergebnisse"} eingetragen.`:"Schon drin."); }
+function cxRender(){ const box=$("cxBox"); if(!box) return; const a=cxList(); box.innerHTML=""; if(!a.length){ box.innerHTML='<small style="color:var(--sub)">Noch keine Challenge. Starte eine und schick sie in die Klassengruppe.</small>'; return; }
+  a.slice().reverse().forEach(c=>{ const S=cxState(c), T=CHT[c.ty]||CHT.all, it=document.createElement("div"); it.className="chi"+(S.won?" won":S.lost?" lost":"");
+    const stat=!S.started?`startet ${pd(c.s).toLocaleDateString("de-DE",{weekday:"short",day:"numeric",month:"numeric"})}`:S.won?"geschafft 🏆":S.lost?`gescheitert am ${pd(S.fail).toLocaleDateString("de-DE",{day:"numeric",month:"numeric"})}`:`Tag ${S.prog}/${c.days}`;
+    it.innerHTML=`<div class="t"><b></b><span>${stat}</span></div><div class="pb"><i style="width:${Math.round(S.prog/c.days*100)}%"></i></div><small></small><div class="ppl"></div><div class="acts"><button type="button" data-a="res">Mein Ergebnis senden</button><button type="button" data-a="del">Entfernen</button></div>`;
+    it.querySelector(".t b").textContent=`${T.n} · ${c.days} Tage`; it.querySelector("small").textContent=`${T.d} von ${pd(c.s).toLocaleDateString("de-DE",{day:"numeric",month:"numeric"})} bis ${pd(S.end).toLocaleDateString("de-DE",{day:"numeric",month:"numeric"})} · von ${c.by}`;
+    const pp=it.querySelector(".ppl"); Object.entries(c.res||{}).sort((x,y)=>y[1].p-x[1].p).forEach(([n,r])=>{ const s=document.createElement("span"); s.textContent=`${r.w?"🏆":r.l?"✗":"⏳"} ${n} ${r.p}/${c.days}`; pp.appendChild(s); });
+    it.onclick=e=>{ const b=e.target.closest("[data-a]"); if(!b) return; if(b.dataset.a==="del"){ cxSave(cxList().filter(x=>x.id!==c.id)); cxRender(); return; }
+      const n=(profGet().name||"").trim(); if(!n){ toast("Trag zuerst deinen Namen im Profil ein.",true); return; }
+      cxShareText(`${S.won?"🏆 Geschafft!":S.lost?"😬 Raus.":"⏳ Zwischenstand:"} ${T.n}: ${S.prog}/${c.days} Tage.\n\nErgebnis-Code:\n${cxCode({id:c.id,n,p:S.prog,w:S.won,l:S.lost},"FHR1-")}`); };
+    box.appendChild(it); }); }
+/* ---------- v27: Saison-Events (Herbst, Advent) ---------- */
+function evtGot(){ try{ return JSON.parse(localStorage.getItem("fh_evt")||"{}")||{}; }catch(e){ return {}; } }
+function evtHas(k){ return !!evtGot()[k]; }
+function evtGive(k,label){ const g=evtGot(); if(g[k]) return false; g[k]=iso(new Date()); try{ localStorage.setItem("fh_evt",JSON.stringify(g)); }catch(e){} evtApply(); if(label){ toast("🎁 "+label); try{ sfx.chime(false); fireworks(6,1800); }catch(e){} } try{ lvlRender(); }catch(e){} return true; }
+const EVT_EMO=[["🍂","herbst_emo"],["⛄","adv_emo1"],["🎅","adv_emo2"],["🧩","rz_emo"]];
+const EVT_TI={herbst_ti:"Laubsammler 2026",adv_ti:"Weihnachtswunder 2026",rz_ti:"Rätselmeister"};
+function evtApply(){ EVT_EMO.forEach(([e,k])=>{ if(evtHas(k)&&!PF.emo.some(x=>x[0]===e)) PF.emo.push([e,1]); }); }
+Object.assign(PF.ban,{herbst:{n:"Herbstwald",ev:"herbst_ban",anim:1,bg:"linear-gradient(135deg,#7c2d12,#ea580c,#facc15,#7c2d12)"},
+  winter:{n:"Winternacht",ev:"adv_ban",anim:1,stars:1,bg:"linear-gradient(135deg,#0c1445,#1e3a8a,#0f172a,#0c1445)"},
+  matrix:{n:"Matrix",ev:"rz_ban",anim:1,bg:"linear-gradient(135deg,#001a00,#00661f,#001a00,#00331a)"}});
+Object.assign(PF.nc,{zucker:{n:"Zuckerstange",ev:"adv_nc",g:"repeating-linear-gradient(90deg,#ef4444 0 14px,#fff 14px 28px)"},glitch:{n:"Glitch",ev:"rz_nc",g:"linear-gradient(90deg,#39ff7a,#00e5ff,#ff2bd6,#39ff7a)"}});
+function evtNow(){ const d=new Date(), md=(d.getMonth()+1)*100+d.getDate(), y=d.getFullYear();
+  if(y===2026&&md>=1109&&md<=1130) return "herbst"; if(md>=1201||md<=106) return "advent"; return null; }
+function visitMark(){ try{ const a=JSON.parse(localStorage.getItem("fh_visits")||"[]"), t=iso(new Date()); if(!a.includes(t)){ a.push(t); localStorage.setItem("fh_visits",JSON.stringify(a.slice(-150))); } }catch(e){} }
+function leaves(){ let v=[]; try{ v=JSON.parse(localStorage.getItem("fh_visits")||"[]"); }catch(e){} const today=iso(new Date()), days=schoolDaysBetween("2026-11-09","2026-11-30");
+  return days.map(d=>({d,on:v.includes(d)&&!entries.some(e=>e.date===d)&&(d<today||new Date().getHours()>=13)})); }
+const ADV_R={1:["adv_emo1","Emoji-Avatar ⛄"],6:["adv_emo2","Emoji-Avatar 🎅 (Nikolaus!)"],12:["adv_ban","Banner „Winternacht“"],18:["adv_nc","Namensfarbe „Zuckerstange“"],24:["adv_ti","Titel „Weihnachtswunder 2026“"]};
+const ADV_J=["Warum nehmen Schüler eine Leiter mit in die Schule? Weil sie auf eine höhere Schule wollen.","„Warum kommst du zu spät?“ – „Wegen des Schildes.“ – „Welches Schild?“ – „Schule – bitte langsam fahren.“","Was ist grün und klopft an die Tür? Ein Klopfsalat.",
+  "Wie nennt man einen Bumerang, der nicht zurückkommt? Stock.","„Papa, ich hab heute als Einziger eine Frage beantwortet!“ – „Super, welche?“ – „Wer hat das Fenster eingeworfen?“","Warum war das Mathebuch traurig? Es hatte zu viele Probleme.",
+  "Was macht ein Pirat am Computer? Er drückt die Enter-Taste.","Lehrerin: „Wo liegt Paris?“ – Schüler: „Im Atlas, Seite 23.“","Was ist orange und läuft durch den Wald? Eine Wanderine.","Wie heißt ein Spanier ohne Auto? Carlos.",
+  "Warum können Geister so schlecht lügen? Weil man durch sie hindurchsieht.","Was ist braun, klebrig und läuft durch die Wüste? Ein Karamel.","Was sagt der große Stift zum kleinen Stift? Wachsmalstift!",
+  "Treffen sich zwei Kerzen. Fragt die eine: „Ist Wasser eigentlich gefährlich?“ – „Davon kannst du ausgehen.“","Was ist ein Keks unter einem Baum? Ein schattiges Plätzchen.","Was macht ein Clown im Büro? Faxen.",
+  "Wie nennt man einen Schneemann mit Sonnenbrand? Pfütze.","Wo wohnen Katzen? Im Miezhaus.","Was wünscht sich ein Lehrer zu Weihnachten? Ferien. Genau wie du."];
+function advOpened(){ try{ return JSON.parse(localStorage.getItem("fh_adv26")||"[]")||[]; }catch(e){ return []; } }
+function advDay(){ const d=new Date(), m=d.getMonth()+1; if(m===12) return d.getDate(); if(m===1&&d.getDate()<=6) return 25; return 0; }
+function advContent(n){ if(ADV_R[n]) return {gift:ADV_R[n]}; const others=[...Array(24)].map((_,i)=>i+1).filter(i=>!ADV_R[i]); return {joke:ADV_J[others.indexOf(n)%ADV_J.length]}; }
+function advOpen(){ if(document.querySelector(".adv")) return; const o=document.createElement("div"); o.className="adv"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Adventskalender");
+  const order=[7,15,2,21,11,4,18,9,24,13,1,20,6,16,3,23,10,14,19,5,12,22,8,17], today=advDay(), op=advOpened();
+  o.innerHTML=`<div class="ah"><h2>🎄 Adventskalender</h2><button type="button" data-x aria-label="Schließen">✕</button></div><div class="grid">${order.map(n=>`<button type="button" class="door${op.includes(n)?" open":""}${n>today?" lock":""}${n===today&&!op.includes(n)?" today":""}" data-n="${n}"><span class="f">${n}</span><span class="b">${ADV_R[n]?"🎁":"😄"}</span></button>`).join("")}</div><div class="msg">${today?"Tippe auf ein Türchen. Verpasste Türchen kannst du nachholen.":"Der Kalender öffnet am 1. Dezember."}</div>`;
+  if(!RM()) for(let i=0;i<18;i++){ const s=document.createElement("span"); s.className="snow"; s.textContent="❄"; s.style.left=Math.random()*100+"%"; s.style.fontSize=(8+Math.random()*12)+"px"; s.style.animationDuration=(6+Math.random()*8)+"s"; s.style.animationDelay=(-Math.random()*10)+"s"; o.appendChild(s); }
+  const msg=o.querySelector(".msg");
+  o.addEventListener("click",e=>{ if(e.target.closest("[data-x]")){ o.remove(); evtRender(); return; } const d=e.target.closest(".door"); if(!d) return; const n=+d.dataset.n;
+    if(n>today){ msg.textContent=`Türchen ${n} geht erst am ${n}. Dezember auf. Geduld! ⏳`; try{ d.animate([{transform:"translateX(0)"},{transform:"translateX(-6px)"},{transform:"translateX(6px)"},{transform:"translateX(0)"}],{duration:300}); }catch(_){} return; }
+    const C=advContent(n); if(!d.classList.contains("open")){ d.classList.add("open"); d.classList.remove("today"); const a=advOpened(); if(!a.includes(n)){ a.push(n); try{ localStorage.setItem("fh_adv26",JSON.stringify(a)); }catch(_){} } try{ sfx.chime(false); const r=d.getBoundingClientRect(); sparks(r.left+r.width/2,r.top+r.height/2,"#fde68a",22); }catch(_){} if(C.gift) evtGive(C.gift[0],null); }
+    msg.innerHTML=""; const b=document.createElement("b"); b.textContent=`Türchen ${n}: `; msg.appendChild(b); msg.appendChild(document.createTextNode(C.gift?`Geschenk! Du bekommst: ${C.gift[1]}. Findest du im Profil.`:C.joke)); });
+  document.body.appendChild(o); }
+function evtRender(){ const box=$("evtHome"); if(!box) return; const ev=evtNow(); if(!ev||(typeof gameOn==="function"&&!gameOn())){ box.innerHTML=""; return; }
+  if(ev==="herbst"){ const L=leaves(), n=L.filter(x=>x.on).length, left=Math.max(0,Math.ceil((pd("2026-11-30")-new Date())/864e5));
+    [[3,"herbst_emo","Emoji-Avatar 🍂"],[7,"herbst_ban","Banner „Herbstwald“"],[12,"herbst_ti","Titel „Laubsammler 2026“"]].forEach(([t,k,l])=>{ if(n>=t) evtGive(k,"Herbst-Event: "+l+" freigeschaltet!"); });
+    box.innerHTML=`<div class="card evc herbst"><div class="eh"><span class="em">🍂</span><div><h3>Herbst-Event · ${n} ${n===1?"Blatt":"Blätter"}</h3><p>Jeder Schultag ohne Eintrag, an dem du die App öffnest, bringt ein Blatt. Noch ${left} ${left===1?"Tag":"Tage"}.</p></div></div>
+      <div class="leaves">${L.map(x=>`<i class="${x.on?"on":""}" title="${x.d}">🍁</i>`).join("")}</div>
+      <div class="rw">${[[3,"herbst_emo","3 · Emoji 🍂"],[7,"herbst_ban","7 · Banner Herbstwald"],[12,"herbst_ti","12 · Titel Laubsammler"]].map(([t,k,l])=>`<span class="${evtHas(k)?"got":""}">${evtHas(k)?"✓ ":""}${l}</span>`).join("")}</div></div>`;
+    if(!RM()){ const c=box.querySelector(".evc"); for(let i=0;i<6;i++){ const s=document.createElement("span"); s.className="fall"; s.textContent=["🍂","🍁"][i%2]; s.style.left=(8+i*16)+"%"; s.style.animationDuration=(5+i)+"s"; s.style.animationDelay=(-i*1.3)+"s"; c.appendChild(s); } } }
+  else { const t=advDay(), op=advOpened(), open=t&&t<=24&&!op.includes(t);
+    box.innerHTML=`<div class="card evc advent"><div class="eh"><span class="em">🎄</span><div><h3>Adventskalender</h3><p>${t===0?"Startet am 1. Dezember.":open?`Türchen ${t} wartet auf dich!`:`${op.length} von 24 Türchen offen. 5 davon sind Geschenke, die es nur jetzt gibt.`}</p></div></div><button type="button" class="btn next" data-adv>Kalender öffnen</button></div>`;
+    box.querySelector("[data-adv]").onclick=advOpen; } }
+/* ---------- v27: Eigenes App-Symbol ---------- */
+const ICBG=[["#0d1117","#1a2029"],["#f5a623","#d9820b"],["#2563eb","#1e3a8a"],["#16a34a","#14532d"],["#db2777","#831843"],["#7c3aed","#3b0764"],["#0891b2","#164e63"],["#111","#444"]];
+const ICSYM=["F","🔥","⏰","📚","🦊","🚀","👑","💀","🐸","⚡"];
+function icGet(){ try{ const o=JSON.parse(localStorage.getItem("fh_icon")||"null"); if(o&&ICBG[o.b]&&ICSYM.includes(o.s)) return o; }catch(e){} return {b:0,s:"F"}; }
+function icDraw(o,size){ size=size||180; const c=document.createElement("canvas"); c.width=c.height=size; const x=c.getContext("2d"), [a,b]=ICBG[o.b]; const g=x.createLinearGradient(0,0,size,size); g.addColorStop(0,a); g.addColorStop(1,b); x.fillStyle=g; x.fillRect(0,0,size,size);
+  x.textAlign="center"; x.textBaseline="middle"; if(o.s==="F"){ x.fillStyle=o.b===1?"#1a1200":"#ffb000"; x.font=`900 ${size*.6}px ui-monospace,Menlo,monospace`; x.fillText("F",size/2,size*.54); x.strokeStyle="rgba(0,0,0,.35)"; x.lineWidth=size*.02; x.beginPath(); x.moveTo(size*.1,size/2); x.lineTo(size*.9,size/2); x.stroke(); }
+  else { x.font=`${size*.58}px "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif`; x.fillText(o.s,size/2,size*.56); } return c.toDataURL("image/png"); }
+function icApply(){ const o=icGet(); if(o.b===0&&o.s==="F") return; try{ const u=icDraw(o,180); document.querySelectorAll('link[rel="apple-touch-icon"],link[rel="icon"]').forEach(l=>l.href=u); }catch(e){} }
+function icSet(o){ try{ localStorage.setItem("fh_icon",JSON.stringify(o)); }catch(e){} try{ const u=icDraw(o,180); document.querySelectorAll('link[rel="apple-touch-icon"],link[rel="icon"]').forEach(l=>l.href=u); }catch(e){} icRender(); }
+function icRender(){ const box=$("icCard"); if(!box) return; const o=icGet(); box.querySelector("img").src=icDraw(o,144);
+  const rb=box.querySelector("[data-ic=b]"), rs=box.querySelector("[data-ic=s]"); rb.innerHTML=""; rs.innerHTML="";
+  ICBG.forEach(([a,b],i)=>{ const t=document.createElement("button"); t.type="button"; t.style.background=`linear-gradient(135deg,${a},${b})`; t.setAttribute("aria-pressed",o.b===i?"true":"false"); t.setAttribute("aria-label","Farbe "+(i+1)); t.onclick=()=>icSet({...icGet(),b:i}); rb.appendChild(t); });
+  ICSYM.forEach(s=>{ const t=document.createElement("button"); t.type="button"; t.textContent=s; t.setAttribute("aria-pressed",o.s===s?"true":"false"); t.onclick=()=>icSet({...icGet(),s}); rs.appendChild(t); }); }
+/* ---------- v27: Geheimes Rätsel ---------- */
+const RZ=[{q:"ZUGANG VERWEIGERT.\n\nDrei Rätsel. Keine Tipps.\n\nRÄTSEL 1/3:\nEin römischer Feldherr hat dir geschrieben:\n\n   VWXQGHQSODQ\n\nJeder Buchstabe wurde verschoben –\num so viele Stellen, wie ein Dreieck Ecken hat.\n\nWas steht wirklich da?",a:"bmFscG5lZG51dHM="},
+  {q:"KORREKT.\n\nRÄTSEL 2/3:\nZähle alle Erfolge, die es in dieser App gibt –\nauch die, die du noch nie gesehen hast.\nNimm die Zahl mal die Schultage einer Woche.\n\nAntworte mit einer Zahl.",n:1},
+  {q:"BEEINDRUCKEND.\n\nRÄTSEL 3/3:\nDie letzte Antwort steht dort, wo die App endet.\nDrück lange auf meinen Namen.\n\nWas du dann siehst,\nist keine Sprache für Menschen.",a:"ZWVmZmFr"}];
+function rzStage(){ try{ return Math.max(0,Math.min(3,+localStorage.getItem("fh_rz")||0)); }catch(e){ return 0; } }
+function rzCheck(i,v){ try{ const x=String(v||"").trim().toLowerCase().replace(/[^a-z0-9äöüß]/g,""); if(RZ[i].n) return x===String(achDefs().length*5); return x.split("").reverse().join("")===atob(RZ[i].a).toLowerCase(); }catch(e){ return false; } }
+function rzOpen(){ if(document.querySelector(".rz")) return; const o=document.createElement("div"); o.className="rz"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","Geheimer Bereich");
+  o.innerHTML=`<canvas></canvas><pre class="cur"></pre><input type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" aria-label="Antwort"><div class="err"></div><div class="rb"><button type="button" data-r="ok">ENTER</button><button type="button" data-r="x">EXIT</button></div>`;
+  document.body.appendChild(o); const pre=o.querySelector("pre"), inp=o.querySelector("input"), err=o.querySelector(".err"), cv=o.querySelector("canvas");
+  if(!RM()){ cv.width=innerWidth; cv.height=innerHeight; const cx=cv.getContext("2d"), cols=Math.floor(innerWidth/14), ys=Array(cols).fill(0); const t=setInterval(()=>{ if(!o.isConnected){ clearInterval(t); return; } cx.fillStyle="rgba(2,5,2,.12)"; cx.fillRect(0,0,cv.width,cv.height); cx.fillStyle="#39ff7a"; cx.font="13px monospace"; ys.forEach((y,i)=>{ cx.fillText(String.fromCharCode(0x30A0+Math.random()*96),i*14,y); ys[i]=y>cv.height&&Math.random()>.975?0:y+14; }); },55); }
+  let typing=0; const type=(txt,cb)=>{ clearInterval(typing); pre.textContent=""; let i=0; if(RM()){ pre.textContent=txt; cb&&cb(); return; } typing=setInterval(()=>{ pre.textContent=txt.slice(0,++i); if(i>=txt.length){ clearInterval(typing); cb&&cb(); } },22); };
+  const show=()=>{ const s=rzStage(); if(s>=3){ type("ZUGANG GEWÄHRT.\n\nDu hast alle drei Rätsel gelöst.\n\nBelohnung:\n· Banner „Matrix“\n· Namensfarbe „Glitch“\n· Emoji 🧩\n· Titel „Rätselmeister“\n\nVerrate niemandem die Lösung. 🤫"); inp.hidden=true; o.querySelector("[data-r=ok]").hidden=true; return; } inp.hidden=false; inp.value=""; type(RZ[s].q,()=>inp.focus()); };
+  const submit=()=>{ const s=rzStage(); if(s>=3) return; if(rzCheck(s,inp.value)){ err.textContent=""; try{ localStorage.setItem("fh_rz",String(s+1)); }catch(e){} try{ sfx.chime(false); }catch(e){}
+      if(s+1>=3){ ["rz_ban","rz_nc","rz_emo","rz_ti"].forEach(k=>evtGive(k,null)); try{ fireworks(14,3200); }catch(e){} try{ renderAch(); }catch(e){} } show(); }
+    else { err.textContent="> FALSCH. VERSUCH ES NOCHMAL."; try{ sfx.chime(true); o.animate([{transform:"translateX(0)"},{transform:"translateX(-8px)"},{transform:"translateX(8px)"},{transform:"translateX(0)"}],{duration:280}); }catch(e){} } };
+  o.querySelector("[data-r=ok]").onclick=submit; inp.addEventListener("keydown",e=>{ if(e.key==="Enter") submit(); }); o.querySelector("[data-r=x]").onclick=()=>{ clearInterval(typing); o.remove(); };
+  show(); }
+/* ---------- v27: Verdrahtung ---------- */
+(function v27Init(){
+  visitMark(); evtApply(); icApply();
+  document.addEventListener("visibilitychange",()=>{ if(!document.hidden){ visitMark(); try{ evtRender(); weekRender(); }catch(e){} } });
+  /* Event-Freischaltungen im Profil */
+  const _ok=pfOk; pfOk=function(r){ if(r&&r.ev) return evtHas(r.ev); return _ok.apply(this,arguments); };
+  const _rq=pfReq; pfReq=function(r){ if(r&&r.ev) return r.ev.startsWith("rz")?"ein Geheimnis":"ein Event"; return _rq.apply(this,arguments); };
+  const _own=ownedAll; ownedAll=function(){ const s=_own.apply(this,arguments); Object.entries(EVT_TI).forEach(([k,t])=>{ if(evtHas(k)) s.add("t:"+t); }); return s; };
+  const _atr=achTitlesRender; achTitlesRender=function(X){ const r=_atr.apply(this,arguments); try{ const box=$("pfTit"); if(box){ const cur=profTitleCustom(X||xpData()); Object.entries(EVT_TI).forEach(([k,t])=>{ if(!evtHas(k)) return; const b=document.createElement("button"); b.type="button"; b.className="ch2"; b.textContent="✨ "+t; b.setAttribute("aria-pressed",cur===t?"true":"false"); b.onclick=()=>{ profSet("title",cur===t?"":t); try{ sfx.click(); }catch(e){} lvlRender(); }; box.insertBefore(b,box.firstChild); }); } }catch(e){} return r; };
+  /* Erfolge */
+  const _ad=achDefs; achDefs=function(){ const d=_ad.apply(this,arguments), adm=typeof admOn==="function"&&admOn(); let won=0; try{ won=cxList().filter(c=>cxState(c).won).length; }catch(e){}
+    const ex=[{g:"Freunde",id:"chw",n:"Herausforderung gemeistert",d:"Eine Challenge geschafft",ic:"target",v:won,t:1},{g:"Geheim",s:1,id:"rz",n:"Rätselmeister",d:"Das geheime Rätsel in der App gelöst",ic:"star",v:rzStage()>=3?1:0,t:1}];
+    return d.concat(ex.map(a=>Object.assign(a,{ti:ACHT[a.id]},adm?{v:a.t,p:1}:{}))); };
+  Object.assign(ACHT,{chw:"Challenge-Champion",rz:"Hacker"});
+  /* Urkunde im Erfolgs-Fenster */
+  const _mo=medalOpen; medalOpen=function(a,on,date){ const r=_mo.apply(this,arguments); try{ if(on){ const t=document.querySelector(".mdo .mtx"); if(t&&!t.querySelector(".murk")){ const b=document.createElement("button"); b.type="button"; b.className="murk"; b.textContent="📜 Urkunde ansehen & teilen"; b.onclick=ev=>{ ev.stopPropagation(); const full=achDefs().find(x=>x.id===a.id)||a; shareCanvas(urkunde(full,date),"urkunde-"+a.id+".png","Meine Urkunde: "+a.n+" 🏅"); }; t.insertBefore(b,t.querySelector(".mh")); } } }catch(e){} return r; };
+  /* Render-Hooks */
+  const _r=render; render=function(){ const r=_r.apply(this,arguments); try{ weekRender(); evtRender(); umrRender(false); }catch(e){} return r; };
+  const _go=go; go=function(v){ const r=_go.apply(this,arguments); try{ if(v==="game") cxRender(); if(v==="stats") umrRender(false); if(v==="more") icRender(); }catch(e){} return r; };
+  /* Knöpfe */
+  const un=$("umrNext"); if(un) un.onclick=()=>{ umrRender(true); try{ sfx.click(); }catch(e){} }; const us=$("umrShare"); if(us) us.onclick=umrShare;
+  const cn=$("cxNew"), cf=$("cxForm"); let cty="late", cdays=10; if(cn) cn.onclick=()=>{ cf.classList.toggle("on"); $("cxPaste").classList.remove("on"); };
+  if(cf){ cf.querySelectorAll("[data-ty]").forEach(b=>b.onclick=()=>{ cty=b.dataset.ty; cf.querySelectorAll("[data-ty]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); });
+    cf.querySelectorAll("[data-days]").forEach(b=>b.onclick=()=>{ cdays=+b.dataset.days; cf.querySelectorAll("[data-days]").forEach(x=>x.setAttribute("aria-pressed",x===b?"true":"false")); });
+    $("cxGo").onclick=()=>{ cxCreate(cty,cdays); cf.classList.remove("on"); }; }
+  const cp=$("cxPasteBtn"); if(cp) cp.onclick=async()=>{ let t=""; try{ if(navigator.clipboard&&navigator.clipboard.readText) t=await navigator.clipboard.readText(); }catch(e){} if(t&&/FH[CR]1-/.test(t)){ cxImport(t); return; } $("cxPaste").classList.toggle("on"); $("cxForm").classList.remove("on"); $("cxIn").focus(); };
+  const ca=$("cxAdd"); if(ca) ca.onclick=()=>{ cxImport($("cxIn").value); $("cxIn").value=""; $("cxPaste").classList.remove("on"); };
+  /* Rätsel: 5× aufs Logo; Codewort: Name der App lange drücken */
+  const lg=document.querySelector(".appbar .logo"); let lc=0, lt=0; if(lg){ lg.style.cursor="pointer"; lg.addEventListener("click",()=>{ const n=Date.now(); lc=n-lt<900?lc+1:1; lt=n; if(lc>=5){ lc=0; rzOpen(); } }); }
+  const ab=document.querySelector(".about span:first-child"); if(ab){ let ht=0; const st=()=>{ ht=setTimeout(()=>{ if(rzStage()>=2){ toast("📡  -.-  /  .-  /  ..-.  /  ..-.  /  .  /  ."); try{ navigator.vibrate&&navigator.vibrate(60); }catch(e){} } },3000); }, en=()=>clearTimeout(ht);
+    ab.addEventListener("pointerdown",st); ["pointerup","pointerleave","pointercancel"].forEach(t=>ab.addEventListener(t,en)); ab.style.webkitUserSelect="none"; ab.style.userSelect="none"; }
+  /* App-Symbol in der Installations-Hilfe */
+  const _is=instShow; instShow=function(done){ const r=_is.apply(this,arguments); try{ const o=document.querySelector(".inst"), st=o&&o.querySelector(".isteps"); if(st){ const q=document.createElement("div"); q.className="icq"; q.innerHTML='<div class="lbl">Vorher: Wähl dein App-Symbol</div><div class="row"></div>'; const row=q.querySelector(".row"), cur=icGet();
+      [[0,"F"],[1,"F"],[2,"🔥"],[4,"🦊"],[5,"👑"],[3,"🐸"],[6,"🚀"],[7,"💀"]].forEach(([b,s])=>{ const btn=document.createElement("button"); btn.type="button"; btn.setAttribute("aria-pressed",cur.b===b&&cur.s===s?"true":"false"); const im=document.createElement("img"); im.alt=""; im.src=icDraw({b,s},104); btn.appendChild(im); btn.onclick=()=>{ icSet({b,s}); row.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",x===btn?"true":"false")); }; row.appendChild(btn); });
+      st.parentNode.insertBefore(q,st); } }catch(e){} return r; };
+  setTimeout(()=>{ try{ weekRender(); evtRender(); umrRender(false); cxRender(); icRender(); }catch(e){} },500); })();
 /* ---------- guided tour ---------- */
 function tour(){ if(document.querySelector(".tour")) return; clearSel(); closeSheet();
   const hasRow=()=>document.querySelector("#list .swipe");
@@ -4711,7 +5032,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="25";
+const APP_VERSION="27";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
