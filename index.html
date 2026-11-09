@@ -363,6 +363,52 @@ main.quake{animation:quake .45s cubic-bezier(.36,.07,.19,.97)}
 #splash small{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;animation:fieldin .5s var(--e-out) .5s both}
 #splash .ln{height:2px;box-shadow:0 0 14px var(--amber)}
 /*v21*/
+/* ---------- v25: Krank-Modus ---------- */
+#sickRow .toggle{margin:0}
+#sickTo{margin-top:10px;display:flex;flex-direction:column;gap:6px}
+#sickTo input{width:100%;box-sizing:border-box}
+#sickInfo{color:var(--sub);font-size:.84rem}
+#sickInfo b{color:var(--ink)}
+.sickc{position:relative;overflow:hidden;border:1px solid color-mix(in srgb,#5eead4 35%,var(--line));background:linear-gradient(135deg,color-mix(in srgb,#0f766e 22%,var(--raise)),var(--raise) 70%);margin-bottom:12px}
+.sickc .sh{display:flex;gap:14px;align-items:center}
+.sickc .em{font-size:2.6rem;line-height:1;animation:skBob 2.8s ease-in-out infinite;flex:none}
+@keyframes skBob{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg) translateY(-3px)}}
+.sickc h3{margin:0;font-size:1.15rem}
+.sickc p{margin:4px 0 0;color:var(--sub);font-size:.9rem}
+.sickc .sdays{display:flex;gap:6px;margin:14px 0 4px;flex-wrap:wrap}
+.sickc .sdays i{font-style:normal;font-family:var(--mono);font-size:.7rem;padding:5px 8px;border-radius:9px;background:var(--flap);border:1px solid var(--line2);color:var(--sub)}
+.sickc .sdays i.t{border-color:#5eead4;color:#5eead4}
+.sickc .att{margin-top:12px;padding:10px 12px;border-radius:12px;background:color-mix(in srgb,var(--amber) 14%,transparent);border:1px solid color-mix(in srgb,var(--amber) 45%,transparent);font-size:.88rem}
+.sickc .att.ok{background:color-mix(in srgb,#35c983 12%,transparent);border-color:color-mix(in srgb,#35c983 45%,transparent)}
+.sickc .sbtn{display:flex;gap:8px;margin-top:12px}.sickc .sbtn .btn{flex:1}
+:root.rm .sickc .em{animation:none}
+
+/* ---------- v24: Installieren und Einladen ---------- */
+.inst{position:fixed;inset:0;z-index:130;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px))!important;background:radial-gradient(120% 70% at 50% 0%,#1b2a4a,#07090e 65%);color:#fff;display:flex;flex-direction:column;align-items:center;padding:calc(26px + env(safe-area-inset-top,0px)) 22px calc(22px + env(safe-area-inset-bottom,0px));overflow:auto;text-align:center;animation:fade .3s}
+.inst .ilogo{width:76px;height:76px;border-radius:20px;background:linear-gradient(145deg,#f5a623,#d9820b);display:grid;place-items:center;font-weight:900;font-size:2.3rem;color:#1a1200;box-shadow:0 14px 40px -10px rgba(245,166,35,.7);animation:iBob 2.6s ease-in-out infinite}
+@keyframes iBob{50%{transform:translateY(-6px) rotate(-3deg)}}
+.inst h2{font-size:clamp(1.6rem,7vw,2.1rem);margin:18px 0 6px;line-height:1.1;font-weight:850}
+.inst h2 em{font-style:normal;color:#f5a623}
+.inst .isub{color:rgba(255,255,255,.72);margin:0 0 18px;max-width:34ch;line-height:1.4}
+.inst .isteps{display:flex;flex-direction:column;gap:10px;width:100%;max-width:400px}
+.inst .ist{display:flex;align-items:center;gap:14px;text-align:left;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:12px 14px;opacity:.55;transition:opacity .3s,border-color .3s,transform .3s}
+.inst .ist.on{opacity:1;border-color:#f5a623;transform:scale(1.02);box-shadow:0 0 0 3px rgba(245,166,35,.15)}
+.inst .ist .n{width:30px;height:30px;border-radius:50%;background:#f5a623;color:#111;font-weight:900;display:grid;place-items:center;flex:none}
+.inst .ist .ic{width:40px;height:40px;border-radius:11px;background:#fff;color:#0a84ff;display:grid;place-items:center;flex:none}
+.inst .ist .ic svg{width:24px;height:24px}
+.inst .ist b{display:block;font-size:1rem}.inst .ist small{color:rgba(255,255,255,.65);font-size:.82rem}
+.inst .iarrow{position:fixed;left:50%;bottom:calc(8px + env(safe-area-inset-bottom,0px));width:46px;height:46px;margin-left:-23px;color:#f5a623;animation:iArr 1.1s ease-in-out infinite;pointer-events:none;filter:drop-shadow(0 4px 12px rgba(245,166,35,.6))}
+.inst .iarrow.tr{left:auto;right:18px;bottom:auto;top:calc(6px + env(safe-area-inset-top,0px));transform:rotate(180deg);animation:iArr2 1.1s ease-in-out infinite}
+@keyframes iArr{50%{transform:translateY(10px)}}@keyframes iArr2{0%,100%{transform:rotate(180deg)}50%{transform:rotate(180deg) translateY(10px)}}
+.inst .ibtns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:400px;margin-top:18px}
+.inst .ibtns button{border:0;border-radius:16px;padding:15px;font:inherit;font-weight:750;font-size:1.02rem}
+.inst .ibtns .p{background:#f5a623;color:#111}.inst .ibtns .s{background:rgba(255,255,255,.1);color:#fff}.inst .ibtns .t{background:none;color:rgba(255,255,255,.55);font-weight:500;font-size:.88rem;padding:8px}
+.inst .iwhy{margin-top:14px;font-size:.8rem;color:rgba(255,255,255,.5);max-width:36ch;line-height:1.4}
+.ur .uinv{display:flex;gap:-10px;justify-content:center}
+.ur .uinv i{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:1.6rem;background:#1a202a;border:3px solid #07090e;margin-left:-12px;animation:uiPop 2.4s ease-in-out infinite}
+.ur .uinv i:first-child{margin-left:0}.ur .uinv i:nth-child(2){animation-delay:.15s}.ur .uinv i:nth-child(3){animation-delay:.3s}.ur .uinv i:nth-child(4){animation-delay:.45s}.ur .uinv i.add{background:#f5a623;color:#111;font-weight:900}
+@keyframes uiPop{0%,100%{transform:none}30%{transform:translateY(-10px)}}
+
 #achGrid .achti{display:block;color:var(--amber);font-weight:650;margin-top:2px}
 #achGrid .a.off .achti{opacity:.75}
 
@@ -1989,7 +2035,7 @@ main.quake{animation:none}
     
     
     
-    <div id="banners"></div><div id="banners2"></div><div id="banners3"></div>
+    <div id="banners"></div><div id="banners2"></div><div id="banners3"></div><div id="sickCard" hidden></div>
     <div id="nudge"></div>
     <div class="mnote" id="mnote" hidden><span>Animationen sind aus, weil auf deinem Gerät „Bewegung reduzieren“ eingeschaltet ist.</span><button type="button" class="btn" id="mnoteOn">Einschalten</button></div>
     <div class="actions">
@@ -2133,7 +2179,7 @@ main.quake{animation:none}
       <div class="settings">
         <div class="set"><label for="setLimit">Erlaubte Fehlstunden<small>Grenze für den ganzen Zeitraum</small></label><input type="number" id="setLimit" min="10" max="500" step="1" inputmode="numeric"></div>
         <div class="set"><label for="setWarn">Warnung ab<small>Ab hier wird die Anzeige gelb</small></label><input type="number" id="setWarn" min="1" max="500" step="1" inputmode="numeric"></div>
-        <div class="set"><label for="setLesson">Länge einer Schulstunde<small>In Minuten</small></label><input type="number" id="setLesson" min="30" max="90" step="5" inputmode="numeric"></div>
+        <div class="set"><label for="setLesson">Länge einer Schulstunde<small>In Minuten</small></label><input type="number" id="setLesson" min="30" max="90" step="5" inputmode="numeric"></div><div class="set"><label for="setAttest">Attest nötig ab<small>Krankheitstag, 0 = keine Erinnerung</small></label><input type="number" id="setAttest" min="0" max="30" step="1" inputmode="numeric"></div>
         <div class="set"><label for="setDue">Frist für Entschuldigungen<small>In Tagen, 0 = aus</small></label><input type="number" id="setDue" min="0" max="30" step="1" inputmode="numeric"></div>
         <div class="set"><label for="setStart">Zeitraum von<small>Erster Monat, der zählt</small></label><input type="month" id="setStart"></div>
         <div class="set"><label for="setEnd">Zeitraum bis<small>Letzter Monat, der zählt</small></label><input type="month" id="setEnd"></div>
@@ -2177,6 +2223,11 @@ main.quake{animation:none}
       </div>
     </div>
 
+    <div class="card">
+      <h3>Freunde einladen</h3>
+      <p>Schick die App mit Anleitung an Freunde oder andere Klassen. Wer jemanden einlädt, bekommt den Erfolg „Botschafter“.</p>
+      <button type="button" class="btn next" id="inviteBtn" style="width:100%;margin-top:10px">Freunde einladen</button>
+    </div>
     <div class="card">
       <h3>Stand teilen</h3>
       <p>Freiwillig: Erzeugt einen Code mit deinem Namen aus dem Profil und deinen Zahlen (Fehlstunden gesamt, Fehltage, Verspätungen, entschuldigt, Grenze). Nur wer den Code von dir bekommt, sieht ihn. Einzelne Tage und Gründe werden nicht geteilt.</p>
@@ -2222,7 +2273,7 @@ main.quake{animation:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 23.5</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 25</span></div>
   </section>
 </main>
 
@@ -2249,6 +2300,7 @@ main.quake{animation:none}
       <button type="button" data-type="late" aria-pressed="false">Zu spät</button>
     </div>
     <div class="f"><span>Datum</span><div class="datechips chips" id="dateChips"><button type="button" data-d="0">Heute</button><button type="button" data-d="1">Gestern</button><button type="button" data-d="2">Vorgestern</button></div><input type="date" id="date" aria-label="Datum"></div>
+    <div class="f" id="sickRow" hidden><label class="toggle" for="sickOn">🤒 Mehrere Tage krank<span class="switch-t"><input type="checkbox" id="sickOn" role="switch"><span></span></span></label><div id="sickTo" hidden><span>bis einschließlich</span><input type="date" id="sickEnd"><small id="sickInfo"></small></div></div>
     <div class="chips" id="lateMode" role="group" aria-label="Wie zu spät" hidden><button type="button" data-m="min" aria-pressed="true">Ein paar Minuten</button><button type="button" data-m="lesson" aria-pressed="false">Erst zu einer späteren Stunde</button></div>
     <div class="f"><span id="amountLbl">Stunden</span>
       <div class="amount">
@@ -2750,7 +2802,7 @@ $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist ger
 /* ---------- start ---------- */
 /* ---------- v19: Update-Story für bisherige Nutzer (statt Neulings-Intro) ---------- */
 /* Welche Update-Seiten jemand schon gesehen hat – es kommen nur neue */
-const UPD_PAGES=["titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
+const UPD_PAGES=["sick","invite","titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
 function updSeen(){ let a=null; try{ a=JSON.parse(localStorage.getItem("fh_upd_seen")||"null"); }catch(e){}
   if(!Array.isArray(a)){ a=[]; const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } };
     if(g("fh_intro16")) a.push("prog","due","morn","photos","months","tips","mode");
@@ -2767,6 +2819,8 @@ function updReel(opts){ opts=opts||{}; if(document.querySelector(".ur")) return;
   const ICK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const P=[
     {c:"#f5a623",k:"intro",h:()=>`<div class="urbig">UP<span>DATE</span></div><h2>Das ist <em>neu</em></h2><p class="urt">Seit deinem letzten Besuch hat sich einiges getan. Tippe dich in deinem Tempo durch.</p>`},
+    {c:"#5eead4",k:"sick",h:()=>`<div class="urvis"><div class="ucard"><div><small>Krank-Modus</small><b>🤒 Mo – Fr · 5 Tage</b></div><span class="uchk">${ICK}</span></div></div><h2>Krank? <em>Ein</em> Eintrag.</h2><p class="urt">Beim Eintragen „Mehrere Tage krank“ einschalten und das Ende wählen. Wochenenden zählen nicht, und die App erinnert dich ans Attest.</p>`},
+    {c:"#35c983",k:"invite",h:()=>`<div class="urvis"><div class="uinv"><i>🦊</i><i>🐼</i><i>🐸</i><i class="add">+</i></div></div><h2>Freunde <em>einladen</em></h2><p class="urt">Unter Mehr → Freunde einladen schickst du die App samt Anleitung. Jede Einladung zählt für neue Erfolge.</p>`},
     {c:"#f5a623",k:"titles",h:()=>`<div class="urvis"><div class="utitles"><span>DB-Veteran</span><span>SEV-Survivor</span><span>Atomuhr</span><span>Montags-Endgegner</span><span>Phantom der Anwesenheitsliste</span></div></div><h2>Neue <em>Titel</em></h2><p class="urt">Jeder Erfolg schaltet jetzt einen eigenen Titel frei. Zeig ihn im Profil und im Duell.</p>`},
     {c:"#d946ef",k:"profile",h:()=>`<div class="urvis"><div class="uprof"><div class="upb"></div><div class="upa">🦊<span>12</span></div><div class="upn"><b>Dein Name</b><small>Status: Nie wieder zu spät</small></div><div class="upv"><i></i><i></i><i></i></div></div></div><h2>Dein <em>Profil</em></h2><p class="urt">Profilbild, Banner, Namensfarbe und Vitrine. Vieles schaltest du erst durch Level und Erfolge frei. Zu finden im Tab Erfolge.</p>`},
     {c:"#f5a623",k:"ach",h:()=>`<div class="urvis"><div class="umeds"><i>★</i><i>🔥</i><i class="q">?</i><i>💎</i><i>🏆</i></div></div><h2><em>${achDefs().length}</em> Erfolge</h2><p class="urt">Sortiert nach Kategorien, mit neuer Bahn-Kategorie und 5 geheimen, die erst nach dem Freischalten verraten werden.</p>`},
@@ -4194,7 +4248,14 @@ function admPanel(){ const o=admSheet(`<h3>Admin <button type="button" class="x"
     <div class="settings"><div class="set"><label for="admSw">Admin-Modus<small>Alle Erfolge, alles freigeschaltet, Level ∞</small></label><span class="switch-t"><input type="checkbox" id="admSw" role="switch"><span></span></span></div></div>
     <h3 style="margin-top:18px">Geteilte Stände</h3><small style="color:var(--sub)">Nur Codes, die dir jemand freiwillig geschickt hat.</small>
     <textarea id="admIn" placeholder="Code hier einfügen (FHS1-…)"></textarea><div class="err" id="admE2"></div><div class="admrow"><button type="button" class="btn next" id="admAdd">Hinzufügen</button></div>
-    <div class="sl" id="admList"></div><div class="admrow" style="margin-top:16px"><button type="button" class="btn" id="admLock">Sperren</button></div>`);
+    <div class="sl" id="admList"></div>
+    <h3 style="margin-top:18px">Vorschau</h3><small style="color:var(--sub)">So sieht es für neue Nutzer aus. Deine Daten bleiben unverändert.</small>
+    <div class="admrow"><button type="button" class="btn" id="admPvInst">Installations-Hilfe</button><button type="button" class="btn" id="admPvIntro">Intro für Neue</button></div>
+    <div class="admrow"><button type="button" class="btn" id="admPvNews">Update-Story</button></div>
+    <div class="admrow" style="margin-top:16px"><button type="button" class="btn" id="admLock">Sperren</button></div>`);
+  o.querySelector("#admPvInst").onclick=()=>{ o.remove(); instShow(null); };
+  o.querySelector("#admPvIntro").onclick=()=>{ o.remove(); onboarding({existing:true}); };
+  o.querySelector("#admPvNews").onclick=()=>{ o.remove(); updReel({all:true}); };
   const sw=o.querySelector("#admSw"); sw.checked=admOn(); sw.onchange=()=>admSet(sw.checked);
   const list=o.querySelector("#admList"), draw=()=>{ const L=admCodes().sort((a,b)=>b.h-a.h); list.innerHTML=""; if(!L.length){ list.innerHTML='<small style="color:var(--sub)">Noch keine Codes.</small>'; return; }
     L.forEach((c,k)=>{ const it=document.createElement("div"); it.className="si"; const pct=Math.min(100,Math.round(c.h/Math.max(1,c.l)*100));
@@ -4245,6 +4306,99 @@ function achTitlesRender(X){ const box=$("pfTit"); if(!box) return; X=X||xpData(
     try{ lvlRender(); }catch(e){}
     localStorage.setItem("fh_achfix1","1"); }catch(e){} };
   const wait=()=>{ if(window.__fhLoaded) setTimeout(run,300); else setTimeout(wait,500); }; wait(); })();
+/* ---------- v24: Installations-Hilfe und Freunde einladen ---------- */
+const APP_URL=(location.protocol==="https:"&&/github\.io$/.test(location.host))?location.origin+location.pathname:"https://kepuraphil.github.io/Fehlstunden/";
+let bipEvt=null; addEventListener("beforeinstallprompt",e=>{ e.preventDefault(); bipEvt=e; });
+const IC_SHARE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7.5 7.5L12 3l4.5 4.5"/><path d="M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></svg>';
+const IC_PLUSQ='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M12 8v8M8 12h8"/></svg>';
+const IC_DOTS='<svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5" cy="12" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="12" r="2"/></svg>';
+const IC_ARR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v15M5 12l7 7 7-7"/></svg>';
+function instEnv(){ const ua=navigator.userAgent, android=/Android/i.test(ua), mobile=isIOS||android;
+  const inApp=/Instagram|FBAN|FBAV|Snapchat|TikTok|musical_ly|BytedanceWebview|Line\//i.test(ua), crios=/CriOS|FxiOS|EdgiOS/i.test(ua);
+  return {mobile,android,ios:isIOS,inApp,crios}; }
+function instNeeded(){ try{ if(isStandalone()||window.claude) return false; if(sessionStorage.getItem("fh_inst_ok")) return false; }catch(e){} return instEnv().mobile; }
+function instShow(done){ const E=instEnv(); const o=document.createElement("div"); o.className="inst"; o.setAttribute("role","dialog"); o.setAttribute("aria-label","App installieren");
+  let steps, arrow="";
+  if(E.inApp) steps=[[IC_DOTS,"Menü öffnen","Oben rechts auf ••• tippen"],[IC_SHARE,"„Im Browser öffnen“","Dann öffnet sich Safari bzw. Chrome"],[IC_PLUSQ,"Dort installieren","Die Anleitung kommt dann noch einmal"]];
+  else if(E.ios&&E.crios){ steps=[[IC_SHARE,"Auf Teilen tippen","Oben rechts in der Adresszeile"],[IC_PLUSQ,"„Zum Home-Bildschirm“","Etwas nach unten scrollen"],[IC_PLUSQ,"„Hinzufügen“ tippen","Fertig! Ab jetzt über das Symbol öffnen"]]; arrow="tr"; }
+  else if(E.ios){ steps=[[IC_SHARE,"Auf Teilen tippen","Unten in Safari (bei neuem Safari erst auf •••)"],[IC_PLUSQ,"„Zum Home-Bildschirm“","Im Menü etwas nach unten scrollen"],[IC_PLUSQ,"„Hinzufügen“ tippen","Fertig! Ab jetzt über das Symbol öffnen"]]; arrow="b"; }
+  else steps=[[IC_DOTS,"Menü öffnen","Oben rechts auf ⋮ tippen"],[IC_PLUSQ,"„App installieren“","oder „Zum Startbildschirm hinzufügen“"],[IC_PLUSQ,"Bestätigen","Fertig! Ab jetzt über das Symbol öffnen"]];
+  o.innerHTML=`<div class="ilogo">F</div><h2>Erst <em>installieren</em>, dann loslegen</h2><p class="isub">Leg die App auf deinen Home-Bildschirm. Das dauert 10 Sekunden.</p>
+    <div class="isteps">${steps.map((s,i)=>`<div class="ist"><span class="n">${i+1}</span><span class="ic">${s[0]}</span><span><b>${s[1]}</b><small>${s[2]}</small></span></div>`).join("")}</div>
+    <div class="ibtns">${bipEvt&&E.android?'<button type="button" class="p" data-i="go">Jetzt installieren</button>':""}${E.inApp?'<button type="button" class="p" data-i="copy">Link kopieren</button>':""}<button type="button" class="t" data-i="skip">Erst mal im Browser ausprobieren</button></div>
+    <p class="iwhy">Warum? Nur als installierte App startet sie wie eine echte App, und deine Einträge bleiben sicher gespeichert. Was du im Browser einträgst, ist in der installierten App auf dem iPhone nicht da.</p>${arrow?`<div class="iarrow ${arrow==="tr"?"tr":""}">${IC_ARR}</div>`:""}`;
+  document.body.appendChild(o); const st=[...o.querySelectorAll(".ist")]; let k=0; const tick=()=>{ st.forEach((s,i)=>s.classList.toggle("on",i===k)); k=(k+1)%st.length; }; tick(); const tm=setInterval(tick,1800);
+  const close=()=>{ clearInterval(tm); o.remove(); try{ sessionStorage.setItem("fh_inst_ok","1"); }catch(e){} if(done) done(); };
+  o.addEventListener("click",async e=>{ const b=e.target.closest("[data-i]"); if(!b) return; const a=b.dataset.i;
+    if(a==="skip") close();
+    else if(a==="copy"){ try{ await navigator.clipboard.writeText(APP_URL); toast("Link kopiert. In Safari oder Chrome einfügen."); }catch(_){ toast(APP_URL); } }
+    else if(a==="go"&&bipEvt){ try{ bipEvt.prompt(); const r=await bipEvt.userChoice; bipEvt=null; if(r&&r.outcome==="accepted"){ toast("Installiert! Öffne die App jetzt über das Symbol."); b.remove(); } }catch(_){} } }); }
+/* Freunde einladen */
+function invCount(){ try{ return +localStorage.getItem("fh_inv")||0; }catch(e){ return 0; } }
+async function inviteFriends(){ const text=`📚 Ich nutze das Fehlstunden-Heft: zählt deine Fehlstunden automatisch, zeigt, wie viele noch übrig sind, und erinnert an Entschuldigungen. Dazu Level, Erfolge und Duelle! Kostenlos, ohne Anmeldung.\n\niPhone: Link in Safari öffnen → Teilen → „Zum Home-Bildschirm“\nAndroid: in Chrome → ⋮ → „App installieren“`;
+  const count=()=>{ try{ localStorage.setItem("fh_inv",String(invCount()+1)); }catch(e){} try{ renderAch(); }catch(e){} };
+  try{ if(navigator.share){ await navigator.share({title:"Fehlstunden-Heft",text,url:APP_URL}); count(); toast("Danke fürs Einladen!"); return; } }catch(e){ if(e&&e.name==="AbortError") return; }
+  try{ await navigator.clipboard.writeText(text+"\n\n"+APP_URL); count(); toast("Einladung kopiert. Jetzt in WhatsApp einfügen."); }catch(e){ toast(APP_URL); } }
+(function v24Init(){
+  const _ob=onboarding; onboarding=function(opts){ if(!(opts&&opts.existing)&&!lsGet("fh_onboarded")&&instNeeded()){ instShow(()=>_ob.call(this,opts)); return; } return _ob.apply(this,arguments); };
+  const _ds=duelStart; duelStart=function(opp){ if(opp){ try{ localStorage.setItem("fh_duels",String((+localStorage.getItem("fh_duels")||0)+1)); }catch(e){} } return _ds.apply(this,arguments); };
+  const _ad=achDefs; achDefs=function(){ const d=_ad.apply(this,arguments); let duels=0; try{ duels=+(localStorage.getItem("fh_duels")||0); }catch(e){} const inv=invCount(), adm=typeof admOn==="function"&&admOn();
+    const extra=[{g:"Freunde",id:"inv1",n:"Botschafter",d:"Die App an jemanden weitergeschickt",ic:"rocket",v:inv,t:1},
+      {g:"Freunde",id:"du10",n:"Duellant",d:"10 Duelle gespielt",ic:"target",v:duels,t:10}];
+    return d.concat(extra.map(a=>Object.assign(a,{ti:ACHT[a.id]},adm?{v:a.t,p:1}:{}))); };
+  Object.assign(ACHT,{inv1:"Botschafter",du10:"Duellant"});
+  const ib=$("inviteBtn"); if(ib) ib.onclick=inviteFriends; })();
+/* ---------- v25: Krank-Modus (mehrere Tage, Gute Besserung, Attest-Erinnerung) ---------- */
+function attestDays(){ try{ const v=localStorage.getItem("fh_attest"); return v===null?3:Math.max(0,Math.min(30,+v||0)); }catch(e){ return 3; } }
+function dayHours(d,fallback){ const w=SET.week&&SET.week[pd(d).getDay()]; return +w>0?+w:fallback; }
+function schoolDaysBetween(a,b){ const out=[]; const d=pd(a), e=pd(b); let k=0; while(d<=e&&k<60){ const w=d.getDay(); if(w>=1&&w<=5) out.push(iso(d)); d.setDate(d.getDate()+1); k++; } return out; }
+function prevSchoolDay(ds){ const d=pd(ds); do{ d.setDate(d.getDate()-1); }while(d.getDay()===0||d.getDay()===6); return iso(d); }
+function sickGroups(){ const g={}; entries.forEach(e=>{ if(e&&e.sick){ (g[e.sick]=g[e.sick]||[]).push(e); } }); return Object.entries(g).map(([id,a])=>({id,list:a.sort((x,y)=>x.date<y.date?-1:1)})).sort((x,y)=>x.list[x.list.length-1].date<y.list[y.list.length-1].date?1:-1); }
+function sickUI(){ const row=$("sickRow"); if(!row) return; const show=type==="absent"&&!editing; row.hidden=!show; if(!show){ $("sickOn").checked=false; }
+  const on=show&&$("sickOn").checked; $("sickTo").hidden=!on; $("amountLbl").textContent=on?"Stunden pro Tag":(type==="late"?$("amountLbl").textContent:"Stunden"); $("dateChips").hidden=false;
+  if(on){ const st=$("date").value, en=$("sickEnd"); if(!en.value||en.value<st) en.value=st; en.min=st; const days=schoolDaysBetween(st,en.value).filter(d=>!entries.some(e=>e.date===d&&typeOf(e)==="absent"));
+    const h=days.reduce((s,d)=>s+dayHours(d,amount),0); $("sickInfo").innerHTML=days.length?`<b>${days.length} ${days.length===1?"Schultag":"Schultage"}</b> · <b>${h} Stunden</b>. Wochenenden und Tage mit Eintrag werden übersprungen.${SET.week&&Object.keys(SET.week).length?" Stunden laut deinem Stundenplan.":""}`:"Keine Schultage in diesem Zeitraum."; } }
+async function sickSave(){ const st=$("date").value, en=$("sickEnd").value||st; if(!st){ $("fmsg").textContent="Wähle ein Datum."; return; } if(en<st){ $("fmsg").textContent="Das Ende liegt vor dem Anfang."; return; }
+  const days=schoolDaysBetween(st,en).filter(d=>!entries.some(e=>e.date===d&&typeOf(e)==="absent")); if(!days.length){ $("fmsg").textContent="Keine freien Schultage in diesem Zeitraum."; return; }
+  const sb=$("saveBtn"); sb.disabled=true; sb.classList.add("busy"); sb.textContent=`${days.length} Tage werden gespeichert …`;
+  const gid="s"+Date.now().toString(36), reason=reasonChip||$("reason").value.trim()||"Krank", before=entries.filter(e=>inPeriod(e.date)).reduce((s,e)=>s+lessonsOf(e),0); let tot=0;
+  try{ for(let i=0;i<days.length;i++){ const d=days[i], h=dayHours(d,amount); tot+=h; await store.add({type:"absent",date:d,reason,excused:$("excused").checked,updated:Date.now(),created:Date.now(),hours:h,minutes:null,fromLesson:null,lateMode:null,sick:gid},i===0?sheetPhotos:[]); }
+    sb.classList.remove("busy"); sb.classList.add("done"); sb.innerHTML=`<span>${SVG.check}Gespeichert</span>`; if(!RM()) await wait(220); closeSheet(); if(view!=="home") go("home");
+    setTimeout(()=>{ try{ celebrate(tot,"absent",before,true); }catch(e){} toast(`🤒 ${days.length} ${days.length===1?"Tag":"Tage"} eingetragen. Gute Besserung!`); sickRender(); },RM()?0:120); }
+  catch(err){ sb.classList.remove("busy"); $("fmsg").textContent="Speichern hat nicht geklappt. Versuch es noch einmal."; }
+  setTimeout(()=>{ sb.disabled=false; sb.classList.remove("busy","done"); sb.textContent="Speichern"; },260); }
+function sickRender(){ const box=$("sickCard"); if(!box) return; const today=iso(new Date()), wd=new Date().getDay(), G=sickGroups()[0];
+  let dis=""; try{ dis=localStorage.getItem("fh_sick_ok")||""; }catch(e){}
+  if(!G||dis===G.id){ box.hidden=true; box.innerHTML=""; return; }
+  const dates=G.list.map(e=>e.date), last=dates[dates.length-1], first=dates[0], inNow=dates.includes(today), school=wd>=1&&wd<=5;
+  const prevOK=school&&last===prevSchoolDay(today)&&!entries.some(e=>e.date===today);
+  if(!inNow&&!prevOK&&!(last>today)){ box.hidden=true; box.innerHTML=""; return; }
+  const n=dates.length, hrs=G.list.reduce((s,e)=>s+lessonsOf(e),0), A=attestDays(), hasPhoto=G.list.some(e=>photoRefs(e).length), allEx=G.list.every(e=>e.excused);
+  const fmt=d=>pd(d).toLocaleDateString("de-DE",{weekday:"short",day:"numeric",month:"numeric"});
+  const dayNo=inNow?dates.indexOf(today)+1:n;
+  const title=prevOK?"Heute wieder fit?":(last>today&&!inNow?"Gute Besserung!":`Gute Besserung! Tag ${dayNo}`);
+  const sub=prevOK?`Du warst ${n} ${n===1?"Tag":"Tage"} krank (${hrs} Stunden). Bist du heute wieder in der Schule?`:(last>today?`Krank von ${fmt(first)} bis ${fmt(last)}`:`Krank seit ${fmt(first)}`)+` · ${n} ${n===1?"Schultag":"Schultage"} · ${hrs} Stunden eingetragen.`;
+  let att=""; if(A>0&&n>=A) att=hasPhoto?`<div class="att ok">✓ Attest-Foto ist gespeichert.${allEx?"":" Denk ans Abgeben – danach als entschuldigt markieren."}</div>`:`<div class="att">📄 Ab dem ${A}. Krankheitstag brauchst du meist ein <b>Attest</b>. Foto davon gleich hier speichern?</div>`;
+  else if(A>0&&inNow) att=`<div class="att ok">Noch ${A-n} ${A-n===1?"Tag":"Tage"}, dann brauchst du meist ein Attest.</div>`;
+  box.className="card sickc"; box.hidden=false;
+  box.innerHTML=`<div class="sh"><span class="em">${prevOK?"💪":"🤒"}</span><div><h3>${title}</h3><p>${sub}</p></div></div><div class="sdays">${dates.slice(-8).map(d=>`<i class="${d===today?"t":""}">${fmt(d)}</i>`).join("")}</div>${att}
+    <div class="sbtn">${prevOK?'<button type="button" class="btn next" data-s="fit">Ja, wieder fit</button><button type="button" class="btn" data-s="more">Heute auch krank</button>':`${A>0&&n>=A&&!hasPhoto?'<button type="button" class="btn next" data-s="photo">Attest-Foto</button>':""}<button type="button" class="btn" data-s="more">Noch 1 Tag</button><button type="button" class="btn" data-s="fit">Wieder fit</button>`}</div>`;
+  box.onclick=async e=>{ const b=e.target.closest("[data-s]"); if(!b) return; const a=b.dataset.s;
+    if(a==="fit"){ const fut=G.list.filter(x=>x.date>today); for(const x of fut){ try{ await store.remove(x.id); }catch(_){} } try{ localStorage.setItem("fh_sick_ok",G.id); }catch(_){} box.hidden=true; toast(fut.length?`Willkommen zurück! ${fut.length} geplante ${fut.length===1?"Tag":"Tage"} gelöscht.`:"Willkommen zurück! 💪"); try{ const r=b.getBoundingClientRect(); sparks(r.left+r.width/2,r.top,"#5eead4",26); sfx.chime(false); }catch(_){} }
+    else if(a==="more"){ let d=prevOK?today:iso(new Date(pd(last).getFullYear(),pd(last).getMonth(),pd(last).getDate()+1)); while([0,6].includes(pd(d).getDay())){ const x=pd(d); x.setDate(x.getDate()+1); d=iso(x); }
+      if(entries.some(x=>x.date===d&&typeOf(x)==="absent")){ toast("Für diesen Tag gibt es schon einen Eintrag.",true); return; }
+      const h=dayHours(d,G.list[G.list.length-1].hours||6); try{ await store.add({type:"absent",date:d,reason:G.list[0].reason||"Krank",excused:false,updated:Date.now(),created:Date.now(),hours:h,minutes:null,fromLesson:null,lateMode:null,sick:G.id},[]); toast(`🤒 ${pd(d).toLocaleDateString("de-DE",{weekday:"long"})} eingetragen (${h} Std.). Gute Besserung!`); }catch(_){ toast("Speichern hat nicht geklappt.",true); } }
+    else if(a==="photo"){ openSheet("absent",G.list[0]); setTimeout(()=>{ const ph=$("photo"); if(ph) ph.closest(".f").scrollIntoView({block:"center"}); },400); } }; }
+(function v25Init(){
+  const sf=$("sickOn"); if(sf) sf.onchange=()=>{ sickUI(); try{ sfx.click(); }catch(e){} };
+  ["sickEnd","date"].forEach(id=>{ const el=$(id); if(el) el.addEventListener("change",sickUI); });
+  const ts=$("typesw"); if(ts) ts.addEventListener("click",()=>setTimeout(sickUI,0));
+  ["plus","minus"].forEach(id=>{ const el=$(id); if(el) el.addEventListener("click",()=>setTimeout(sickUI,0)); }); const ac=$("amountChips"); if(ac) ac.addEventListener("click",()=>setTimeout(sickUI,0)); const dc=$("dateChips"); if(dc) dc.addEventListener("click",()=>setTimeout(sickUI,0));
+  const _os=openSheet; openSheet=function(){ const r=_os.apply(this,arguments); const sf=$("sickOn"); if(sf) sf.checked=false; const en=$("sickEnd"); if(en) en.value=""; sickUI(); return r; };
+  const f=$("form"), _sub=f.onsubmit; f.onsubmit=ev=>{ if(type==="absent"&&!editing&&$("sickOn")&&$("sickOn").checked){ ev.preventDefault(); sickSave(); return; } return _sub.call(f,ev); };
+  const _r=render; render=function(){ const r=_r.apply(this,arguments); try{ sickRender(); }catch(e){} return r; };
+  const at=$("setAttest"); if(at){ at.value=attestDays(); at.onchange=()=>{ const v=Math.max(0,Math.min(30,Math.round(+at.value||0))); at.value=v; try{ localStorage.setItem("fh_attest",String(v)); }catch(e){} toast(v?`Attest-Erinnerung ab Tag ${v}.`:"Attest-Erinnerung aus."); sickRender(); }; }
+  document.addEventListener("visibilitychange",()=>{ if(!document.hidden) try{ sickRender(); }catch(e){} }); })();
 /* ---------- guided tour ---------- */
 function tour(){ if(document.querySelector(".tour")) return; clearSel(); closeSheet();
   const hasRow=()=>document.querySelector("#list .swipe");
@@ -4557,7 +4711,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="23.5";
+const APP_VERSION="25";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
