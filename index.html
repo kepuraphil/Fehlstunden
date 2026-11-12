@@ -2269,7 +2269,7 @@ main>.view{animation:viewIn .24s var(--e-out)}
 @keyframes kcHolo{0%{background-position:100% 0}100%{background-position:-50% 100%}}
 @keyframes kcSpin{to{transform:rotate(360deg)}}
 .rm .kc.sh::after,.rm .kc.r-l::before{animation:none}
-.kc b{max-width:100%;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto}
+.kc b{max-width:100%;overflow-wrap:break-word;-webkit-hyphens:auto;hyphens:auto;hyphenate-limit-chars:9 4 4;-webkit-hyphenate-limit-before:4;-webkit-hyphenate-limit-after:4}
 .kc .ke{position:relative}.kc .ke i{position:absolute;right:-.42em;bottom:-.05em;font-style:normal;font-size:.42em;filter:drop-shadow(0 2px 3px rgba(0,0,0,.6))}
 .kgrid .kc b,.k29row .kc b{font-size:1.2em}.kc.lg b{font-size:.95em}.kgrid .kc.lg b,.k29row .kc.lg b{font-size:1.02em}
 .kfc{display:block;margin-top:8px;font:500 .8rem/1.3 var(--body);color:rgba(255,255,255,.82);text-align:center;opacity:0;transition:opacity .3s .35s}.kf.on .kfc{opacity:1}.rm .kfc{transition:none}
@@ -2380,6 +2380,20 @@ html:not(.off-fx) .k29b:not(:disabled):not(.s){box-shadow:0 10px 30px -8px var(-
 html.off-wh.off-kc #loot29{display:none!important}html.off-wh #loot29,html.off-kc #loot29{grid-template-columns:1fr}
 html.off-du.off-cx .gseg [data-s="d"]{display:none}
 .uv30{display:grid;gap:7px;width:190px;margin:0 auto}.uv30 span{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.08);font:600 .82rem var(--body);color:#fff}.uv30 i{width:34px;height:20px;border-radius:99px;background:#35c983;position:relative}.uv30 i::after{content:"";position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff}.uv30 span:nth-child(2) i{background:#475569}.uv30 span:nth-child(2) i::after{right:auto;left:2px}
+/* v32 · Tauschen, Sets, Vitrine */
+.ktr{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:12px 0 10px;flex-wrap:wrap}
+.ktr b{font:700 1.05rem var(--sign);letter-spacing:.02em}
+.ktc{display:flex;gap:8px}.ktc input{flex:1;min-width:0;border-radius:var(--r-md);border:1px solid var(--line);background:var(--flap);color:var(--ink);padding:11px 12px;font:500 .95rem var(--body)}
+.kgr{grid-column:1/-1;margin:-4px 0 2px;font:600 .74rem var(--body);color:var(--sub)}.kgr.on{color:#35c983}
+.kdb{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:380px}.kdb .k29b{padding:11px 14px;font-size:.92rem}.kdb .k29b:disabled{opacity:.45}
+.kdh{color:rgba(255,255,255,.55);font-size:.78rem;margin-top:-8px}
+.kvit{margin:14px 0 4px}.kvh{display:flex;justify-content:space-between;align-items:center;font:700 .9rem var(--sign);letter-spacing:.03em;margin-bottom:8px}
+.kvh button{appearance:none;border:1px solid var(--line);background:var(--flap);color:var(--ink);border-radius:99px;padding:6px 12px;font:600 .78rem var(--body);cursor:pointer}
+.kvr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.kvr button{appearance:none;border:0;padding:0;background:none;cursor:pointer;min-width:0;font:inherit}
+.kvr .kve{aspect-ratio:5/7;border-radius:12px;border:2px dashed var(--line);color:var(--sub);font:600 .78rem var(--body)}
+.kvr .kc small,.kvr .kc .kp{display:none}.kvr .kc b{font-size:1.15em;margin-top:.5em}.kvr .kc .ke{font-size:4em}
+html.off-kc #kcVit,html.off-kc #ktCard{display:none!important}
+.uv32{display:flex;gap:10px;justify-content:center;font-size:2.4rem}
 </style>
 
 <header class="appbar" id="appbar">
@@ -2677,7 +2691,7 @@ html.off-du.off-cx .gseg [data-s="d"]{display:none}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 31</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 32</span></div>
   </section>
 </main>
 
@@ -3206,7 +3220,7 @@ $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist ger
 /* ---------- start ---------- */
 /* ---------- v19: Update-Story für bisherige Nutzer (statt Neulings-Intro) ---------- */
 /* Welche Update-Seiten jemand schon gesehen hat – es kommen nur neue */
-const UPD_PAGES=["v30","v29","v28","evt","umr","urk","chal","week","icon","sick","invite","titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
+const UPD_PAGES=["v32","v31","v30","v29","v28","evt","umr","urk","chal","week","icon","sick","invite","titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
 function updSeen(){ let a=null; try{ a=JSON.parse(localStorage.getItem("fh_upd_seen")||"null"); }catch(e){}
   if(!Array.isArray(a)){ a=[]; const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } };
     if(g("fh_intro16")) a.push("prog","due","morn","photos","months","tips","mode");
@@ -3223,6 +3237,8 @@ function updReel(opts){ opts=opts||{}; if(document.querySelector(".ur")) return;
   const ICK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const P=[
     {c:"#f5a623",k:"intro",h:()=>`<div class="urbig">UP<span>DATE</span></div><h2>Das ist <em>neu</em></h2><p class="urt">Seit deinem letzten Besuch hat sich einiges getan. Tippe dich in deinem Tempo durch.</p>`},
+    {c:"#60a5fa",k:"v32",h:()=>`<div class="urvis"><div class="uv32"><span>🎁</span><span>🔥</span><span>🏆</span><span>🖼️</span></div></div><h2>Tauschen, <em>einschmelzen</em>, sammeln</h2><p class="urt">Doppelte Karten kannst du an Freunde verschenken oder fünf davon gegen ein neues Pack tauschen. Jedes volle Set gibt einen eigenen Titel und ein Banner. Und deine drei Lieblingskarten zeigst du jetzt im Profil.</p>`},
+    {c:"#fbbf24",k:"v31",h:()=>`<div class="urvis"><div class="uv29"><div class="kc r-c" style="font-size:7.4px"><span class="ke">🚦</span><b>Signalstörung</b><span class="kr">Gewöhnlich</span></div><div class="kc r-l" style="font-size:7.4px"><span class="ke">🎖️</span><b>DB-Veteran</b><span class="kr">Legendär</span></div><div class="kc r-e" style="font-size:7.4px"><span class="ke">🧯</span><b>Feueralarm</b><span class="kr">Episch</span></div></div></div><h2>200 neue <em>Karten</em></h2><p class="urt">Alle Karten sind neu und einzeln geschrieben: Bahn, Lehrer, Arbeiten, Mensa und mehr. Wer schon Karten hatte, bekommt seine geöffneten Packs zurück.</p>`},
     {c:"#ff5fa8",k:"v30",h:()=>`<div class="urvis"><div class="uv30"><span>Glücksrad<i></i></span><span>Duell<i></i></span><span>Sammelkarten<i></i></span></div></div><h2>Du <em>entscheidest</em></h2><p class="urt">Unter Mehr → Features kannst du jetzt jedes Feature einzeln ausschalten. Dazu leuchtet die App kräftiger. Auch das lässt sich dort abstellen.</p>`},
     {c:"#fbbf24",k:"v29",h:()=>`<div class="urvis"><div class="uv29"><div class="kc r-r" style="font-size:7.4px"><span class="ke">📢</span><b>Verzögerung</b><span class="kr">Selten</span></div><div class="kc r-l" style="font-size:7.4px"><span class="ke">🚄</span><b>ICE pünktlich</b><span class="kr">Legendär</span></div><div class="kc r-e" style="font-size:7.4px"><span class="ke">⛄</span><b>Schneefrei</b><span class="kr">Episch</span></div></div></div><h2>Sammelkarten und <em>Glücksrad</em></h2><p class="urt">Für jeden Schultag ohne Eintrag gibt es ein Karten-Pack. 200 Karten in zehn Sets und vier Seltenheiten. Auf jeder Karte steht die Chance, sie zu ziehen. Dazu jeden Tag ein Dreh am Glücksrad.</p>`},
     {c:"#f5a623",k:"v28",h:()=>`<div class="urvis"><div class="uv28"><i></i><i></i><i></i></div></div><h2>Komplett <em>neues Design</em></h2><p class="urt">Die Knöpfe stehen jetzt direkt unter der Tafel. Erfolge sind in vier Bereiche sortiert, Mehr ist aufgeräumt, und unten schwebt ein neues Dock.</p>`},
@@ -5211,6 +5227,67 @@ function ftSet(k,on){ let off=ftOff().filter(x=>x!==k); if(!on) off.push(k); try
   /* Tipp-Wellen */
   document.addEventListener("pointerdown",e=>{ try{ if(document.documentElement.classList.contains("off-fx")||RM()) return; if(!e.target.closest||!e.target.closest("button,[role=button],.act,a")) return; const r=document.createElement("span"); r.className="fxr"; r.style.left=e.clientX+"px"; r.style.top=e.clientY+"px"; document.body.appendChild(r); setTimeout(()=>r.remove(),650); }catch(_){} },{passive:true,capture:true});
 })();
+/* ---------- v32: Tauschen, Einschmelzen, Set-Belohnungen, Vitrine ---------- */
+Object.assign(AIC,{gift:'<rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8c-1.5-3-5-3.5-5-1.2C7 8 9.5 8 12 8zm0 0c1.5-3 5-3.5 5-1.2C17 8 14.5 8 12 8z"/>',heart:'<path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/>'});
+const KSET_R=[["Stellwerk-Chef","#1d4ed8,#0b1430"],["Lehrerzimmer-Insider","#7c2d12,#1c0f08"],["Stundenplan-Profi","#065f46,#06201a"],["Klausur-Überlebender","#991b1b,#1f0a0a"],["Klassenlegende","#6d28d9,#150a2e"],
+  ["Snooze-König","#334155,#0b1120"],["Akku-Flüsterer","#0e7490,#06232b"],["Mensa-Stammgast","#b45309,#2a1604"],["Ausreden-Profi","#be185d,#2a0716"],["Ferien-Zähler","#ca8a04,#0f766e"]];
+function kcSetOwn(i,o){ o=o||kcGet(); const set=KSETS[i][0]; return KL.filter(c=>c.set===set&&o.o[c.id]).length; }
+function kcDupes(o){ o=o||kcGet(); return KL.reduce((a,c)=>a+Math.max(0,(o.o[c.id]||0)-1),0); }
+function kcMelt(){ const o=kcGet(); if(kcDupes(o)<5){ toast("Dafür brauchst du 5 doppelte Karten.",true); return; }
+  const order=KL.filter(c=>(o.o[c.id]||0)>1).sort((a,b)=>"crel".indexOf(a.r)-"crel".indexOf(b.r)||o.o[b.id]-o.o[a.id]); let left=5;
+  while(left>0){ for(const c of order){ if(left<=0) break; if(o.o[c.id]>1){ o.o[c.id]--; left--; } } }
+  o.bo++; o.ml=(o.ml||0)+1; kcPut(o); try{ sfx.slam(); }catch(e){} toast("5 Doppelte eingeschmolzen. Ein neues Pack wartet."); kcRender(); lootRender(); renderAch(); }
+function ktHash(s){ let h=2166136261; for(const ch of s+"|fh-kt-v1"){ h^=ch.codePointAt(0); h=Math.imul(h,16777619)>>>0; } return h.toString(36); }
+function ktRead(code){ const m=String(code||"").match(/FHK1-([A-Za-z0-9_-]+)\.([a-z0-9]+)/); if(!m) return null; try{ const raw=unb64u(m[1]); if(ktHash(raw)!==m[2]) return null; const p=JSON.parse(raw); return kcCard(p.i)?p:null; }catch(e){ return null; } }
+async function ktGive(c){ const o=kcGet(); if((o.o[c.id]||0)<2){ toast("Verschenken geht nur mit doppelten Karten.",true); return false; }
+  let nm=""; try{ nm=(profGet().name||"").trim().slice(0,20); }catch(e){} const raw=JSON.stringify({i:c.id,n:Math.random().toString(36).slice(2,10),f:nm}), code="FHK1-"+b64u(raw)+"."+ktHash(raw);
+  o.o[c.id]--; kcPut(o); let url=""; try{ url=APP_URL; }catch(e){}
+  const ok=await cxShareText(`${nm||"Jemand"} schenkt dir die Karte „${c.n}“ (${KR[c.r].n}). Öffne das Fehlstunden-Heft, geh zu Erfolge → Karten und füge diesen Code ein:\n\n${code}${url?"\n\n"+url:""}`);
+  const p=kcGet(); if(!ok){ p.o[c.id]=(p.o[c.id]||0)+1; kcPut(p); return false; } p.gv=(p.gv||0)+1; kcPut(p); try{ renderAch(); }catch(e){} return true; }
+function ktRedeem(code){ const p=ktRead(code); if(!p){ toast("Der Code stimmt nicht. Bitte komplett einfügen.",true); return false; } const o=kcGet(); o.u=Array.isArray(o.u)?o.u:[];
+  if(o.u.includes(p.n)){ toast("Diesen Code hast du schon eingelöst.",true); return false; } o.u.push(p.n); if(o.u.length>300) o.u=o.u.slice(-300);
+  const nw=!o.o[p.i]; o.o[p.i]=(o.o[p.i]||0)+1; if(nw&&!o.nw.includes(p.i)) o.nw.push(p.i); o.gt=(o.gt||0)+1; kcPut(o); kcMile(); kcReveal([{c:kcCard(p.i),sh:false,nw}],p.f?p.f+" schenkt dir":"Geschenkt"); return true; }
+function ktRender(){ const b=$("ktCard"); if(!b) return; const o=kcGet(), d=kcDupes(o); b.querySelector("[data-k=d]").textContent=d===1?"1 doppelte Karte":d+" doppelte Karten";
+  const m=b.querySelector("[data-k=m]"); m.disabled=d<5; m.textContent=d<5?`Einschmelzen ab 5 Doppelten`:"5 Doppelte einschmelzen → 1 Pack"; }
+function kvGet(){ const f=kcGet().f; return (Array.isArray(f)?f:[]).filter(id=>kcGet().o[id]).slice(0,3); }
+function kvToggle(c){ const o=kcGet(); let f=Array.isArray(o.f)?o.f.filter(id=>o.o[id]):[]; if(f.includes(c.id)) f=f.filter(x=>x!==c.id); else { if(f.length>=3){ toast("Es passen nur 3 Lieblingskarten ins Profil. Nimm erst eine raus.",true); return false; } f.push(c.id); } o.f=f; kcPut(o); kvRender(); return true; }
+function kvRender(){ const v=$("kcVit"); if(!v) return; const f=kvGet(), o=kcGet(), row=v.querySelector(".kvr"); row.innerHTML="";
+  for(let i=0;i<3;i++){ const c=kcCard(f[i]); const b=document.createElement("button"); b.type="button"; if(c){ b.setAttribute("aria-label",c.n); b.appendChild(kcEl(c,{sh:!!o.s[c.id]})); b.onclick=()=>kcDetail(c); } else { b.className="kve"; b.textContent="Platz frei"; b.onclick=()=>{ go("game"); gseg("k",true); kcRender(); scrollTo({top:0}); toast("Tipp im Album eine Karte an und wähle „Ins Profil“."); }; } row.appendChild(b); }
+  v.querySelector("[data-k=s]").hidden=!f.length; }
+function kvShare(){ const f=kvGet().map(kcCard), o=kcGet(); if(!f.length) return; let nm=""; try{ nm=(profGet().name||"").trim(); }catch(e){}
+  const cv=document.createElement("canvas"); cv.width=1080; cv.height=1350; const x=cv.getContext("2d"), g=x.createLinearGradient(0,0,0,1350); g.addColorStop(0,"#1b2a4a"); g.addColorStop(1,"#05070c"); x.fillStyle=g; x.fillRect(0,0,1080,1350);
+  x.fillStyle="#fff"; x.textAlign="center"; x.font="900 76px system-ui,sans-serif"; x.fillText(nm?nm+"s Lieblingskarten":"Meine Lieblingskarten",540,170); x.fillStyle="rgba(255,255,255,.6)"; x.font="500 36px system-ui,sans-serif"; x.fillText(`${kcDistinct(o)} von ${KN} Karten gesammelt`,540,235);
+  const rr=(a,b,w,h,r)=>{ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,r); x.arcTo(a+w,b+h,a,b+h,r); x.arcTo(a,b+h,a,b,r); x.arcTo(a,b,a+w,b,r); x.closePath(); };
+  const W=300,H=420,gap=36, x0=(1080-(f.length*W+(f.length-1)*gap))/2;
+  f.forEach((c,i)=>{ const X=x0+i*(W+gap), Y=380, col=KR[c.r].c; x.save(); x.shadowColor=col; x.shadowBlur=50; rr(X,Y,W,H,26); const cg=x.createLinearGradient(0,Y,0,Y+H); cg.addColorStop(0,"#2a3757"); cg.addColorStop(1,"#0b101b"); x.fillStyle=cg; x.fill(); x.restore(); x.lineWidth=7; x.strokeStyle=col; rr(X,Y,W,H,26); x.stroke();
+    x.textAlign="center"; x.fillStyle="#fff"; x.font="120px serif"; x.fillText(c.e,X+W/2,Y+160); x.font="800 32px system-ui,sans-serif"; let line="", yy=Y+235; for(const w of c.n.split(" ")){ const q=line?line+" "+w:w; if(x.measureText(q).width>W-40&&line){ x.fillText(line,X+W/2,yy); yy+=38; line=w; } else line=q; } x.fillText(line,X+W/2,yy);
+    x.fillStyle=col; rr(X+W/2-80,Y+H-70,160,42,21); x.fill(); x.fillStyle="#0b101b"; x.font="800 22px system-ui,sans-serif"; x.fillText(KR[c.r].n,X+W/2,Y+H-42);
+    x.fillStyle="rgba(255,255,255,.75)"; x.font="500 24px system-ui,sans-serif"; let l2="", y2=Y+H+50; for(const w of c.t.split(" ")){ const q=l2?l2+" "+w:w; if(x.measureText(q).width>W&&l2){ x.fillText(l2,X+W/2,y2); y2+=32; l2=w; } else l2=q; } x.fillText(l2,X+W/2,y2); });
+  x.fillStyle="rgba(255,255,255,.5)"; x.font="500 34px system-ui,sans-serif"; x.fillText("Gesammelt im Fehlstunden-Heft",540,1270); shareCanvas(cv,"lieblingskarten.png","Meine Lieblingskarten im Fehlstunden-Heft"); }
+(function v32Init(){
+  try{ KSETS.forEach((t,i)=>{ PF.ban["ks"+i]={n:t[0]+"-Set",ev:"kcset"+i,bg:"linear-gradient(135deg,"+KSET_R[i][1]+")"}; }); evtApply(); }catch(e){ console.error(e); }
+  const _mile=kcMile; kcMile=function(){ const r=_mile.apply(this,arguments); try{ const o=kcGet(); KSETS.forEach((t,i)=>{ if(kcSetOwn(i,o)>=t[1].length&&!evtHas("kcset"+i)) evtGive("kcset"+i,`${t[0]}-Set komplett: Banner und Titel „${KSET_R[i][0]}“`); }); }catch(e){} return r; };
+  try{ const _ad=achDefs; achDefs=function(){ const d=_ad.apply(this,arguments), adm=kcAdm(), o=kcGet();
+      const ex=KSETS.map((t,i)=>({g:"Karten-Sets",id:"ks"+i,n:t[0]+" komplett",d:`Alle ${t[1].length} Karten aus dem Set „${t[0]}“`,ic:"book",v:kcSetOwn(i,o),t:t[1].length,ti:KSET_R[i][0]}))
+        .concat([{g:"Karten",id:"kt1",n:"Gönner",d:"Eine Karte an Freunde verschenkt",ic:"gift",v:o.gv||0,t:1,ti:"Gönner"},{g:"Karten",id:"kt2",n:"Beschenkt",d:"Eine Karte von Freunden bekommen",ic:"heart",v:o.gt||0,t:1,ti:"Beschenkt"},{g:"Karten",id:"km5",n:"Recycling-Hof",d:"5-mal Doppelte eingeschmolzen",ic:"box",v:o.ml||0,t:5,ti:"Recycling-Hof"}]);
+      ex.forEach(a=>{ ACHT[a.id]=a.ti; if(adm){ a.v=a.t; a.p=1; } }); const all=d.concat(ex), gs=[]; all.forEach(a=>{ if(!gs.includes(a.g)) gs.push(a.g); });
+      const gi=gs.indexOf("Geheim"); if(gi>=0){ gs.splice(gi,1); gs.push("Geheim"); } return gs.flatMap(g=>all.filter(a=>a.g===g)); }; }catch(e){ console.error(e); }
+  /* Tauschen-Karte im Bereich Karten */
+  try{ const a=$("kcAlbum"), b=document.createElement("div"); b.id="ktCard"; b.className="card"; b.dataset.seg="k";
+    b.innerHTML=`<h3>Tauschen und Einschmelzen</h3><p class="kinf" style="margin-top:2px">Doppelte Karten kannst du verschenken: Karte im Album antippen, dann „Verschenken“. Oder fünf Doppelte gegen ein neues Pack tauschen.</p><div class="ktr"><b data-k="d"></b><button type="button" class="k29b" data-k="m"></button></div><div class="ktc"><input id="ktIn" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Code von Freunden einfügen" aria-label="Geschenk-Code"><button type="button" class="k29b s" id="ktGo">Einlösen</button></div>`;
+    a.insertAdjacentElement("beforebegin",b); b.querySelector("[data-k=m]").onclick=kcMelt; $("ktGo").onclick=()=>{ const i=$("ktIn"); if(ktRedeem(i.value)) i.value=""; }; }catch(e){ console.error(e); }
+  /* Vitrine im Profil */
+  try{ const sh=$("pfShow"), v=document.createElement("div"); v.id="kcVit"; v.className="kvit"; v.innerHTML=`<div class="kvh"><span>Lieblingskarten</span><button type="button" data-k="s">Teilen</button></div><div class="kvr"></div>`; sh.insertAdjacentElement("afterend",v); v.querySelector("[data-k=s]").onclick=kvShare; }catch(e){ console.error(e); }
+  /* Album: Belohnung je Set, Detail: Verschenken und Vitrine */
+  const _kr=kcRender; kcRender=function(){ const r=_kr.apply(this,arguments); try{ const o=kcGet(); document.querySelectorAll("#kcAlbum .kgh").forEach((h,i)=>{ if(!KSETS[i]) return; const done=kcSetOwn(i,o)>=KSETS[i][1].length, p=document.createElement("div"); p.className="kgr"+(done?" on":""); p.textContent=(done?"✓ Freigeschaltet: ":"Komplett: ")+`Titel „${KSET_R[i][0]}“ und Banner`; h.insertAdjacentElement("afterend",p); }); ktRender(); kvRender(); }catch(e){ console.error(e); } return r; };
+  const _kd=kcDetail; kcDetail=function(c){ const r=_kd.apply(this,arguments); try{ const ov=[...document.querySelectorAll(".k29o")].pop(), o=kcGet(), n=o.o[c.id]||0; if(!ov||!n) return r; const share=ov.querySelector(".k29b.s"), row=document.createElement("div"); row.className="kdb";
+      const inV=kvGet().includes(c.id); row.innerHTML=`<button type="button" class="k29b s" data-k="v">${inV?"Aus dem Profil nehmen":"Ins Profil"}</button><button type="button" class="k29b s" data-k="g"${n<2?" disabled":""}>Verschenken</button>`; share.insertAdjacentElement("beforebegin",row); row.appendChild(share);
+      if(n<2){ const h=document.createElement("small"); h.className="kdh"; h.textContent="Verschenken geht ab der zweiten gleichen Karte."; row.insertAdjacentElement("afterend",h); }
+      row.querySelector("[data-k=v]").onclick=e=>{ if(kvToggle(c)) e.target.textContent=kvGet().includes(c.id)?"Aus dem Profil nehmen":"Ins Profil"; };
+      row.querySelector("[data-k=g]").onclick=async e=>{ e.target.disabled=true; const ok=await ktGive(c); if(ok){ toast("Code verschickt. Die Karte ist unterwegs."); k29Close(ov); } else e.target.disabled=(kcGet().o[c.id]||0)<2; }; }catch(err){ console.error(err); } return r; };
+  try{ const _pr=pfRender; pfRender=function(){ const r=_pr.apply(this,arguments); try{ kvRender(); }catch(e){} return r; }; }catch(e){}
+  try{ kcMile(); kvRender(); ktRender(); }catch(e){ console.error(e); }
+})();
 /* ---------- guided tour ---------- */
 function tour(){ if(document.querySelector(".tour")) return; clearSel(); closeSheet();
   const hasRow=()=>document.querySelector("#list .swipe");
@@ -5523,7 +5600,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="31";
+const APP_VERSION="32";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
