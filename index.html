@@ -2172,7 +2172,7 @@ body::after{content:"";position:fixed;left:0;right:0;bottom:0;height:calc(var(--
 
 /* Erfolge: Bereiche */
 .gseg{position:sticky;top:calc(56px + env(safe-area-inset-top,0px));z-index:6;display:grid;grid-template-columns:repeat(5,auto);justify-content:space-between;gap:2px;padding:4px;border-radius:999px;background:rgba(20,27,42,.9);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.08)}
-.gseg button{all:unset;box-sizing:border-box;text-align:center;padding:10px clamp(6px,2.6vw,16px);white-space:nowrap;border-radius:999px;font-weight:650;font-size:.9rem;color:var(--sub);cursor:pointer;transition:background .2s,color .2s}
+.gseg button{all:unset;box-sizing:border-box;text-align:center;padding:10px clamp(6px,2.1vw,16px);white-space:nowrap;border-radius:999px;font-weight:650;font-size:.9rem;color:var(--sub);cursor:pointer;transition:background .2s,color .2s}
 .gseg button[aria-pressed="true"]{background:var(--ink);color:#0b1020}
 #v-game[data-gs="p"]>[data-seg]:not([data-seg="p"]),#v-game[data-gs="f"]>[data-seg]:not([data-seg="f"]),#v-game[data-gs="t"]>[data-seg]:not([data-seg="t"]),#v-game[data-gs="d"]>[data-seg]:not([data-seg="d"]),#v-game[data-gs="k"]>[data-seg]:not([data-seg="k"]){display:none!important}
 #v-game>[data-seg]{animation:segIn .28s var(--e-out)}
@@ -2270,6 +2270,11 @@ main>.view{animation:viewIn .24s var(--e-out)}
 @keyframes kcSpin{to{transform:rotate(360deg)}}
 .rm .kc.sh::after,.rm .kc.r-l::before{animation:none}
 .kc b{max-width:100%;overflow-wrap:anywhere;-webkit-hyphens:manual;hyphens:manual}
+.kc .kp{margin-top:.5em;font:600 .62em/1 var(--body);color:rgba(255,255,255,.7);white-space:nowrap}
+.kgrid .kc .kp,.k29row .kc .kp{font-size:.74em}
+.kc.ed-1{background:linear-gradient(170deg,#5b6678,#161b26)}.kc.ed-2{background:linear-gradient(170deg,#8a6a12,#1c1606)}.kc.ed-4{background:linear-gradient(170deg,#000,#16181d);box-shadow:0 0 0 1px #000 inset,0 0 18px -4px var(--kc)}
+.kc.ed-2 .kn span:last-child{color:#fde68a}.kc.ed-1 .kn span:last-child{color:#e2e8f0}
+.kinf{color:var(--sub);font-size:.8rem;line-height:1.45;margin:10px 0 0}
 .kc.no{--kc:#2a3550;background:var(--flap);border-style:dashed;color:var(--sub);justify-content:center;box-shadow:none}
 .kc.no .ke{filter:grayscale(1) brightness(.25);opacity:.9;margin:0}
 .kc.no b{color:var(--sub);font-size:1em}
@@ -2339,6 +2344,41 @@ main>.view{animation:viewIn .24s var(--e-out)}
 .whc{font-size:.76rem;color:rgba(255,255,255,.55);text-align:center;max-width:36ch;line-height:1.5}
 
 .uv29{display:flex;gap:8px;justify-content:center}.uv29 .kc{width:74px}.uv29 .kc:nth-child(1){transform:rotate(-8deg) translateY(6px)}.uv29 .kc:nth-child(3){transform:rotate(8deg) translateY(6px)}
+
+/* =========================================================
+   v30 · Heftige Effekte (abschaltbar) und Feature-Schalter
+   ========================================================= */
+#fx30{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+#fx30 i{position:absolute;width:95vmax;height:95vmax;border-radius:50%;will-change:transform}
+#fx30 i:nth-child(1){left:-45vmax;top:-40vmax;background:radial-gradient(closest-side,rgba(58,110,255,.5),transparent);animation:fxA 17s ease-in-out infinite alternate}
+#fx30 i:nth-child(2){right:-50vmax;top:8vh;background:radial-gradient(closest-side,rgba(255,61,154,.3),transparent);animation:fxB 23s ease-in-out infinite alternate}
+#fx30 i:nth-child(3){left:-10vw;bottom:-55vmax;background:radial-gradient(closest-side,rgba(245,166,35,.3),transparent);animation:fxC 29s ease-in-out infinite alternate}
+#fx30 i:nth-child(4){right:-30vmax;bottom:-30vmax;background:radial-gradient(closest-side,rgba(34,211,238,.22),transparent);animation:fxA 31s ease-in-out infinite alternate-reverse}
+@keyframes fxA{to{transform:translate(22vw,16vh) scale(1.15)}}
+@keyframes fxB{to{transform:translate(-26vw,22vh) scale(.9)}}
+@keyframes fxC{to{transform:translate(18vw,-20vh) scale(1.2)}}
+html.off-fx #fx30,html.rm #fx30 i{animation:none}html.off-fx #fx30{display:none}
+html:not(.off-fx) .vh h1{background:linear-gradient(100deg,#fff 0%,#fff 22%,var(--amber) 48%,#ff5fa8 72%,#7aa8ff 100%);background-size:240% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:fxText 8s ease-in-out infinite alternate;filter:drop-shadow(0 2px 14px rgba(245,166,35,.25))}
+@keyframes fxText{to{background-position:100% 0}}
+html.rm .vh h1{animation:none}
+html:not(.off-fx) .card{border-color:rgba(150,180,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.09),0 26px 54px -34px rgba(70,120,255,.85);background-image:linear-gradient(165deg,rgba(90,130,255,.13),transparent 46%)}
+html:not(.off-fx) .act{box-shadow:0 18px 44px -12px var(--glow),inset 0 1.5px 0 rgba(255,255,255,.55);animation:fxAct 3.2s ease-in-out infinite}
+html:not(.off-fx) .act.late{animation-delay:1.6s}
+@keyframes fxAct{50%{box-shadow:0 22px 60px -8px var(--glow),inset 0 1.5px 0 rgba(255,255,255,.55)}}
+html.rm .act{animation:none}
+html:not(.off-fx) .tabbar .in{border-color:rgba(245,166,35,.4);box-shadow:inset 0 1px 0 rgba(255,255,255,.1),0 16px 40px -10px rgba(0,0,0,.85),0 0 38px -10px var(--amber)}
+html:not(.off-fx) .tabbar [aria-current="page"]{box-shadow:0 0 26px -2px var(--amber),inset 0 1px 0 rgba(255,255,255,.5)}
+html:not(.off-fx) .gseg button[aria-pressed="true"]{background:linear-gradient(135deg,#fff,#ffd98a);box-shadow:0 0 22px -4px var(--amber)}
+html:not(.off-fx) .lt29.hot{box-shadow:0 0 30px -10px var(--amber)}
+html:not(.off-fx) .k29b:not(:disabled):not(.s){box-shadow:0 10px 30px -8px var(--amber)}
+.fxr{position:fixed;z-index:200;width:16px;height:16px;margin:-8px;border-radius:50%;pointer-events:none;border:2px solid var(--amber);animation:fxR .5s ease-out forwards}
+.fxr::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(255,95,168,.8);animation:fxR .5s .06s ease-out forwards}
+@keyframes fxR{to{transform:scale(5);opacity:0}}
+.ftl{display:flex;gap:8px;margin:4px 0 10px}.ftl button{flex:1;appearance:none;border:1px solid var(--line);background:var(--flap);color:var(--ink);border-radius:var(--r-md);padding:9px;font:600 .88rem var(--body);cursor:pointer}
+.fth{font:700 .8rem var(--body);color:var(--sub);margin:14px 0 2px}
+html.off-wh.off-kc #loot29{display:none!important}html.off-wh #loot29,html.off-kc #loot29{grid-template-columns:1fr}
+html.off-du.off-cx .gseg [data-s="d"]{display:none}
+.uv30{display:grid;gap:7px;width:190px;margin:0 auto}.uv30 span{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-radius:12px;background:rgba(255,255,255,.08);font:600 .82rem var(--body);color:#fff}.uv30 i{width:34px;height:20px;border-radius:99px;background:#35c983;position:relative}.uv30 i::after{content:"";position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff}.uv30 span:nth-child(2) i{background:#475569}.uv30 span:nth-child(2) i::after{right:auto;left:2px}
 </style>
 
 <header class="appbar" id="appbar">
@@ -2525,6 +2565,12 @@ main>.view{animation:viewIn .24s var(--e-out)}
     </div>
 
     
+    <div class="card" id="ftCard">
+      <h3>Features</h3>
+      <p style="color:var(--sub);font-size:.88rem;margin:0 0 6px">Schalte aus, was du nicht brauchst. Deine Daten bleiben erhalten, es wird nur ausgeblendet.</p>
+      <div class="ftl"><button type="button" id="ftAll">Alles an</button><button type="button" id="ftNone">Alles aus</button></div>
+      <div id="ftList"></div>
+    </div>
     <div class="card">
       <h3>Einstellungen</h3>
       <div class="settings">
@@ -2630,7 +2676,7 @@ main>.view{animation:viewIn .24s var(--e-out)}
       <div class="status-line" id="offLine"><i></i><span id="offTxt"></span></div>
       <p style="margin-top:8px">Die App ist eine private Übersicht. Maßgeblich sind die Aufzeichnungen der Schule.</p>
     </div>
-    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 29</span></div>
+    <div class="about"><span>Fehlstunden-Heft</span><span class="num" id="verLbl">Version 30</span></div>
   </section>
 </main>
 
@@ -3159,7 +3205,7 @@ $("exPdf").onclick=async()=>{ if(!window.jspdf){ toast("Die PDF-Funktion ist ger
 /* ---------- start ---------- */
 /* ---------- v19: Update-Story für bisherige Nutzer (statt Neulings-Intro) ---------- */
 /* Welche Update-Seiten jemand schon gesehen hat – es kommen nur neue */
-const UPD_PAGES=["v29","v28","evt","umr","urk","chal","week","icon","sick","invite","titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
+const UPD_PAGES=["v30","v29","v28","evt","umr","urk","chal","week","icon","sick","invite","titles","profile","ach","share","prog","due","morn","photos","months","tips","mode"];
 function updSeen(){ let a=null; try{ a=JSON.parse(localStorage.getItem("fh_upd_seen")||"null"); }catch(e){}
   if(!Array.isArray(a)){ a=[]; const g=k=>{ try{ return localStorage.getItem(k); }catch(e){ return null; } };
     if(g("fh_intro16")) a.push("prog","due","morn","photos","months","tips","mode");
@@ -3176,7 +3222,8 @@ function updReel(opts){ opts=opts||{}; if(document.querySelector(".ur")) return;
   const ICK='<svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   const P=[
     {c:"#f5a623",k:"intro",h:()=>`<div class="urbig">UP<span>DATE</span></div><h2>Das ist <em>neu</em></h2><p class="urt">Seit deinem letzten Besuch hat sich einiges getan. Tippe dich in deinem Tempo durch.</p>`},
-    {c:"#fbbf24",k:"v29",h:()=>`<div class="urvis"><div class="uv29"><div class="kc r-r" style="font-size:7.4px"><span class="ke">📢</span><b>Verzögerung</b><span class="kr">Selten</span></div><div class="kc r-l" style="font-size:7.4px"><span class="ke">🚄</span><b>ICE pünktlich</b><span class="kr">Legendär</span></div><div class="kc r-e" style="font-size:7.4px"><span class="ke">⛄</span><b>Schneefrei</b><span class="kr">Episch</span></div></div></div><h2>Sammelkarten und <em>Glücksrad</em></h2><p class="urt">Für jeden Schultag ohne Eintrag gibt es ein Karten-Pack. 36 Karten, vier Seltenheiten, Glanz-Karten. Dazu jeden Tag ein Dreh am Glücksrad.</p>`},
+    {c:"#ff5fa8",k:"v30",h:()=>`<div class="urvis"><div class="uv30"><span>Glücksrad<i></i></span><span>Duell<i></i></span><span>Sammelkarten<i></i></span></div></div><h2>Du <em>entscheidest</em></h2><p class="urt">Unter Mehr → Features kannst du jetzt jedes Feature einzeln ausschalten. Dazu leuchtet die App kräftiger. Auch das lässt sich dort abstellen.</p>`},
+    {c:"#fbbf24",k:"v29",h:()=>`<div class="urvis"><div class="uv29"><div class="kc r-r" style="font-size:7.4px"><span class="ke">📢</span><b>Verzögerung</b><span class="kr">Selten</span></div><div class="kc r-l" style="font-size:7.4px"><span class="ke">🚄</span><b>ICE pünktlich</b><span class="kr">Legendär</span></div><div class="kc r-e" style="font-size:7.4px"><span class="ke">⛄</span><b>Schneefrei</b><span class="kr">Episch</span></div></div></div><h2>Sammelkarten und <em>Glücksrad</em></h2><p class="urt">Für jeden Schultag ohne Eintrag gibt es ein Karten-Pack. 7.000 Karten, vier Seltenheiten, fünf Editionen. Auf jeder Karte steht die Chance, sie zu ziehen. Dazu jeden Tag ein Dreh am Glücksrad.</p>`},
     {c:"#f5a623",k:"v28",h:()=>`<div class="urvis"><div class="uv28"><i></i><i></i><i></i></div></div><h2>Komplett <em>neues Design</em></h2><p class="urt">Die Knöpfe stehen jetzt direkt unter der Tafel. Erfolge sind in vier Bereiche sortiert, Mehr ist aufgeräumt, und unten schwebt ein neues Dock.</p>`},
     {c:"#f59e0b",k:"evt",h:()=>`<div class="urvis"><div class="uadv">${[1,2,3,4,5,6,7,8].map(i=>`<i class="${i===6?"o":""}">${i===6?"🎅":i}</i>`).join("")}</div></div><h2>Saison-<em>Events</em></h2><p class="urt">Jetzt: Herbst-Event mit Blättersammeln. Ab 1. Dezember: Adventskalender mit 24 Türchen und Geschenken, die es nur dieses Jahr gibt.</p>`},
     {c:"#f5a623",k:"umr",h:()=>`<div class="urvis"><div class="uumr">≈ 3,2<small>mal alle „Herr der Ringe“-Filme</small></div></div><h2>Was du <em>verpasst</em> hast</h2><p class="urt">Unter Statistik: deine Fehlstunden umgerechnet in Filme, Flüge, Minecraft-Tage und mehr. Als Bild zum Teilen.</p>`},
@@ -5030,7 +5077,7 @@ function nxRender(){ const box=$("nxList"); if(!box) return; let got={}; try{ go
   /* --- Mehr: Gruppen zum Aufklappen --- */
   try{ const m=$("v-more"), cards=[...m.querySelectorAll(":scope>.card")], by=t=>cards.find(c=>{ const h=c.querySelector(":scope>h3"); return h&&h.textContent.trim().startsWith(t); });
     const G=[["Aussehen",[["Design","pal","Skins und Farben der Tafel"],["App-Symbol","app","Dein Symbol auf dem Home-Bildschirm"]]],
-      ["Einstellungen",[["Einstellungen","gear","Grenze, Zeitraum, Ton, Erfolge"],["Meine Woche","week","Stunden pro Wochentag"]]],
+      ["Einstellungen",[["Einstellungen","gear","Grenze, Zeitraum, Ton, Erfolge"],["Features","pal","Jedes Feature einzeln an oder aus"],["Meine Woche","week","Stunden pro Wochentag"]]],
       ["Daten und Teilen",[["Daten","data","Sicherung speichern und laden"],["Stand teilen","share","Deine Zahlen als Code verschicken"],["Freunde einladen","ppl","App mit Anleitung weiterschicken"]]],
       ["Hilfe",[["So funktioniert","help","Intro, Training und was neu ist"],["Häufige Fragen","help","Antworten auf das Wichtigste"],["Datenschutz","lock","Alles bleibt auf deinem Gerät"]]]];
     const about=m.querySelector(".about"); G.forEach(([g,list])=>{ const lab=document.createElement("div"); lab.className="mgrp"; lab.textContent=g; let any=false;
@@ -5045,7 +5092,7 @@ function nxRender(){ const box=$("nxList"); if(!box) return; let got={}; try{ go
 })();
 /* ---------- v29: Sammelkarten, Glücksrad ---------- */
 const KR={c:{n:"Gewöhnlich",c:"#9fb0c8"},r:{n:"Selten",c:"#60a5fa"},e:{n:"Episch",c:"#c084fc"},l:{n:"Legendär",c:"#fbbf24"}};
-const KC=[["c","⏰","Wecker überhört","Er hat geklingelt. Angeblich."],["c","🚌","Bus weg","Du siehst nur noch die Rücklichter."],["c","🚦","Signal\u00adstörung","Der Klassiker. Geht immer."],
+const KS=[["c","⏰","Wecker überhört","Er hat geklingelt. Angeblich."],["c","🚌","Bus weg","Du siehst nur noch die Rücklichter."],["c","🚦","Signal\u00adstörung","Der Klassiker. Geht immer."],
   ["c","🔀","Gleiswechsel","Heute von Gleis 7. Du stehst auf Gleis 2."],["c","🌧️","Regen ohne Jacke","Die App sagte 10 Prozent."],["c","📓","Haus\u00adaufgaben vergessen","Sie liegen zu Hause. Fertig. Ehrlich."],
   ["c","🪫","Handy bei 3 Prozent","Und das Ladekabel liegt im Spind."],["c","📋","Vertretungs\u00adplan","Erste Stunde fällt aus. Erfährst du in der Schule."],["c","🥤","Kaputter Automat","Nimmt Geld. Gibt nichts."],
   ["c","🚪","Türstörung","Bitte nutzen Sie eine andere Tür."],["c","😵","Montagmorgen","Niemand ist bereit. Auch die Lehrer nicht."],["c","🥪","Pausenbrot","Seit Dienstag im Ranzen."],
@@ -5056,8 +5103,25 @@ const KC=[["c","⏰","Wecker überhört","Er hat geklingelt. Angeblich."],["c","
   ["r","📶","WLAN im Zug","Verbunden. Kein Internet."],["r","🗓️","Perfekte Woche","Fünf Tage, null Einträge."],
   ["e","🚆","Der Zug wartet auf dich","Der Lokführer hat dich rennen sehen."],["e","⛄","Schneefrei","Drei Flocken und alles steht."],["e","🧼","Weiße Weste","Ein ganzer Monat ohne Eintrag."],
   ["e","☕","Bordbistro geöffnet","Mit Kaffee. Und Kartenzahlung."],["e","🚨","Probealarm in Mathe","Besseres Timing gibt es nicht."],["e","🎒","Letzter Schultag","Der Ranzen fliegt in die Ecke."],["e","🎫","Schaffner winkt durch","Er hat nur genickt."],
-  ["l","🚄","ICE pünktlich","Wurde angeblich mal gesichtet."],["l","📜","Zeugnis ohne Fehlstunde","Eine Zeile, eine Null."],["l","🎖️","DB-Veteran","Hat mehr Zeit am Bahnsteig verbracht als im Unterricht."],["l","🏖️","Sechs Wochen Ferien","Der seltenste Zustand von allen."]]
-  .map((a,i)=>({id:i+1,r:a[0],e:a[1],h:a[2],n:a[2].replace(/\u00ad/g,""),t:a[3]}));
+  ["l","🚄","ICE pünktlich","Wurde angeblich mal gesichtet."],["l","📜","Zeugnis ohne Fehlstunde","Eine Zeile, eine Null."],["l","🎖️","DB-Veteran","Hat mehr Zeit am Bahnsteig verbracht als im Unterricht."],["l","🏖️","Sechs Wochen Ferien","Der seltenste Zustand von allen."],
+  ["c","🧦","Socke fehlt","Die zweite ist nie da."],["c","🔑","Schlüssel vergessen","Er hängt innen an der Tür."],["c","🎧","Kopfhörer verknotet","Vier Minuten Arbeit pro Knoten."],["c","🧃","Trinkpäckchen ausgelaufen","Im Ranzen. Auf dem Mathebuch."],
+  ["c","✏️","Stift leer","Mitten im Satz."],["c","🪑","Wackelstuhl","Einer pro Klassenzimmer. Immer deiner."],["c","🚏","Falsche Haltestelle","Eine zu früh ausgestiegen."],["c","🥱","Erste Stunde","Körper anwesend."],
+  ["c","📵","Handy eingesammelt","Bis zum Ende der Stunde."],["c","🧥","Jacke vergessen","Sie hängt noch im Klassenzimmer."],["c","🚶","Zu Fuß","Der Bus war schneller weg als du da."],["c","🍌","Banane im Ranzen","Seit zwei Wochen."],
+  ["c","🖨️","Kopierer kaputt","Das Arbeitsblatt gibt es morgen."],["c","🌫️","Nebel am Bahnsteig","Die Anzeige sieht man auch nicht."],["c","💤","Sekundenschlaf in Bio","Nur kurz die Augen ausgeruht."],["c","🧮","Taschenrechner leer","Am Tag der Arbeit."],
+  ["r","🎉","Stunde fällt aus","Und zwar die letzte."],["r","🍕","Pizza in der Mensa","Die Schlange geht bis zum Hof."],["r","🚉","Zug steht schon da","Türen offen, Platz frei."],["r","🪟","Fensterplatz","Mit Heizung darunter."],
+  ["r","📺","Film in Reli","Der Fernseher rollt rein."],["r","🧑‍🏫","Referendar-Stunde","Alle sind plötzlich brav."],["r","🕐","Früher Schluss","Nach der vierten ist Ende."],["r","🚌","Leerer Bus","Freie Platzwahl."],
+  ["r","🌈","Wandertag","Kein Ranzen, nur Brote."],["r","🔔","Gong zu früh","Niemand beschwert sich."],["r","🍦","Eis nach der Schule","Zwei Kugeln."],
+  ["e","🏆","Bundesjugendspiele fallen aus","Wegen Regen. Danke, Regen."],["e","🧯","Feuerwehr auf dem Schulhof","Nur eine Übung. Trotzdem stark."],["e","🎬","Projektwoche","Eine Woche ohne Stundenplan."],["e","🛤️","Freie Strecke","Kein Zug vor dir. Keiner hinter dir."],["e","🎮","Freies Arbeiten","Macht, was ihr wollt. Leise."],
+  ["l","🦄","Keine Hausaufgaben","Die Lehrerin hat es wirklich gesagt."],["l","🌟","Ein Jahr pünktlich","Jeden einzelnen Tag."]]
+  .map((a,i)=>({r:a[0],e:a[1],h:a[2],n:a[2].replace(/\u00ad/g,""),t:a[3]}));
+/* 70 Motive × 20 Varianten × 5 Editionen = 7.000 Karten. Nr. = 1 + Motiv + 70·Variante + 1400·Edition (die ersten 36 Nummern bleiben wie in Version 29). */
+const KV=["","am Montag","im Regen","bei Nacht","im Winter","um 6 Uhr","ohne Kaffee","mit Verspätung","in der Pause","vor Mathe","nach Sport","im Stau","auf Gleis 9","am Freitag","in den Ferien","bei Hitze","im Nebel","mit Ansage","ohne Vorwarnung","an Halloween"];
+const KE=[{n:"Standard",p:.8},{n:"Silber",p:.12},{n:"Gold",p:.05},{n:"Holo",p:.025},{n:"Schwarz",p:.005}], KPR={c:.68,r:.24,e:.065,l:.015}, KN=KS.length*KV.length*KE.length;
+const KSN={c:0,r:0,e:0,l:0}; KS.forEach(x=>KSN[x.r]++);
+function kcCard(id){ id=+id; if(!(id>=1&&id<=KN)) return null; const k=id-1, si=k%KS.length, vi=Math.floor(k/KS.length)%KV.length, ei=Math.floor(k/(KS.length*KV.length)), S=KS[si], v=KV[vi];
+  return {id,r:S.r,e:S.e,ed:ei,h:S.h+(v?" "+v:""),n:S.n+(v?" "+v:""),t:S.t,p:KPR[S.r]/KSN[S.r]/KV.length*KE[ei].p}; }
+function kcOdds(c){ const n=Math.round(1/c.p); return "1 : "+n.toLocaleString("de-DE"); }
+function kcOwned(o){ return Object.keys((o||kcGet()).o).map(kcCard).filter(Boolean); }
 const KMS=[[10,"kc_emo","Profil-Emoji 🃏"],[20,"kc_nc","Namensfarbe „Holo“"],[30,"kc_ban","Banner „Holo-Karte“"]];
 function kcGet(){ let o={}; try{ o=JSON.parse(localStorage.getItem("fh_kc")||"{}")||{}; }catch(e){} o.o=o.o||{}; o.s=o.s||{}; o.op=+o.op||0; o.bo=+o.bo||0; o.nw=Array.isArray(o.nw)?o.nw:[]; return o; }
 function kcPut(o){ try{ localStorage.setItem("fh_kc",JSON.stringify(o)); }catch(e){} }
@@ -5067,13 +5131,14 @@ function kcAvail(){ const o=kcGet(); if(kcAdm()) return 99; let X=null; try{ X=x
   const earned=Math.max(0,(X.clean||0)-o.b.c)+2*Math.max(0,(X.weeks||0)-o.b.w)+Math.max(0,(X.ach||0)-o.b.a); return Math.max(0,3+earned+o.bo-o.op); }
 function kcDistinct(o){ return Object.keys((o||kcGet()).o).length; }
 function kcRar(min){ const x=Math.random()*100; let r=x<1.5?"l":x<8?"e":x<32?"r":"c"; const ord="crel"; if(min&&ord.indexOf(r)<ord.indexOf(min)){ const y=Math.random()*100; r=min==="r"?(y<4?"l":y<20?"e":"r"):min==="e"?(y<10?"l":"e"):"l"; } return r; }
-function kcDraw(n,opt){ opt=opt||{}; const o=kcGet(), out=[]; for(let i=0;i<n;i++){ const min=opt.min||(opt.pack&&i===n-1?"r":null), r=kcRar(min), pool=KC.filter(c=>c.r===r), c=pool[Math.floor(Math.random()*pool.length)];
-    const sh=!!opt.shiny||Math.random()<.04, nw=!o.o[c.id]; o.o[c.id]=(o.o[c.id]||0)+1; if(sh) o.s[c.id]=1; if(nw&&!o.nw.includes(c.id)) o.nw.push(c.id); out.push({c,sh,nw}); }
-  if(opt.pack) o.op++; kcPut(o); kcMile(); return out; }
+function kcDraw(n,opt){ opt=opt||{}; const o=kcGet(), out=[]; for(let i=0;i<n;i++){ const min=opt.min||(opt.pack&&i===n-1?"r":null), r=kcRar(min), pool=KS.map((x,j)=>x.r===r?j:-1).filter(j=>j>=0), si=pool[Math.floor(Math.random()*pool.length)], vi=Math.floor(Math.random()*KV.length);
+    let ei=0; if(opt.shiny) ei=3; else { let y=Math.random(); for(ei=0;ei<KE.length-1;ei++){ y-=KE[ei].p; if(y<0) break; } }
+    const c=kcCard(1+si+KS.length*vi+KS.length*KV.length*ei), nw=!o.o[c.id]; o.o[c.id]=(o.o[c.id]||0)+1; if(nw&&!o.nw.includes(c.id)) o.nw.push(c.id); out.push({c,sh:false,nw}); }
+  if(opt.pack) o.op++; if(o.nw.length>60) o.nw=o.nw.slice(-60); kcPut(o); kcMile(); return out; }
 function kcMile(){ const n=kcDistinct(); KMS.forEach(([t,k,l])=>{ if(n>=t&&!evtHas(k)) evtGive(k,null); }); }
 let KRO=null; function kcFit(el){ try{ if(!KRO&&window.ResizeObserver) KRO=new ResizeObserver(L=>L.forEach(x=>{ const w=x.contentRect.width; if(w>0) x.target.style.fontSize=(w/10)+"px"; })); if(KRO) KRO.observe(el); const w=el.clientWidth; if(w>0) el.style.fontSize=(w/10)+"px"; }catch(e){} return el; }
-function kcEl(c,o){ o=o||{}; const d=document.createElement("div"); if(o.no){ d.className="kc no"; d.innerHTML=`<span class="ke">${c.e}</span><b>Nr. ${String(c.id).padStart(2,"0")}</b>`; return kcFit(d); }
-  d.className="kc r-"+c.r+(o.sh?" sh":""); d.innerHTML=`<span class="kn"><span>Nr. ${String(c.id).padStart(2,"0")}</span><span>${o.sh?"✨ Glanz":""}</span></span><span class="ke">${c.e}</span><b></b><small></small><span class="kr">${KR[c.r].n}</span>${o.nw?'<span class="knew">NEU</span>':""}${o.x>1?`<span class="kx">×${o.x}</span>`:""}`;
+function kcEl(c,o){ o=o||{}; const d=document.createElement("div"), sh=o.sh||c.ed===3, nr="Nr. "+String(c.id).padStart(4,"0");
+  d.className="kc r-"+c.r+" ed-"+c.ed+(sh?" sh":""); d.innerHTML=`<span class="kn"><span>${nr}</span><span>${c.ed?KE[c.ed].n:(o.sh?"✨ Glanz":"")}</span></span><span class="ke">${c.e}</span><b></b><small></small><span class="kr">${KR[c.r].n}</span><span class="kp">Chance ${kcOdds(c)}</span>${o.nw?'<span class="knew">NEU</span>':""}${o.x>1?`<span class="kx">×${o.x}</span>`:""}`;
   d.querySelector("b").textContent=c.h; d.querySelector("small").textContent=c.t; return kcFit(d); }
 function k29Overlay(cls){ const o=document.createElement("div"); o.className="k29o "+(cls||""); o.setAttribute("role","dialog"); o.setAttribute("aria-modal","true"); document.body.appendChild(o); return o; }
 function k29Close(o){ try{ o.remove(); }catch(e){} try{ kcRender(); lootRender(); renderAch(); lvlRender(); }catch(e){} }
@@ -5086,26 +5151,29 @@ function kcReveal(list,title,after){ const o=k29Overlay("kcr"); o.innerHTML=`<h2
 function kcOpenPack(){ if(document.querySelector(".k29o")) return; if(kcAvail()<1){ toast("Kein Pack da. Morgen gibt es neue."); return; } const o=k29Overlay(); o.innerHTML=`<button type="button" class="kx2" aria-label="Schließen">✕</button><h2>Karten-Pack</h2><button type="button" class="pk29" aria-label="Pack aufreißen">F<small>3 KARTEN</small></button><p>Antippen zum Aufreißen. Die dritte Karte ist mindestens selten.</p>`;
   o.querySelector(".kx2").onclick=()=>k29Close(o); const pk=o.querySelector(".pk29"); pk.onclick=()=>{ if(pk.classList.contains("rip")) return; const list=kcDraw(3,{pack:1}); pk.classList.add("rip"); try{ sfx.slam(); }catch(e){} setTimeout(()=>{ o.remove(); kcReveal(list,"Karten-Pack",kcAvail()>0?()=>kcOpenPack():null); },RM()?0:520); }; }
 function kcDetail(c){ const o=kcGet(), ov=k29Overlay(); ov.innerHTML=`<button type="button" class="kx2" aria-label="Schließen">✕</button><div class="kbig"></div><p></p><button type="button" class="k29b s">Als Bild teilen</button>`; const big=ov.querySelector(".kbig"), el=kcEl(c,{sh:!!o.s[c.id]}); big.appendChild(el);
-  ov.querySelector("p").textContent=`Du hast diese Karte ${o.o[c.id]}×.`+(o.s[c.id]?" Als Glanz-Karte.":""); ov.querySelector(".kx2").onclick=()=>k29Close(ov); ov.addEventListener("click",e=>{ if(e.target===ov) k29Close(ov); });
+  ov.querySelector("p").textContent=`Du hast diese Karte ${o.o[c.id]}×. Edition ${KE[c.ed].n}. Die Chance, genau diese Karte zu ziehen, liegt bei ${kcOdds(c)} pro Karte (${(c.p*100).toLocaleString("de-DE",{maximumSignificantDigits:2})} %).`; ov.querySelector(".kx2").onclick=()=>k29Close(ov); ov.addEventListener("click",e=>{ if(e.target===ov) k29Close(ov); });
   const tilt=e=>{ if(RM()) return; const r=el.getBoundingClientRect(), x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5; el.style.transform=`perspective(700px) rotateY(${x*22}deg) rotateX(${-y*22}deg)`; }; big.addEventListener("pointermove",tilt); big.addEventListener("pointerleave",()=>{ el.style.transform=""; });
   ov.querySelector(".k29b").onclick=()=>kcShare(c,!!o.s[c.id]); const i=o.nw.indexOf(c.id); if(i>=0){ o.nw.splice(i,1); kcPut(o); } }
 function kcShare(c,sh){ const cv=document.createElement("canvas"); cv.width=1080; cv.height=1350; const x=cv.getContext("2d"), col=KR[c.r].c; const g=x.createLinearGradient(0,0,0,1350); g.addColorStop(0,"#1b2a4a"); g.addColorStop(1,"#05070c"); x.fillStyle=g; x.fillRect(0,0,1080,1350);
   const X0=210,Y0=150,W=660,H=924,R=44; const rr=(a,b,w,h,r)=>{ x.beginPath(); x.moveTo(a+r,b); x.arcTo(a+w,b,a+w,b+h,r); x.arcTo(a+w,b+h,a,b+h,r); x.arcTo(a,b+h,a,b,r); x.arcTo(a,b,a+w,b,r); x.closePath(); };
   x.shadowColor=col; x.shadowBlur=90; rr(X0,Y0,W,H,R); const cg=x.createLinearGradient(0,Y0,0,Y0+H); cg.addColorStop(0,"#2a3757"); cg.addColorStop(1,"#0b101b"); x.fillStyle=cg; x.fill(); x.shadowBlur=0; x.lineWidth=10; x.strokeStyle=col; x.stroke();
-  x.textAlign="left"; x.fillStyle="rgba(255,255,255,.6)"; x.font="600 34px system-ui,sans-serif"; x.fillText("Nr. "+String(c.id).padStart(2,"0"),X0+44,Y0+76); if(sh){ x.textAlign="right"; x.fillText("✨ Glanz",X0+W-44,Y0+76); }
+  x.textAlign="left"; x.fillStyle="rgba(255,255,255,.6)"; x.font="600 34px system-ui,sans-serif"; x.fillText("Nr. "+String(c.id).padStart(4,"0"),X0+44,Y0+76); x.textAlign="right"; x.fillText(c.ed?KE[c.ed].n:(sh?"✨ Glanz":""),X0+W-44,Y0+76);
   x.textAlign="center"; x.font="260px serif"; x.fillStyle="#fff"; x.fillText(c.e,540,Y0+400); x.font="900 70px system-ui,sans-serif"; const wrap=(t,y,lh,max)=>{ let line=""; for(const w of t.split(" ")){ const q=line?line+" "+w:w; if(x.measureText(q).width>max&&line){ x.fillText(line,540,y); y+=lh; line=w; } else line=q; } x.fillText(line,540,y); return y; };
   let y=wrap(c.n,Y0+540,78,560); x.fillStyle="rgba(255,255,255,.75)"; x.font="500 38px system-ui,sans-serif"; wrap(c.t,y+70,50,540);
   x.fillStyle=col; rr(540-150,Y0+H-110,300,64,32); x.fill(); x.fillStyle="#0b101b"; x.font="800 34px system-ui,sans-serif"; x.fillText(KR[c.r].n,540,Y0+H-66);
-  x.fillStyle="rgba(255,255,255,.55)"; x.font="500 36px system-ui,sans-serif"; x.fillText("Gezogen im Fehlstunden-Heft",540,1240); shareCanvas(cv,"karte-"+c.id+".png","Schau mal, was ich gezogen habe: "+c.n+" ("+KR[c.r].n+")"); }
+  x.fillStyle="rgba(255,255,255,.55)"; x.font="500 36px system-ui,sans-serif"; x.fillText("Chance "+kcOdds(c)+" · Fehlstunden-Heft",540,1240); shareCanvas(cv,"karte-"+c.id+".png","Schau mal, was ich gezogen habe: "+c.n+" ("+KR[c.r].n+")"); }
 function kcRender(){ const box=$("kcCard"), al=$("kcAlbum"); if(!box||!al) return; const o=kcGet(), av=kcAvail(), n=kcDistinct(o);
   box.className="card kpk"+(av?"":" none"); box.innerHTML=`<span class="pkv">F</span><div><h3></h3><p></p><button type="button" class="k29b"></button></div>`; box.querySelector("h3").textContent=av?(av>=99?"Packs ohne Ende":av===1?"1 Pack wartet":av+" Packs warten"):"Kein Pack offen";
   box.querySelector("p").textContent="Ein Pack für jeden Schultag ohne Eintrag, zwei für jede perfekte Woche, eins für jeden Erfolg. Dazu das Glücksrad."; const b=box.querySelector("button"); b.textContent=av?"Pack aufreißen":"Morgen wieder"; b.disabled=!av; b.onclick=kcOpenPack;
-  al.innerHTML=`<h3>Album</h3><div class="kpro"><span><b>${n}</b> von ${KC.length}</span>${"crel".split("").map(r=>`<span style="border-color:${KR[r].c}55"><b>${KC.filter(c=>c.r===r&&o.o[c.id]).length}</b>/${KC.filter(c=>c.r===r).length} ${KR[r].n}</span>`).join("")}<span>✨ <b>${Object.keys(o.s).length}</b> Glanz</span></div><div class="kms"></div><div class="kgrid"></div>`;
+  const own=kcOwned(o).sort((a,b)=>a.id-b.id), holo=own.filter(c=>c.ed===3||o.s[c.id]).length;
+  al.innerHTML=`<h3>Album</h3><div class="kpro"><span><b>${n.toLocaleString("de-DE")}</b> von ${KN.toLocaleString("de-DE")}</span>${"crel".split("").map(r=>`<span style="border-color:${KR[r].c}55"><b>${own.filter(c=>c.r===r).length}</b> ${KR[r].n}</span>`).join("")}<span>✨ <b>${holo}</b> Holo</span></div>
+    <p class="kinf">${KS.length} Motive, ${KV.length} Varianten, ${KE.length} Editionen: zusammen ${KN.toLocaleString("de-DE")} Karten. Seltenheit pro Karte im Pack: ${"crel".split("").map(r=>KR[r].n+" "+(KPR[r]*100).toLocaleString("de-DE")+" %").join(", ")}. Edition: ${KE.map(e=>e.n+" "+(e.p*100).toLocaleString("de-DE")+" %").join(", ")}. Die Chance steht auf jeder Karte.</p><div class="kms"></div><div class="kgrid"></div>`;
   const ms=al.querySelector(".kms"); KMS.forEach(([t,k,l])=>{ const d=document.createElement("div"); const on=n>=t||evtHas(k); d.className=on?"on":""; d.innerHTML=`<i>${on?"✓":""}</i><span></span>`; d.querySelector("span").textContent=`${t} verschiedene Karten: ${l}`; ms.appendChild(d); });
-  const g=al.querySelector(".kgrid"); "lerc".split("").forEach(r=>{ const L=KC.filter(c=>c.r===r), h=document.createElement("div"); h.className="kgh"; h.style.color=KR[r].c; h.innerHTML=`<span>${KR[r].n}</span><small>${L.filter(c=>o.o[c.id]).length}/${L.length}</small>`; g.appendChild(h);
-    L.forEach(c=>{ const own=o.o[c.id]||0; if(own){ const b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label",c.n); b.appendChild(kcEl(c,{sh:!!o.s[c.id],x:own,nw:o.nw.includes(c.id)})); b.onclick=()=>kcDetail(c); g.appendChild(b); } else g.appendChild(kcEl(c,{no:1})); }); }); }
+  const g=al.querySelector(".kgrid"); if(!own.length){ const e=document.createElement("p"); e.className="kinf"; e.style.gridColumn="1/-1"; e.textContent="Noch keine Karte. Reiß dein erstes Pack auf."; g.appendChild(e); }
+  "lerc".split("").forEach(r=>{ const L=own.filter(c=>c.r===r); if(!L.length) return; const h=document.createElement("div"); h.className="kgh"; h.style.color=KR[r].c; h.innerHTML=`<span>${KR[r].n}</span><small>${L.length}</small>`; g.appendChild(h);
+    L.slice(0,240).forEach(c=>{ const b=document.createElement("button"); b.type="button"; b.setAttribute("aria-label",c.n); b.appendChild(kcEl(c,{sh:!!o.s[c.id],x:o.o[c.id],nw:o.nw.includes(c.id)})); b.onclick=()=>kcDetail(c); g.appendChild(b); }); }); }
 /* --- Glücksrad --- */
-const WH=[{e:"🎴",n:"1 Pack",w:28,p:1},{e:"💠",n:"Seltene Karte",w:20,min:"r"},{e:"🎴",n:"2 Packs",w:16,p:2},{e:"🚫",n:"Zug fällt aus",w:12,trost:1},{e:"✨",n:"Glanz-Karte",w:5,shiny:1},{e:"🎴",n:"3 Packs",w:9,p:3},{e:"🔮",n:"Epische Karte",w:8,min:"e"},{e:"👑",n:"Legendäre Karte",w:2,min:"l"}];
+const WH=[{e:"🎴",n:"1 Pack",w:28,p:1},{e:"💠",n:"Seltene Karte",w:20,min:"r"},{e:"🎴",n:"2 Packs",w:16,p:2},{e:"🚫",n:"Zug fällt aus",w:12,trost:1},{e:"✨",n:"Holo-Karte",w:5,shiny:1},{e:"🎴",n:"3 Packs",w:9,p:3},{e:"🔮",n:"Epische Karte",w:8,min:"e"},{e:"👑",n:"Legendäre Karte",w:2,min:"l"}];
 function whGet(){ let o={}; try{ o=JSON.parse(localStorage.getItem("fh_wh")||"{}")||{}; }catch(e){} o.n=+o.n||0; return o; }
 function whCan(){ return kcAdm()||whGet().d!==iso(new Date()); }
 function whOpen(){ if(document.querySelector(".k29o")) return; const o=k29Overlay(); const can=whCan();
@@ -5119,15 +5187,15 @@ function whOpen(){ if(document.querySelector(".k29o")) return; const o=k29Overla
     setTimeout(()=>{ if(!o.isConnected) return; delete o.dataset.busy; try{ sfx.chime(i===7); if(i>=6) fireworks(8,2200); }catch(e){} p.textContent=s.p?`${s.n}! ${s.p===1?"Es liegt":"Sie liegen"} bei deinen Karten.`:s.trost?"Zug fällt aus. Als Trost gibt es eine Karte.":`${s.n}!`; b.disabled=false; b.textContent=s.p?"Packs aufreißen":"Karte ansehen";
       b.onclick=()=>{ removeEventListener("resize",fit); o.remove(); if(list) kcReveal(list,s.trost?"Trostkarte":s.n); else kcOpenPack(); try{ lootRender(); }catch(e){} }; },dur); }; }
 function lootRender(){ const box=$("loot29"); if(!box) return; const on=gameOn(); box.hidden=!on; if(!on) return; const can=whCan(), av=kcAvail(), w=box.querySelector("[data-l=w]"), k=box.querySelector("[data-l=k]");
-  w.classList.toggle("hot",can); w.querySelector("small").textContent=can?"Heute noch nicht gedreht":"Morgen wieder"; k.classList.toggle("hot",av>0); k.querySelector("small").textContent=av?(av>=99?"Packs ohne Ende":av===1?"1 Pack wartet":av+" Packs warten"):`${kcDistinct()} von ${KC.length} gesammelt`; const n=k.querySelector(".ltn"); n.hidden=!av||av>=99; n.textContent=av; }
+  w.classList.toggle("hot",can); w.querySelector("small").textContent=can?"Heute noch nicht gedreht":"Morgen wieder"; k.classList.toggle("hot",av>0); k.querySelector("small").textContent=av?(av>=99?"Packs ohne Ende":av===1?"1 Pack wartet":av+" Packs warten"):`${kcDistinct()} von ${KN.toLocaleString("de-DE")} gesammelt`; const n=k.querySelector(".ltn"); n.hidden=!av||av>=99; n.textContent=av; }
 (function v29Init(){
   /* Belohnungen der Sammlung */
   try{ EVT_EMO.push(["🃏","kc_emo"]); PF.ban.holo={n:"Holo-Karte",ev:"kc_ban",anim:1,stars:1,bg:"linear-gradient(135deg,#ff5fd2,#5fe1ff,#fff27a,#b98cff,#ff5fd2)"}; PF.nc.holo={n:"Holo",ev:"kc_nc",g:"linear-gradient(90deg,#ff5fd2,#5fe1ff,#fff27a,#ff5fd2)"}; evtApply();
     const _rq=pfReq; pfReq=function(r){ if(r&&r.ev&&String(r.ev).startsWith("kc")) return "Sammelkarten"; return _rq.apply(this,arguments); }; }catch(e){ console.error(e); }
   /* Erfolge */
-  try{ const _ad=achDefs; achDefs=function(){ const d=_ad.apply(this,arguments), adm=kcAdm(), o=kcGet(), n=kcDistinct(o), leg=KC.filter(c=>c.r==="l"&&o.o[c.id]).length;
+  try{ const _ad=achDefs; achDefs=function(){ const d=_ad.apply(this,arguments), adm=kcAdm(), o=kcGet(), n=kcDistinct(o), own=kcOwned(o), leg=own.filter(c=>c.r==="l").length, holo=own.filter(c=>c.ed===3||o.s[c.id]).length;
       const ex=[{g:"Karten",id:"kc1",n:"Erstes Pack",d:"Ein Karten-Pack aufgerissen",ic:"box",v:o.op,t:1},{g:"Karten",id:"kc10",n:"Sammler",d:"10 verschiedene Karten",ic:"book",v:n,t:10},{g:"Karten",id:"kc25",n:"Karten-Hai",d:"25 verschiedene Karten",ic:"gem",v:n,t:25},
-        {g:"Karten",id:"kcl",n:"Legendär!",d:"Eine legendäre Karte gezogen",ic:"crown",v:leg,t:1},{g:"Karten",id:"kcs",n:"Glanzstück",d:"Eine Glanz-Karte gezogen",ic:"star",v:Object.keys(o.s).length,t:1},{g:"Karten",id:"kcall",n:"Album voll",d:`Alle ${KC.length} Karten gesammelt`,ic:"trophy",v:n,t:KC.length},{g:"Karten",id:"wh7",n:"Stammgast am Rad",d:"7-mal das Glücksrad gedreht",ic:"clover",v:whGet().n,t:7}];
+        {g:"Karten",id:"kcl",n:"Legendär!",d:"Eine legendäre Karte gezogen",ic:"crown",v:leg,t:1},{g:"Karten",id:"kcs",n:"Glanzstück",d:"Eine Holo-Karte gezogen",ic:"star",v:holo,t:1},{g:"Karten",id:"kcall",n:"Großsammler",d:"250 verschiedene Karten",ic:"trophy",v:n,t:250},{g:"Karten",id:"wh7",n:"Stammgast am Rad",d:"7-mal das Glücksrad gedreht",ic:"clover",v:whGet().n,t:7}];
       return d.concat(ex.map(a=>Object.assign(a,{ti:ACHT[a.id]},adm?{v:a.t,p:1}:{}))); };
     Object.assign(ACHT,{kc1:"Pack-Aufreißer",kc10:"Sammler",kc25:"Karten-Hai",kcl:"Glückspilz",kcs:"Glanzstück",kcall:"Sammel-Legende",wh7:"Glücksritter"}); }catch(e){ console.error(e); }
   /* Startseite */
@@ -5140,6 +5208,29 @@ function lootRender(){ const box=$("loot29"); if(!box) return; const on=gameOn()
   const _gs=gseg; gseg=function(s){ const r=_gs.apply(this,arguments); try{ if(s==="k") kcRender(); }catch(e){} return r; };
   document.addEventListener("visibilitychange",()=>{ if(!document.hidden){ try{ lootRender(); }catch(e){} } });
   try{ kcMile(); lootRender(); if(GSEG==="k") kcRender(); }catch(e){ console.error(e); }
+})();
+/* ---------- v30: Feature-Schalter und heftige Effekte ---------- */
+const FT=[["Aussehen"],["fx","Heftige Effekte","Leuchtender Hintergrund, Farbverlauf in Überschriften, Tipp-Wellen",""],["hv","Begrüßung","„Guten Morgen“ mit Datum auf der Startseite","#v-home .hv"],
+  ["Startseite"],["wh","Glücksrad","Einmal am Tag drehen","#loot29 [data-l=w]"],["kc","Sammelkarten","Packs, Album und der Bereich „Karten“","#loot29 [data-l=k],.gseg [data-s=k],#v-game>[data-seg=k]"],["due","Noch offen","Erinnerung an offene Entschuldigungen","#dueCard"],["sick","Krank-Modus","Mehrere Tage krank und Gute-Besserung-Karte","#sickRow,#sickCard"],
+  ["week","Wochen-Bilanz","Rückblick am Freitag","#weekCard"],["evt","Saison-Events","Herbst-Event und Adventskalender","#evtHome"],["wrap","Rückblick","Deine Fehlstunden als Story","#wrapCard"],["hint","Hinweise","Stapel mit Tipps unten auf der Startseite","#noteStack"],
+  ["Statistik"],["umr","Umrechner","„Was du verpasst hast“","#umrCard"],
+  ["Erfolge"],["ci","Tag abhaken","„Heute ohne Fehlzeit?“ für +10 XP","#ciCard"],["cbx","Tages-Kiste","Kiste zum Öffnen","#cbxCard"],["ch","Wochen-Aufgaben","Drei Aufgaben pro Woche","#chCard"],["ps","Saison-Pass","30 Stufen mit Belohnungen","#psCard"],["nx","Als Nächstes","Die drei nächsten Erfolge","#nxCard"],["du","Duell","Stand mit Freunden vergleichen","#duCard"],["cx","Challenges","Wetten mit Freunden per Code","#cxCard"]];
+function ftOff(){ try{ const a=JSON.parse(localStorage.getItem("fh_off")||"[]"); return Array.isArray(a)?a:[]; }catch(e){ return []; } }
+function ftApply(){ const off=ftOff(), h=document.documentElement; FT.forEach(f=>{ if(f.length>1) h.classList.toggle("off-"+f[0],off.includes(f[0])); });
+  try{ const hidden={k:off.includes("kc"),d:off.includes("du")&&off.includes("cx")}; if(hidden[GSEG]) gseg("f",true); lootRender(); }catch(e){}
+  document.querySelectorAll("#ftList input").forEach(i=>{ i.checked=!off.includes(i.dataset.k); }); }
+function ftSet(k,on){ let off=ftOff().filter(x=>x!==k); if(!on) off.push(k); try{ localStorage.setItem("fh_off",JSON.stringify(off)); }catch(e){} ftApply(); }
+(function v30Init(){
+  try{ const st=document.createElement("style"); st.textContent=FT.filter(f=>f.length>1&&f[3]).map(f=>f[3].split(",").map(x=>"html.off-"+f[0]+" "+x).join(",")+"{display:none!important}").join("\n"); document.head.appendChild(st);
+    const fx=document.createElement("div"); fx.id="fx30"; fx.setAttribute("aria-hidden","true"); fx.innerHTML="<i></i><i></i><i></i><i></i>"; document.body.insertBefore(fx,document.body.firstChild); }catch(e){ console.error(e); }
+  try{ const box=$("ftList"); FT.forEach(f=>{ if(f.length===1){ const h=document.createElement("div"); h.className="fth"; h.textContent=f[0]; box.appendChild(h); return; }
+      const d=document.createElement("div"); d.className="set"; d.innerHTML=`<label for="ft_${f[0]}"><span></span><small></small></label><span class="switch-t"><input type="checkbox" id="ft_${f[0]}" data-k="${f[0]}" role="switch"><span></span></span>`; d.querySelector("label span").textContent=f[1]; d.querySelector("small").textContent=f[2];
+      d.querySelector("input").addEventListener("change",e=>{ ftSet(f[0],e.target.checked); try{ sfx.click(); }catch(_){} }); box.appendChild(d); });
+    $("ftAll").onclick=()=>{ try{ localStorage.setItem("fh_off","[]"); }catch(e){} ftApply(); toast("Alles eingeschaltet."); };
+    $("ftNone").onclick=()=>{ try{ localStorage.setItem("fh_off",JSON.stringify(FT.filter(f=>f.length>1).map(f=>f[0]))); }catch(e){} ftApply(); toast("Alles ausgeschaltet."); }; }catch(e){ console.error(e); }
+  ftApply();
+  /* Tipp-Wellen */
+  document.addEventListener("pointerdown",e=>{ try{ if(document.documentElement.classList.contains("off-fx")||RM()) return; if(!e.target.closest||!e.target.closest("button,[role=button],.act,a")) return; const r=document.createElement("span"); r.className="fxr"; r.style.left=e.clientX+"px"; r.style.top=e.clientY+"px"; document.body.appendChild(r); setTimeout(()=>r.remove(),650); }catch(_){} },{passive:true,capture:true});
 })();
 /* ---------- guided tour ---------- */
 function tour(){ if(document.querySelector(".tour")) return; clearSel(); closeSheet();
@@ -5453,7 +5544,7 @@ document.querySelectorAll(".act").forEach(b=>{ const t=b.classList.contains("lat
   ["pointerup","pointerleave","pointercancel"].forEach(ev=>b.addEventListener(ev,stop));
   b.addEventListener("contextmenu",e=>e.preventDefault());
   b.addEventListener("click",e=>{ if(fired){ e.stopImmediatePropagation(); e.preventDefault(); fired=false; } },true); });
-const APP_VERSION="29";
+const APP_VERSION="30";
 const newer=(a,b)=>{ const x=a.split(".").map(Number), y=b.split(".").map(Number); for(let i=0;i<Math.max(x.length,y.length);i++){ if((x[i]||0)!==(y[i]||0)) return (x[i]||0)>(y[i]||0); } return false; };
 let updShown=false, lastCheck=0;
 async function checkUpdate(){ if(window.claude||!/^https?:$/.test(location.protocol)||updShown||Date.now()-lastCheck<60000) return; lastCheck=Date.now();
